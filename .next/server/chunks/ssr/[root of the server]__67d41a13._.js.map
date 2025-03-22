@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 112, "column": 0}, "map": {"version":3,"sources":["file:///home/cordy/One_For_All_PHP/one_for_all/app/api/page.js"],"sourcesContent":["import mysql from \"mysql2/promise\";\n\nconst dbConfig = {\n    host: 'localhost',\n    user: 'root',\n    password: '',\n    database: 'one_for_all'\n};\n\nexport default async function handler(req, res) {\n    let connection;\n    try {\n        connection = await mysql.createConnection(dbConfig);\n        await connection.ping(); // ✅ Tests connection without running a query\n\n        res.status(200).json({ message: \"✅ Database connected successfully!\" });\n\n    } catch (error) {\n        console.error(\"❌ Database Error:\", error.message);\n        res.status(500).json({ error: \"Database connection failed.\" });\n\n    } finally {\n        if (connection) {\n            await connection.end(); // Ensure connection is closed\n        }\n    }\n}\n"],"names":[],"mappings":";;;AAAA;;AAEA,MAAM,WAAW;IACb,MAAM;IACN,MAAM;IACN,UAAU;IACV,UAAU;AACd;AAEe,eAAe,QAAQ,GAAG,EAAE,GAAG;IAC1C,IAAI;IACJ,IAAI;QACA,aAAa,MAAM,iIAAA,CAAA,UAAK,CAAC,gBAAgB,CAAC;QAC1C,MAAM,WAAW,IAAI,IAAI,6CAA6C;QAEtE,IAAI,MAAM,CAAC,KAAK,IAAI,CAAC;YAAE,SAAS;QAAqC;IAEzE,EAAE,OAAO,OAAO;QACZ,QAAQ,KAAK,CAAC,qBAAqB,MAAM,OAAO;QAChD,IAAI,MAAM,CAAC,KAAK,IAAI,CAAC;YAAE,OAAO;QAA8B;IAEhE,SAAU;QACN,IAAI,YAAY;YACZ,MAAM,WAAW,GAAG,IAAI,8BAA8B;QAC1D;IACJ;AACJ","debugId":null}}]
+}

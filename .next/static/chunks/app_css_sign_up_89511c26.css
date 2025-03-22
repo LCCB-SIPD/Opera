@@ -1,0 +1,89 @@
+/* [project]/app/css/sign_up.css [app-client] (css) */
+.sign_up {
+  width: 100%;
+  height: 640px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  margin: 0 auto;
+}
+
+.title {
+  margin: 20px 10px;
+  font-size: 38px;
+}
+
+.sign_up form {
+  width: 40%;
+  margin: 40px 10px;
+  height: 420px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 3px #fff;
+}
+
+.sign_up div {
+  width: 70%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  position: relative;
+}
+
+.sign_up label {
+  font-size: 16px;
+  position: absolute;
+  left: 0;
+  transition: all .5s ease-in-out;
+}
+
+.sign_up input {
+  border-bottom: 2px solid #fff;
+  width: 100%;
+  background: none;
+  outline: none;
+}
+
+.sign_up input:focus + label, .sign_up input:not(:placeholder-shown) + label {
+  font-size: 12px;
+  transform: translateY(-20px);
+}
+
+.sign_up button {
+  margin: 0 20px;
+  border: 2px solid #fff;
+  padding: 5px 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all .5s ease-in-out;
+  font-weight: bold;
+  color: #000;
+  background-color: #fff;
+}
+
+.sign_up button:hover {
+  opacity: .5;
+}
+
+@media (width <= 1024px) {
+  .sign_up form {
+    max-width: 420px;
+    width: 70%;
+    margin: 0;
+  }
+
+  .sign_up button {
+    font-size: 12px;
+    padding: 5px 15px;
+    margin: 0 15px;
+  }
+}
+
+
+/*# sourceMappingURL=app_css_sign_up_89511c26.css.map*/
