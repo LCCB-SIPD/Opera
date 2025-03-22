@@ -1,4 +1,4 @@
-
+"use client"
 import "../css/log_in.css"
 import { useRouter } from "next/navigation";
 export default function Log_in() {
