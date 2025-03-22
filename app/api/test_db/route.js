@@ -3,10 +3,11 @@ export const dynamic = "force-dynamic"
 import mysql from "mysql2/promise";
 
 const dbConfig = {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'one_for_all'
+    host: 'metro.proxy.rlwy.net',
+    user: 'root',  
+    password: 'JHoLNUUONqCLPdIipwcqKaYAXogjRGGu', 
+    database: 'railway', 
+    port: 39376 
 };
 
 // ✅ Correct Next.js 13+ App Router API format
