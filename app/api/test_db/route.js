@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic"
 
 import mysql from "mysql2/promise";
 
