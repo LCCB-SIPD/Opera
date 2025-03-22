@@ -1,5 +1,6 @@
 {
-  "/api/test_db/route": "app/api/test_db/route.js",
+  "/api/log_in/route": "app/api/log_in/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/main/Welcome/page": "app/main/Welcome/page.js",
   "/page": "app/page.js"
 }

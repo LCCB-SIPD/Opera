@@ -1,15 +1,8 @@
 
 import mysql from "mysql2/promise";
 
-const dbConfig = {
-    host: 'metro.proxy.rlwy.net',
-    user: 'root',  
-    password: 'JHoLNUUONqCLPdIipwcqKaYAXogjRGGu', 
-    database: 'railway', 
-    port: 39376 
-};
+import dbConfig from "../dbConnect";
 
-// ✅ Correct Next.js 13+ App Router API format
 export async function GET() {
     let connection;
     try {
