@@ -231,6 +231,8 @@ async function POST(req) {
             await connection.end();
             return new Response(JSON.stringify({
                 error: "Email or Username already exist"
+            }, {
+                status: 400
             }));
         }
         const [result] = await connection.execute('INSERT INTO user_tbl (username, passwd, email) VALUES (?, ?, ?)', [

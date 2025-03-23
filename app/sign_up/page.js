@@ -8,6 +8,8 @@ export default function Sign_up() {
     const [username, setUsername] = useState('')
     const [e_passwd, setPassword] = useState('')
     const [c_passwd, setconfirmPassword] = useState('')
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false) 
 
     const handleSubmit = async (e) => {
 
@@ -18,27 +20,37 @@ export default function Sign_up() {
             return
         }
         
-        const response = await fetch('/api/sign_up', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email,
-                username,
-                e_passwd,
-                c_passwd
+        setLoading(true)
+
+        try {
+
+            const response = await fetch('/api/sign_up', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    username,
+                    e_passwd,
+                    c_passwd,
+                })
             })
-        })
+    
+            const data = await response.json()
+            if (response.ok) {
+                setError(data.message)
+                window.location.reload()
+            } else {
+                setError(data.error || "Somethings went wrong")
+                setLoading(false)
+            }
 
-        const data = await response.json()
-        if (response.ok) {
-            alert("Sign up Successful!")
-            window.location.reload()
-        } else {
-            alert(`Error: ${data.error}`)
+        } catch (error) {
+            setLoading(false)
+            setError("Network Error. Please Try Again...")
+
         }
-
     }
 
     const router = useRouter()
@@ -83,9 +95,10 @@ export default function Sign_up() {
                     placeholder=" " required/>
                     <label htmlFor="c_passwd">Confirm Password</label>
                 </div>
+                {error && <p style={{ color: "#ff0" }}>{error}</p>}
                 <div>
-                    <button type="button" onClick={() => router.push("/")}>Back</button>
-                    <button type="submit">Confirm</button>
+                    <button type="button" onClick={() => router.back()}>Back</button>
+                    <button type="submit" disabled={loading}>{loading ? "Loading..." : "Confirm"}</button>
                 </div>
             </form>
         </div>

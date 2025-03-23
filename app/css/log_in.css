@@ -1,6 +1,7 @@
 
 .log_in {
     width: 100%;
+    max-width: 1024px;
     height: 640px;
     display: flex;
     justify-content: center;
@@ -22,7 +23,7 @@
     flex-flow: column;
 }
 .log_in div {
-    width: 70%;
+    width: 75%;
     height: auto;
     display: flex;
     justify-content: center;
@@ -31,7 +32,7 @@
     margin: 20px 0;
 }
 .log_in button {
-    margin: 0 20px;
+    margin: 0 15px;
     border: 2px solid #fff;
     padding: 5px 20px;
     cursor: pointer;

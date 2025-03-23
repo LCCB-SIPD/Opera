@@ -1,7 +1,9 @@
 {
+  "/api/auth/route": "app/api/auth/route.js",
+  "/api/log_in/route": "app/api/log_in/route.js",
   "/api/sign_up/route": "app/api/sign_up/route.js",
-  "/api/test_db/route": "app/api/test_db/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/main/Home/page": "app/main/Home/page.js",
   "/page": "app/page.js",
   "/sign_up/page": "app/sign_up/page.js"
 }

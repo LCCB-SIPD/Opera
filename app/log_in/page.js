@@ -6,27 +6,39 @@ export default function Log_in() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
     const router = useRouter()
+    
 
     const handleLogIn = async (e) => {
         e.preventDefault()
 
-        const response = await fetch("/api/log_in", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ username, password })
-        })
+        try {
 
-        const data = await response.text()
+            setLoading(true)
 
-        if (response.ok) {
-            router.push("/main/Welcome")
-        } else {
-            setError(data)
+            const response = await fetch("/api/log_in", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username, password })
+            })
+    
+            const data = await response.text()
+    
+            if (response.ok) {
+                router.push("/main/Home")
+            } else {
+                setError(data)
+                setLoading(false)
+            }
+    
+        } catch (error) {
+            setError('Internet Connection TimeOut')
+            setLoading(false)
         }
-
+        
     }
 
     return(
@@ -61,7 +73,7 @@ export default function Log_in() {
                 {error && <p style={{ color: "#f00" }}>{error}</p>} 
                 <div>
                     <button type="button" onClick={() => router.push("/sign_up")}>Sign Up</button>
-                    <button type="submit">Log In</button>
+                    <button type="submit" disabled={loading}>{loading ? "Fetching..." : "Log In"}</button>
                 </div>
             </form>
         </div>

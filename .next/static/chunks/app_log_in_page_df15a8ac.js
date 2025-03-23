@@ -22,24 +22,32 @@ function Log_in() {
     const [username, setUsername] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const handleLogIn = async (e)=>{
         e.preventDefault();
-        const response = await fetch("/api/log_in", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                username,
-                password
-            })
-        });
-        const data = await response.text();
-        if (response.ok) {
-            router.push("/main/Welcome");
-        } else {
-            setError(data);
+        try {
+            setLoading(true);
+            const response = await fetch("/api/log_in", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username,
+                    password
+                })
+            });
+            const data = await response.text();
+            if (response.ok) {
+                router.push("/main/Home");
+            } else {
+                setError(data);
+                setLoading(false);
+            }
+        } catch (error) {
+            setError('Internet Connection TimeOut');
+            setLoading(false);
         }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -50,7 +58,7 @@ function Log_in() {
                 children: "One For All"
             }, void 0, false, {
                 fileName: "[project]/app/log_in/page.js",
-                lineNumber: 34,
+                lineNumber: 46,
                 columnNumber: 17
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -67,7 +75,7 @@ function Log_in() {
                                 required: true
                             }, void 0, false, {
                                 fileName: "[project]/app/log_in/page.js",
-                                lineNumber: 37,
+                                lineNumber: 49,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -75,13 +83,13 @@ function Log_in() {
                                 children: "Username "
                             }, void 0, false, {
                                 fileName: "[project]/app/log_in/page.js",
-                                lineNumber: 45,
+                                lineNumber: 57,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/log_in/page.js",
-                        lineNumber: 36,
+                        lineNumber: 48,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -95,7 +103,7 @@ function Log_in() {
                                 required: true
                             }, void 0, false, {
                                 fileName: "[project]/app/log_in/page.js",
-                                lineNumber: 48,
+                                lineNumber: 60,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -103,13 +111,13 @@ function Log_in() {
                                 children: "Password "
                             }, void 0, false, {
                                 fileName: "[project]/app/log_in/page.js",
-                                lineNumber: 56,
+                                lineNumber: 68,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/log_in/page.js",
-                        lineNumber: 47,
+                        lineNumber: 59,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -118,12 +126,12 @@ function Log_in() {
                             children: "Forgot Password?"
                         }, void 0, false, {
                             fileName: "[project]/app/log_in/page.js",
-                            lineNumber: 59,
+                            lineNumber: 71,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/log_in/page.js",
-                        lineNumber: 58,
+                        lineNumber: 70,
                         columnNumber: 17
                     }, this),
                     error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -133,7 +141,7 @@ function Log_in() {
                         children: error
                     }, void 0, false, {
                         fileName: "[project]/app/log_in/page.js",
-                        lineNumber: 61,
+                        lineNumber: 73,
                         columnNumber: 27
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -144,37 +152,38 @@ function Log_in() {
                                 children: "Sign Up"
                             }, void 0, false, {
                                 fileName: "[project]/app/log_in/page.js",
-                                lineNumber: 63,
+                                lineNumber: 75,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 type: "submit",
-                                children: "Log In"
+                                disabled: loading,
+                                children: loading ? "Fetching..." : "Log In"
                             }, void 0, false, {
                                 fileName: "[project]/app/log_in/page.js",
-                                lineNumber: 64,
+                                lineNumber: 76,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/log_in/page.js",
-                        lineNumber: 62,
+                        lineNumber: 74,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/log_in/page.js",
-                lineNumber: 35,
+                lineNumber: 47,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/log_in/page.js",
-        lineNumber: 33,
+        lineNumber: 45,
         columnNumber: 9
     }, this);
 }
-_s(Log_in, "Yn5xNo9gSDsQpPn8yXKohgwcGek=", false, function() {
+_s(Log_in, "sPrJ7uLbm6K5pif71gOHbJqcY9c=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];
