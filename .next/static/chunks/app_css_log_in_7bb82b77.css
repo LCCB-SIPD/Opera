@@ -11,13 +11,13 @@
 }
 
 .title {
-  margin: 20px 10px;
+  margin: 0 10px;
   font-size: 38px;
 }
 
 .log_in form {
   width: 40%;
-  margin: 40px 10px;
+  margin: 0 10px;
   height: 380px;
   display: flex;
   justify-content: center;
@@ -68,6 +68,32 @@
 .log_in input:focus + label, .log_in input:not(:placeholder-shown) + label {
   font-size: 12px;
   transform: translateY(-20px);
+}
+
+.loading-screen {
+  font-size: 38px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(90deg, red, orange, #ff0, green, #00f, indigo, violet);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: 5s linear infinite rainbow-animation;
+}
+
+@keyframes rainbow-animation {
+  0% {
+    background-position: 0%;
+  }
+
+  50% {
+    background-position: 100%;
+  }
+
+  100% {
+    background-position: 0%;
+  }
 }
 
 @media (width <= 1024px) {

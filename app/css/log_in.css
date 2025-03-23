@@ -10,12 +10,12 @@
     margin: 0 auto;
 }
 .title {
-    margin: 20px 10px;
+    margin: 0 10px;
     font-size: 38px;
 }
 .log_in form {
     width: 40%;
-    margin: 40px 10px;
+    margin: 0 10px;
     height: 380px;
     display: flex;
     justify-content: center;
@@ -61,6 +61,22 @@
 .log_in input:not(:placeholder-shown) + label {
     font-size: 12px;
     transform: translateY(-20px);
+}
+.loading-screen {
+    font-size: 38px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow-animation 5s infinite linear;
+}
+@keyframes rainbow-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 @media (max-width: 1024px) {

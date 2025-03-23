@@ -43,6 +43,7 @@ export default function Log_in() {
 
     return(
         <div className="log_in">
+                <h1 className={`loading-screen ${loading ? "": "hidden"}`}>Fetching...</h1>
                 <h1 className="title">One For All</h1>
             <form onSubmit={handleLogIn}>
                 <div>
@@ -72,7 +73,7 @@ export default function Log_in() {
                 </div>
                 {error && <p style={{ color: "#f00" }}>{error}</p>} 
                 <div>
-                    <button type="button" onClick={() => router.push("/sign_up")}>Sign Up</button>
+                    <button type="button" onClick={() => router.replace("/sign_up")}>Sign Up</button>
                     <button type="submit" disabled={loading}>{loading ? "Fetching..." : "Log In"}</button>
                 </div>
             </form>

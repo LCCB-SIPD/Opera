@@ -26,6 +26,8 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  position: relative;
+  z-index: 1;
 }
 
 .profile_pic {
@@ -35,6 +37,39 @@
   border-radius: 1000vh;
   margin: 0 10px;
   position: relative;
+}
+
+.profile_option {
+  position: absolute;
+  background-color: #21262d;
+  width: 130px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  overflow: hidden;
+  border-radius: 15px;
+  transition: all .5s ease-in-out;
+  opacity: 0;
+}
+
+.profile:hover .profile_option {
+  transform: translateY(70px);
+  opacity: 1;
+}
+
+.profile_option button {
+  width: 100%;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: all .5s ease-in-out;
+  font-weight: 600;
+}
+
+.profile_option button:hover {
+  background-color: #fff;
+  color: #000;
 }
 
 .searchBar {
@@ -73,6 +108,7 @@
   border-radius: 20px;
   overflow: hidden;
   margin: 0 10px;
+  cursor: pointer;
 }
 
 .products_image {
@@ -107,6 +143,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.buttons button {
+  width: 100%;
+  padding: 10px 0;
+  border-top: 1px solid #fff;
+  transition: all .5s ease-in-out;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  background-color: #fff;
+  color: #000;
 }
 
 /*# sourceMappingURL=app_css_home_b52d8e88.css.map*/

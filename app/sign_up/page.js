@@ -57,6 +57,7 @@ export default function Sign_up() {
 
     return(
         <div className="sign_up">
+            <h1 className={`loading-screen ${loading ? "": "hidden"}`}>Fetching...</h1>
             <h1 className="title">Sign Up</h1>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -97,7 +98,7 @@ export default function Sign_up() {
                 </div>
                 {error && <p style={{ color: "#ff0" }}>{error}</p>}
                 <div>
-                    <button type="button" onClick={() => router.back()}>Back</button>
+                    <button type="button" onClick={() => router.replace("/")}>Back</button>
                     <button type="submit" disabled={loading}>{loading ? "Loading..." : "Confirm"}</button>
                 </div>
             </form>

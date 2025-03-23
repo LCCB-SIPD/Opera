@@ -32,19 +32,35 @@ function Home() {
                             credentials: "include"
                         });
                         if (!res.ok) {
-                            router.push("/"); // Redirect if not authenticated
+                            router.replace("/");
+                            alert("Invalid Credentials");
                             return;
                         }
                         const userData = await res.json();
                         setUser(userData);
                     } catch (error) {
-                        router.push("/");
+                        router.replace("/");
                     }
                 }
             }["Home.useEffect.checkAuth"];
             checkAuth();
         }
     }["Home.useEffect"], []);
+    const handleLogOut = async ()=>{
+        try {
+            const res = await fetch("/api/log_out", {
+                method: "GET"
+            });
+            if (!res.ok) {
+                throw new Error("Logout failed");
+            }
+            const data = await res.json();
+            alert(data.message);
+            router.push("/");
+        } catch (error) {
+            alert("Internet Timeout OR Server Error");
+        }
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "welcome_page",
         children: [
@@ -57,12 +73,12 @@ function Home() {
                             children: "One For All"
                         }, void 0, false, {
                             fileName: "[project]/app/main/Home/page.js",
-                            lineNumber: 33,
+                            lineNumber: 55,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/main/Home/page.js",
-                        lineNumber: 32,
+                        lineNumber: 54,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -73,12 +89,12 @@ function Home() {
                             placeholder: "Search"
                         }, void 0, false, {
                             fileName: "[project]/app/main/Home/page.js",
-                            lineNumber: 36,
+                            lineNumber: 58,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/main/Home/page.js",
-                        lineNumber: 35,
+                        lineNumber: 57,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -87,18 +103,18 @@ function Home() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "profile_pic",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                    src: "https://www.shutterstock.com/image-vector/people-illustrations-profile-examples-260nw-1270121050.jpg",
+                                    src: "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=",
                                     alt: "Sample",
                                     fill: true,
                                     unoptimized: true
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/Home/page.js",
-                                    lineNumber: 44,
+                                    lineNumber: 66,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/main/Home/page.js",
-                                lineNumber: 43,
+                                lineNumber: 65,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -107,24 +123,48 @@ function Home() {
                                     children: user ? user.username : "Loading..."
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/Home/page.js",
-                                    lineNumber: 52,
+                                    lineNumber: 74,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/main/Home/page.js",
-                                lineNumber: 51,
+                                lineNumber: 73,
+                                columnNumber: 21
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "profile_option",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        children: "My Profile"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/main/Home/page.js",
+                                        lineNumber: 77,
+                                        columnNumber: 25
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: handleLogOut,
+                                        children: "Log Out"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/main/Home/page.js",
+                                        lineNumber: 78,
+                                        columnNumber: 25
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/main/Home/page.js",
+                                lineNumber: 76,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/main/Home/page.js",
-                        lineNumber: 42,
+                        lineNumber: 64,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/main/Home/page.js",
-                lineNumber: 31,
+                lineNumber: 53,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -141,12 +181,12 @@ function Home() {
                                 unoptimized: true
                             }, void 0, false, {
                                 fileName: "[project]/app/main/Home/page.js",
-                                lineNumber: 59,
+                                lineNumber: 85,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/main/Home/page.js",
-                            lineNumber: 58,
+                            lineNumber: 84,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -156,20 +196,20 @@ function Home() {
                                     children: "Product 1"
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/Home/page.js",
-                                    lineNumber: 67,
+                                    lineNumber: 93,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     children: "Price: 1200"
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/Home/page.js",
-                                    lineNumber: 68,
+                                    lineNumber: 94,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/main/Home/page.js",
-                            lineNumber: 66,
+                            lineNumber: 92,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -179,37 +219,37 @@ function Home() {
                                     children: "Cart"
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/Home/page.js",
-                                    lineNumber: 71,
+                                    lineNumber: 97,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     children: "Buy"
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/Home/page.js",
-                                    lineNumber: 72,
+                                    lineNumber: 98,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/main/Home/page.js",
-                            lineNumber: 70,
+                            lineNumber: 96,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/main/Home/page.js",
-                    lineNumber: 57,
+                    lineNumber: 83,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/main/Home/page.js",
-                lineNumber: 56,
+                lineNumber: 82,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/main/Home/page.js",
-        lineNumber: 30,
+        lineNumber: 52,
         columnNumber: 9
     }, this);
 }

@@ -13,18 +13,40 @@ export default function Home() {
             try {
                 const res = await fetch("/api/auth", { credentials: "include" });
                 if (!res.ok) {
-                    router.push("/"); // Redirect if not authenticated
+                    router.replace("/");
+                    alert("Invalid Credentials")
                     return;
                 }
                 const userData = await res.json();
                 setUser(userData);
             } catch (error) {
-                router.push("/");
+                router.replace("/");
             }
         };
 
         checkAuth();
     }, []);
+
+    const handleLogOut = async () => {
+
+        try {
+
+            const res = await fetch("/api/log_out", { method: "GET" })
+
+            if (!res.ok) {
+                throw new Error("Logout failed")
+            }
+
+            const data = await res.json()
+            alert(data.message)
+
+            router.push("/")
+
+        } catch (error) {
+            alert("Internet Timeout OR Server Error")
+        }
+
+    }
 
     return (
         <div className="welcome_page">
@@ -42,7 +64,7 @@ export default function Home() {
                 <div className="profile">
                     <div className="profile_pic">
                         <Image
-                            src="https://www.shutterstock.com/image-vector/people-illustrations-profile-examples-260nw-1270121050.jpg"
+                            src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
                             alt="Sample"
                             fill
                             unoptimized
@@ -50,6 +72,10 @@ export default function Home() {
                     </div>
                     <div className="profile_text">
                         <h1>{user ? user.username : "Loading..."}</h1>
+                    </div>
+                    <div className="profile_option">
+                        <button>My Profile</button>
+                        <button onClick={handleLogOut}>Log Out</button>
                     </div>
                 </div>
             </div>
