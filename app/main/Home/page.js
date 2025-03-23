@@ -71,11 +71,11 @@ export default function Home() {
                         />
                     </div>
                     <div className="profile_text">
-                        <h1>{user ? user.username : "Loading..."}</h1>
+                        <h1>{user ? user.username : "----"}</h1>
                     </div>
                     <div className="profile_option">
-                        <button>My Profile</button>
-                        <button onClick={handleLogOut}>Log Out</button>
+                        <button type="button" onClick={() => router.push("/main/Profile")}>My Profile</button>
+                        <button type="button" onClick={handleLogOut}>Log Out</button>
                     </div>
                 </div>
             </div>
