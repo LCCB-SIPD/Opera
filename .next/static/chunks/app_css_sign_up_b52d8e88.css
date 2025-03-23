@@ -22,8 +22,6 @@
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  border-radius: 20px;
-  box-shadow: 0 0 10px 3px #fff;
 }
 
 .sign_up div {
@@ -74,7 +72,7 @@
 @media (width <= 1024px) {
   .sign_up form {
     max-width: 420px;
-    width: 70%;
+    width: 90%;
     margin: 0;
   }
 
