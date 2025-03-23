@@ -1,6 +1,6 @@
 module.exports = {
 
-"[project]/.next-internal/server/app/api/test_db/route/actions.js [app-rsc] (server actions loader, ecmascript)": (function(__turbopack_context__) {
+"[project]/.next-internal/server/app/api/sign_up/route/actions.js [app-rsc] (server actions loader, ecmascript)": (function(__turbopack_context__) {
 
 var { g: global, __dirname, m: module, e: exports } = __turbopack_context__;
 {
@@ -141,6 +141,38 @@ const mod = __turbopack_context__.x("url", () => require("url"));
 
 module.exports = mod;
 }}),
+"[externals]/bcrypt [external] (bcrypt, cjs)": (function(__turbopack_context__) {
+
+var { g: global, __dirname, m: module, e: exports } = __turbopack_context__;
+{
+const mod = __turbopack_context__.x("bcrypt", () => require("bcrypt"));
+
+module.exports = mod;
+}}),
+"[externals]/fs [external] (fs, cjs)": (function(__turbopack_context__) {
+
+var { g: global, __dirname, m: module, e: exports } = __turbopack_context__;
+{
+const mod = __turbopack_context__.x("fs", () => require("fs"));
+
+module.exports = mod;
+}}),
+"[externals]/path [external] (path, cjs)": (function(__turbopack_context__) {
+
+var { g: global, __dirname, m: module, e: exports } = __turbopack_context__;
+{
+const mod = __turbopack_context__.x("path", () => require("path"));
+
+module.exports = mod;
+}}),
+"[externals]/os [external] (os, cjs)": (function(__turbopack_context__) {
+
+var { g: global, __dirname, m: module, e: exports } = __turbopack_context__;
+{
+const mod = __turbopack_context__.x("os", () => require("os"));
+
+module.exports = mod;
+}}),
 "[project]/app/api/dbConnect.js [app-route] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
@@ -149,50 +181,84 @@ var { g: global, __dirname } = __turbopack_context__;
 __turbopack_context__.s({
     "default": (()=>__TURBOPACK__default__export__)
 });
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$dotenv$2f$lib$2f$main$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/dotenv/lib/main.js [app-route] (ecmascript)");
+;
+__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$dotenv$2f$lib$2f$main$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].config();
 const dbConfig = {
-    host: '',
-    user: 'postgres.uqgltaesjmcfpupcwwox',
-    password: 'UvgitMMRegXxRopXlBBUjhgjLMkHiGLl',
-    database: 'postgres',
-    port: 6543
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT
 };
 const __TURBOPACK__default__export__ = dbConfig;
 }}),
-"[project]/app/api/test_db/route.js [app-route] (ecmascript)": ((__turbopack_context__) => {
+"[project]/app/api/sign_up/route.js [app-route] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
 var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
-    "GET": (()=>GET)
+    "POST": (()=>POST)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mysql2$2f$promise$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/mysql2/promise.js [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$bcrypt__$5b$external$5d$__$28$bcrypt$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/bcrypt [external] (bcrypt, cjs)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$api$2f$dbConnect$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/app/api/dbConnect.js [app-route] (ecmascript)");
 ;
 ;
-async function GET() {
-    let connection;
+;
+async function POST(req) {
     try {
-        connection = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mysql2$2f$promise$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].createConnection(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$api$2f$dbConnect$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"]);
-        await connection.ping(); // ✅ Check if database is connected
-        return Response.json({
-            message: "✅ Database connected successfully!"
+        const { email, username, e_passwd, c_passwd } = await req.json();
+        const cleanEmail = email.trim().toLowerCase();
+        const cleanUsername = username.trim().toLowerCase();
+        const cleanE_passwd = e_passwd.trim().toLowerCase();
+        const cleanC_passwd = c_passwd.trim().toLowerCase();
+        if (cleanE_passwd !== cleanC_passwd) {
+            return new Response(JSON.stringify({
+                error: "Password Not Match"
+            }, {
+                status: 400
+            }));
+        }
+        const hashPassword = await __TURBOPACK__imported__module__$5b$externals$5d2f$bcrypt__$5b$external$5d$__$28$bcrypt$2c$__cjs$29$__["default"].hash(c_passwd, 10);
+        const connection = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mysql2$2f$promise$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].createConnection(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$api$2f$dbConnect$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"]);
+        const [existingUser] = await connection.execute('SELECT * FROM user_tbl WHERE email = ? OR username = ?', [
+            cleanEmail,
+            cleanUsername
+        ]);
+        if (existingUser.length > 0) {
+            await connection.end();
+            return new Response(JSON.stringify({
+                error: "Email or Username already exist"
+            }));
+        }
+        const [result] = await connection.execute('INSERT INTO user_tbl (username, passwd, email) VALUES (?, ?, ?)', [
+            cleanUsername,
+            hashPassword,
+            cleanEmail
+        ]);
+        return new Response(JSON.stringify({
+            message: 'User registered successfully!',
+            data: result
+        }), {
+            status: 200,
+            headers: {
+                'Content-Type': 'application/json'
+            }
         });
+        "TURBOPACK unreachable";
     } catch (error) {
-        console.error("❌ Database Error:", error.message);
-        return Response.json({
+        console.error("Error during user signup:", error);
+        return new Response(JSON.stringify({
             error: "Database connection failed."
-        }, {
+        }), {
             status: 500
         });
-    } finally{
-        if (connection) {
-            await connection.end(); // Close connection
-        }
     }
 }
 }}),
 
 };
 
-//# sourceMappingURL=%5Broot%20of%20the%20server%5D__5ba54fbc._.js.map
+//# sourceMappingURL=%5Broot%20of%20the%20server%5D__c0880722._.js.map

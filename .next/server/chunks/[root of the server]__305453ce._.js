@@ -158,11 +158,11 @@ __turbopack_context__.s({
     "default": (()=>__TURBOPACK__default__export__)
 });
 const dbConfig = {
-    host: 'metro.proxy.rlwy.net',
+    host: 'caboose.proxy.rlwy.net',
     user: 'root',
-    password: 'JHoLNUUONqCLPdIipwcqKaYAXogjRGGu',
+    password: 'UvgitMMRegXxRopXlBBUjhgjLMkHiGLl',
     database: 'railway',
-    port: 39376
+    port: 53433
 };
 const __TURBOPACK__default__export__ = dbConfig;
 }}),
@@ -195,21 +195,21 @@ async function POST(req) {
             }));
         }
         const hashPassword = await __TURBOPACK__imported__module__$5b$externals$5d2f$bcrypt__$5b$external$5d$__$28$bcrypt$2c$__cjs$29$__["default"].hash(c_passwd, 10);
-        const connection1 = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mysql2$2f$promise$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].createConnection(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$api$2f$dbConnect$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"]);
-        const [existingUser] = await connection1.execute('SELECT * FROM user_tbl WHERE email = ? OR username = ?', [
+        const connection = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mysql2$2f$promise$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].createConnection(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$api$2f$dbConnect$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"]);
+        const [existingUser] = await connection.execute('SELECT * FROM user_tbl WHERE email = ? OR username = ?', [
             cleanEmail,
             cleanUsername
         ]);
         if (existingUser.length > 0) {
-            await connection1.end();
+            await connection.end();
             return new Response(JSON.stringify({
                 error: "Email or Username already exist"
             }));
         }
-        const [result] = await connection1.execute('INSERT INTO user_tbl (username, passwd, email) VALUES (?, ?, ?)', [
+        const [result] = await connection.execute('INSERT INTO user_tbl (username, passwd, email) VALUES (?, ?, ?)', [
             cleanUsername,
-            cleanEmail,
-            hashPassword
+            hashPassword,
+            cleanEmail
         ]);
         return new Response(JSON.stringify({
             message: 'User registered successfully!',
@@ -220,6 +220,7 @@ async function POST(req) {
                 'Content-Type': 'application/json'
             }
         });
+        "TURBOPACK unreachable";
     } catch (error) {
         console.error("Error during user signup:", error);
         return new Response(JSON.stringify({
@@ -227,8 +228,6 @@ async function POST(req) {
         }), {
             status: 500
         });
-    } finally{
-        await connection.end();
     }
 }
 }}),

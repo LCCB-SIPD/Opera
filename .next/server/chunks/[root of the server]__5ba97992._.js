@@ -141,6 +141,38 @@ const mod = __turbopack_context__.x("url", () => require("url"));
 
 module.exports = mod;
 }}),
+"[externals]/pg [external] (pg, cjs)": (function(__turbopack_context__) {
+
+var { g: global, __dirname, m: module, e: exports } = __turbopack_context__;
+{
+const mod = __turbopack_context__.x("pg", () => require("pg"));
+
+module.exports = mod;
+}}),
+"[externals]/fs [external] (fs, cjs)": (function(__turbopack_context__) {
+
+var { g: global, __dirname, m: module, e: exports } = __turbopack_context__;
+{
+const mod = __turbopack_context__.x("fs", () => require("fs"));
+
+module.exports = mod;
+}}),
+"[externals]/path [external] (path, cjs)": (function(__turbopack_context__) {
+
+var { g: global, __dirname, m: module, e: exports } = __turbopack_context__;
+{
+const mod = __turbopack_context__.x("path", () => require("path"));
+
+module.exports = mod;
+}}),
+"[externals]/os [external] (os, cjs)": (function(__turbopack_context__) {
+
+var { g: global, __dirname, m: module, e: exports } = __turbopack_context__;
+{
+const mod = __turbopack_context__.x("os", () => require("os"));
+
+module.exports = mod;
+}}),
 "[project]/app/api/dbConnect.js [app-route] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
@@ -149,14 +181,23 @@ var { g: global, __dirname } = __turbopack_context__;
 __turbopack_context__.s({
     "default": (()=>__TURBOPACK__default__export__)
 });
-const dbConfig = {
-    host: '',
+var __TURBOPACK__imported__module__$5b$externals$5d2f$pg__$5b$external$5d$__$28$pg$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/pg [external] (pg, cjs)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$dotenv$2f$lib$2f$main$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/dotenv/lib/main.js [app-route] (ecmascript)");
+;
+;
+__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$dotenv$2f$lib$2f$main$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].config(); // Load environment variables
+const { Pool } = __TURBOPACK__imported__module__$5b$externals$5d2f$pg__$5b$external$5d$__$28$pg$2c$__cjs$29$__["default"];
+const pool = new Pool({
+    host: 'aws-0-ap-northeast-1.pooler.supabase.com',
     user: 'postgres.uqgltaesjmcfpupcwwox',
-    password: 'UvgitMMRegXxRopXlBBUjhgjLMkHiGLl',
+    password: '2HrRH2g2ytg2FN9Q',
     database: 'postgres',
-    port: 6543
-};
-const __TURBOPACK__default__export__ = dbConfig;
+    port: 6543,
+    ssl: {
+        rejectUnauthorized: false
+    } // Required for Supabase connections
+});
+const __TURBOPACK__default__export__ = pool;
 }}),
 "[project]/app/api/test_db/route.js [app-route] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
@@ -195,4 +236,4 @@ async function GET() {
 
 };
 
-//# sourceMappingURL=%5Broot%20of%20the%20server%5D__5ba54fbc._.js.map
+//# sourceMappingURL=%5Broot%20of%20the%20server%5D__5ba97992._.js.map

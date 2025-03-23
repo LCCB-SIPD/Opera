@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import "../../css/welcome.css"
 
 export default function Welcome() {
     const router = useRouter();
@@ -25,7 +26,7 @@ export default function Welcome() {
     }, []);
 
     return (
-        <div>
+        <div className="welcome_page">
             <h1>Welcome {user ? user.username : "User"}!</h1>
         </div>
     );
