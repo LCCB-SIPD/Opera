@@ -46,12 +46,6 @@ export default function Profile() {
         };
         checkAuth();
 
-        if (username) {
-            getUser()
-        }
-
-    }, [username])
-
         const getUser = async () => {
             try {
                 const response = await fetch("/api/getUser", {
@@ -86,6 +80,14 @@ export default function Profile() {
 
             }
         }
+
+        if (username) {
+            getUser()
+        }
+
+    }, [username, router])
+
+        
             
         
     const handleUpdate = async (e) => { 

@@ -34,7 +34,7 @@ export default function SellerShop() {
         };
 
         checkAuth();
-    }, []);
+    }, [router]);
 
     const productHandle = async (e) => {
 

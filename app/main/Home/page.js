@@ -46,7 +46,7 @@ export default function Home() {
 
         getProduct()
 
-    }, []);
+    }, [router]);
 
     const handleLogOut = async () => {
 
