@@ -4,10 +4,34 @@
 ## Manually to Run the App
 
 go to your terminal and run  this:
+```sh
+git clone https://github.com/kazuha001/One_For_All_PHP.git
+```
 
+after cloning go to the inside of the folder:
+```sh
+cd One_For_All_PHP
+```
+
+then install the npm lib:
 ```sh
 npm install
 ```
+
+after the installation build it:
+```sh
+npm run build
+```
+then
+```sh
+npm run start
+```
+
+after you successfully run the app go to your browser and type:
+```sh
+http://localhost:3000/
+```
+
 ## Introduction
 
 The One For All platform is designed to expand the opportunities for businesses of all sizes—whether small or large—by providing an enhanced online marketplace experience. Inspired by the traditional Buy and Sell concept in the Philippines, this platform incorporates expanded features to improve user convenience, security, and accessibility. It allows users to seamlessly buy and sell products, ensuring a dynamic and efficient e-commerce environment. 
