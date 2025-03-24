@@ -1,0 +1,83 @@
+/* [project]/app/css/sellers.css [app-client] (css) */
+.SellerShop {
+  width: 100%;
+  max-width: 1024px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.SellerShop form {
+  width: 50%;
+  height: 520px;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  margin: 40px 0;
+}
+
+.upload_img {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+.prd_img {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.product_info2 {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  margin: 40px 20px;
+}
+
+.product_info2 div {
+  width: 70%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.product_info2 h1 {
+  margin: 0;
+}
+
+.product_info2 input {
+  width: 60%;
+  border-bottom: 2px solid #fff;
+  margin: 0 10px;
+  outline: none;
+}
+
+.product_info2 label {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.product_info2 button {
+  border: 2px solid #fff;
+  padding: 5px 20px;
+  margin: 10px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all .5s ease-in-out;
+}
+
+.product_info2 button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/*# sourceMappingURL=app_css_sellers_b52d8e88.css.map*/

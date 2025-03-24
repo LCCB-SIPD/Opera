@@ -1,9 +1,5 @@
 {
   "/api/auth/route": "app/api/auth/route.js",
-  "/api/getUser/route": "app/api/getUser/route.js",
-  "/api/profile_set_up/route": "app/api/profile_set_up/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/main/Home/page": "app/main/Home/page.js",
-  "/main/Iframe_buy_pro/page": "app/main/Iframe_buy_pro/page.js",
-  "/main/Profile/page": "app/main/Profile/page.js"
+  "/main/SellerShop/page": "app/main/SellerShop/page.js"
 }
