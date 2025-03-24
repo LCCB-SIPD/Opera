@@ -22,7 +22,7 @@ after the installation build it:
 ```sh
 npm run build
 ```
-then
+after the build is done run this to start the app to your localhost server
 ```sh
 npm run start
 ```
