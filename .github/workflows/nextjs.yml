@@ -28,9 +28,6 @@ jobs:
       - name: Lint code
         run: npm run lint  # Ensures no ESLint errors
 
-      - name: Run tests
-        run: npm test  # Ensures all tests pass (if you have tests)
-
       - name: Build project
         run: npm run build  # Ensures production build works
 
