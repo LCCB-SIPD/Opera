@@ -89,7 +89,7 @@ export default function SellerShop() {
                         <input type="file" disabled/>
                     </div>        
                 </div>
-                <div className="product_info">
+                <div className="product_info2">
                     <div>
                         <label htmlFor="product_name">Product Name: </label>
                         <input 

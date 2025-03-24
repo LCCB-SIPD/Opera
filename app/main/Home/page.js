@@ -7,6 +7,7 @@ import "../../css/home.css"
 export default function Home() {
     const router = useRouter();
     const [user, setUser] = useState(null);
+    const [products_val, setProducts_val] = useState([])
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -25,6 +26,26 @@ export default function Home() {
         };
 
         checkAuth();
+
+        const getProduct = async () => {
+            
+            try {
+                const response = await fetch("/api/getProduct"); // Assuming this is your API route
+                const data = await response.json();
+    
+                if (response.ok) {
+                    setProducts_val(data.data); // Assuming 'data' contains the rows from the database
+                } else {
+                    setError(data.error || "An error occurred while fetching products.");
+                }
+            } catch (error) {
+                alert(error)
+            }
+
+        }
+
+        getProduct()
+
     }, []);
 
     const handleLogOut = async () => {
@@ -81,7 +102,8 @@ export default function Home() {
                 </div>
             </div>
             <div className="products_cons">
-                <div className="products">
+                {products_val.map((products_value) => (
+                    <div className="products" key={products_value.id}>
                     <div className="products_image">
                         <Image
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQ5DaMNfmNBEuQaBUawxCv2NOgV01Kmqj0Q&s"
@@ -91,15 +113,19 @@ export default function Home() {
                         />
                     </div>
                     <div className="product_info">
-                        <h1>Product 1</h1>
-                        <p>Price: 1200</p>
+                        <h1>{products_value.name}</h1>
+                        <p>{products_value.price}</p>
                     </div>
                     <div className="buttons">
                         <button>Cart</button>
                         <button>Buy</button>
                     </div>
-                </div>
+                </div>    
+                ))}
                 
+                
+
+
             </div>
         </div>
     );
