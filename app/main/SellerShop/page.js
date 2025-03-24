@@ -59,10 +59,12 @@ export default function SellerShop() {
                 setLoading(false)
                 setError(fetchdata.message)
             } else {
+                setLoading(false)
                 setError(fetchdata.error)
             }
 
         } catch(error) {
+            setLoading(false)
             console.log(error)
             setError(error)
         } 

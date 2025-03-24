@@ -96,9 +96,11 @@ function SellerShop() {
                 setLoading(false);
                 setError(fetchdata.message);
             } else {
+                setLoading(false);
                 setError(fetchdata.error);
             }
         } catch (error) {
+            setLoading(false);
             console.log(error);
             setError(error);
         }
@@ -116,14 +118,14 @@ function SellerShop() {
                             children: "ADDING..."
                         }, void 0, false, {
                             fileName: "[project]/app/main/SellerShop/page.js",
-                            lineNumber: 76,
+                            lineNumber: 78,
                             columnNumber: 17
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                             children: "Feature Img Upload Currently On Development"
                         }, void 0, false, {
                             fileName: "[project]/app/main/SellerShop/page.js",
-                            lineNumber: 77,
+                            lineNumber: 79,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -135,12 +137,12 @@ function SellerShop() {
                                 unoptimized: true
                             }, void 0, false, {
                                 fileName: "[project]/app/main/SellerShop/page.js",
-                                lineNumber: 79,
+                                lineNumber: 81,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/main/SellerShop/page.js",
-                            lineNumber: 78,
+                            lineNumber: 80,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -150,18 +152,18 @@ function SellerShop() {
                                 disabled: true
                             }, void 0, false, {
                                 fileName: "[project]/app/main/SellerShop/page.js",
-                                lineNumber: 87,
+                                lineNumber: 89,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/main/SellerShop/page.js",
-                            lineNumber: 86,
+                            lineNumber: 88,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/main/SellerShop/page.js",
-                    lineNumber: 75,
+                    lineNumber: 77,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -174,7 +176,7 @@ function SellerShop() {
                                     children: "Product Name: "
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/SellerShop/page.js",
-                                    lineNumber: 92,
+                                    lineNumber: 94,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -186,13 +188,13 @@ function SellerShop() {
                                     required: true
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/SellerShop/page.js",
-                                    lineNumber: 93,
+                                    lineNumber: 95,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/main/SellerShop/page.js",
-                            lineNumber: 91,
+                            lineNumber: 93,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -202,7 +204,7 @@ function SellerShop() {
                                     children: "Product Price: "
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/SellerShop/page.js",
-                                    lineNumber: 103,
+                                    lineNumber: 105,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -214,13 +216,13 @@ function SellerShop() {
                                     required: true
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/SellerShop/page.js",
-                                    lineNumber: 104,
+                                    lineNumber: 106,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/main/SellerShop/page.js",
-                            lineNumber: 102,
+                            lineNumber: 104,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -228,7 +230,7 @@ function SellerShop() {
                             value: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQ5DaMNfmNBEuQaBUawxCv2NOgV01Kmqj0Q&s"
                         }, void 0, false, {
                             fileName: "[project]/app/main/SellerShop/page.js",
-                            lineNumber: 113,
+                            lineNumber: 115,
                             columnNumber: 21
                         }, this),
                         error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -238,7 +240,7 @@ function SellerShop() {
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/app/main/SellerShop/page.js",
-                            lineNumber: 117,
+                            lineNumber: 119,
                             columnNumber: 31
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -249,7 +251,7 @@ function SellerShop() {
                                     children: "Back"
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/SellerShop/page.js",
-                                    lineNumber: 120,
+                                    lineNumber: 122,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -257,30 +259,30 @@ function SellerShop() {
                                     children: "Add Product"
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/SellerShop/page.js",
-                                    lineNumber: 121,
+                                    lineNumber: 123,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/main/SellerShop/page.js",
-                            lineNumber: 119,
+                            lineNumber: 121,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/main/SellerShop/page.js",
-                    lineNumber: 90,
+                    lineNumber: 92,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/main/SellerShop/page.js",
-            lineNumber: 74,
+            lineNumber: 76,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/main/SellerShop/page.js",
-        lineNumber: 73,
+        lineNumber: 75,
         columnNumber: 9
     }, this);
 }
