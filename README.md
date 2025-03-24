@@ -1,36 +1,13 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+## Introduction
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+  The One For All platform is designed to expand the opportunities for businesses of all sizes—whether small or large—by providing an enhanced online marketplace experience. Inspired by the traditional Buy and Sell concept in the Philippines, this platform incorporates expanded features to improve user convenience, security, and accessibility. It allows users to seamlessly buy and sell products, ensuring a dynamic and efficient e-commerce environment. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Background of the Study 
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+  The rapid growth of digital commerce has transformed the way businesses and consumers interact. With the increasing demand for online shopping, e-commerce platforms have become essential in providing convenience, accessibility, and efficiency for both buyers and sellers. This project introduces an online e-commerce platform, One For All, designed to cater to various product categories such as food, appliances, and other consumer goods. The platform enables users to engage in seamless buying and selling transactions while ensuring an organized and user-friendly experience. 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+  Unlike traditional e-commerce platforms that separate users into buyers and sellers, One For All provides a single, powerful account type where users can both buy and sell products. This approach allows individuals and businesses to maximize their engagement within the platform, offering flexibility and efficiency. 
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  To enhance security, the system implements a robust encryption method for handling sensitive data, including session management, pricing information, and cookies. This multi-layered security approach ensures the protection of user information, including usernames, passwords, and domain-related data, reducing the risks of unauthorized access and cyber threats. 
