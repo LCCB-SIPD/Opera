@@ -145,11 +145,20 @@ function Home() {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         type: "button",
+                                        onClick: ()=>router.push("/main/SellerShop"),
+                                        children: "Sell Product"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/main/Home/page.js",
+                                        lineNumber: 78,
+                                        columnNumber: 25
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        type: "button",
                                         onClick: handleLogOut,
                                         children: "Log Out"
                                     }, void 0, false, {
                                         fileName: "[project]/app/main/Home/page.js",
-                                        lineNumber: 78,
+                                        lineNumber: 79,
                                         columnNumber: 25
                                     }, this)
                                 ]
@@ -184,12 +193,12 @@ function Home() {
                                 unoptimized: true
                             }, void 0, false, {
                                 fileName: "[project]/app/main/Home/page.js",
-                                lineNumber: 85,
+                                lineNumber: 86,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/main/Home/page.js",
-                            lineNumber: 84,
+                            lineNumber: 85,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -199,20 +208,20 @@ function Home() {
                                     children: "Product 1"
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/Home/page.js",
-                                    lineNumber: 93,
+                                    lineNumber: 94,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     children: "Price: 1200"
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/Home/page.js",
-                                    lineNumber: 94,
+                                    lineNumber: 95,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/main/Home/page.js",
-                            lineNumber: 92,
+                            lineNumber: 93,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -222,31 +231,31 @@ function Home() {
                                     children: "Cart"
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/Home/page.js",
-                                    lineNumber: 97,
+                                    lineNumber: 98,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     children: "Buy"
                                 }, void 0, false, {
                                     fileName: "[project]/app/main/Home/page.js",
-                                    lineNumber: 98,
+                                    lineNumber: 99,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/main/Home/page.js",
-                            lineNumber: 96,
+                            lineNumber: 97,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/main/Home/page.js",
-                    lineNumber: 83,
+                    lineNumber: 84,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/main/Home/page.js",
-                lineNumber: 82,
+                lineNumber: 83,
                 columnNumber: 13
             }, this)
         ]

@@ -98,7 +98,7 @@ export default function Sign_up() {
                 </div>
                 {error && <p style={{ color: "#ff0" }}>{error}</p>}
                 <div>
-                    <button type="button" onClick={() => router.replace("/")}>Back</button>
+                   <button type="button" onClick={() => router.replace("/")}>Back</button>
                     <button type="submit" disabled={loading}>{loading ? "Loading..." : "Confirm"}</button>
                 </div>
             </form>

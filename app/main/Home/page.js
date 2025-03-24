@@ -75,6 +75,7 @@ export default function Home() {
                     </div>
                     <div className="profile_option">
                         <button type="button" onClick={() => router.push("/main/Profile")}>My Profile</button>
+                        <button type="button" onClick={() => router.push("/main/SellerShop")}>Sell Product</button>
                         <button type="button" onClick={handleLogOut}>Log Out</button>
                     </div>
                 </div>

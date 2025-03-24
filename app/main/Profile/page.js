@@ -19,6 +19,12 @@ export default function Profile() {
     const [ExUsername, getExusername] = useState("")
     const [ExEmail, getExemail] = useState("")
     const [ExId, getExid] = useState("")
+    const [src, getSrc] = useState("/main/Iframe_buy_pro")
+
+
+    const changeSrc = (newSrc) => {
+        getSrc(newSrc)
+    }
 
 
     const username = user?.username || ""
@@ -67,12 +73,14 @@ export default function Profile() {
                     getExbirth(Exdata.data.birth)
 
                 } else {
+
                     setError(data.error)
+
                 }
 
             } catch (error) {
 
-                alert('Failed to Fetch Data')
+                setError("Failed to Connect try again later")
 
             }
         }
@@ -179,7 +187,16 @@ export default function Profile() {
                 
             </div>
             <div className="inventory">
-
+                <div className="inventory_banners">
+                    <button type="button" onClick={() => changeSrc("/main/Iframe_buy_pro")}>Buy Products</button>
+                    <button type="button" onClick={() => changeSrc("/main/Iframe_sell_pro")}>Sell Products</button>
+                </div>
+                <div className="iframe_home">
+                    <iframe
+                        src={src}
+                        allowFullScreen
+                    />
+                </div>
             </div>
         </div>
     )
