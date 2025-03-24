@@ -3,7 +3,7 @@
 
 ## Manually to Run the App
 
-go to your terminal and run  this --> ``sh npm install
+go to your terminal and run  this --> ```sh npm install
 
 
 
