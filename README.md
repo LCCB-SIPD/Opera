@@ -1,4 +1,12 @@
 
+# One For All E-commerce system
+
+## Manually to Run the App
+
+go to your terminal and run  this --> ``sh npm install
+
+
+
 
 ## Introduction
 
