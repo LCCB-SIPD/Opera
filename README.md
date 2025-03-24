@@ -3,11 +3,11 @@
 
 ## Manually to Run the App
 
-go to your terminal and run  this --> ```sh npm install
+go to your terminal and run  this:
 
-
-
-
+```sh
+npm install
+```
 ## Introduction
 
 The One For All platform is designed to expand the opportunities for businesses of all sizes—whether small or large—by providing an enhanced online marketplace experience. Inspired by the traditional Buy and Sell concept in the Philippines, this platform incorporates expanded features to improve user convenience, security, and accessibility. It allows users to seamlessly buy and sell products, ensuring a dynamic and efficient e-commerce environment. 
