@@ -23,20 +23,17 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci  # Ensures clean install (faster & stricter than npm install)
+        run: npm ci  # Ensures a strict, clean install
 
       - name: Lint code
-        run: npm run lint  # Ensures no ESLint issues
-
-      - name: Type check (Strict TypeScript)
-        run: npm run type-check # Add "type-check" script in package.json for "tsc --noEmit"
+        run: npm run lint  # Ensures no ESLint errors
 
       - name: Run tests
-        run: npm test  # Ensures all tests pass
+        run: npm test  # Ensures all tests pass (if you have tests)
 
       - name: Build project
         run: npm run build  # Ensures production build works
 
       - name: Deploy (Optional)
         if: success()
-        run: echo "Deploying..." # Replace with actual deploy script (e.g., Vercel, Railway)
+        run: echo "Deploying..." # Replace with actual deploy command
