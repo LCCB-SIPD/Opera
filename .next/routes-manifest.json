@@ -40,6 +40,36 @@
       "namedRegex": "^/log_in(?:/)?$"
     },
     {
+      "page": "/main/Home",
+      "regex": "^/main/Home(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/main/Home(?:/)?$"
+    },
+    {
+      "page": "/main/Iframe_buy_pro",
+      "regex": "^/main/Iframe_buy_pro(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/main/Iframe_buy_pro(?:/)?$"
+    },
+    {
+      "page": "/main/Iframe_sell_pro",
+      "regex": "^/main/Iframe_sell_pro(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/main/Iframe_sell_pro(?:/)?$"
+    },
+    {
+      "page": "/main/Profile",
+      "regex": "^/main/Profile(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/main/Profile(?:/)?$"
+    },
+    {
+      "page": "/main/SellerShop",
+      "regex": "^/main/SellerShop(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/main/SellerShop(?:/)?$"
+    },
+    {
       "page": "/sign_up",
       "regex": "^/sign_up(?:/)?$",
       "routeKeys": {},

@@ -10,7 +10,7 @@ export async function POST(req) {
         const username = body?.username;
 
         if (!username) {
-            return NextResponse.json({ error: "Username is required" }, { status: 400 });
+            return NextResponse.json({ error: "Username Session Not Found!!!" }, { status: 404 });
         }
 
         const connection = await mysql.createConnection(dbConfig)
@@ -20,7 +20,7 @@ export async function POST(req) {
             [username]
         )
         
-        //await connection.end()
+        await connection.end()
 
         if (rows[0].name) {
 

@@ -10,8 +10,8 @@ export default function Profile() {
     const [name, setName] = useState("")
     const [date, setDate] = useState("")
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState('')
-    const [hide, setHide] = useState(false)
+    const [Derror, setError] = useState('')
+    const [hide, setHide] = useState(true)
 
     //Data Information
     const [ExName, getExname] = useState("")
@@ -65,7 +65,6 @@ export default function Profile() {
 
                 if (response.ok) {
 
-                    setHide(true)
                     getExname(Exdata.data.name)
                     getExid(Exdata.data.id)
                     getExusername(Exdata.data.username)
@@ -74,13 +73,16 @@ export default function Profile() {
 
                 } else {
 
+                    setHide(false)   
                     setError(data.error)
 
                 }
 
             } catch (error) {
+                
+                setError("Update Personal Information")
 
-                setError("Failed to Connect try again later")
+                alert("Please Set Up Your Personal Information")
 
             }
         }
@@ -178,8 +180,8 @@ export default function Profile() {
                             <div>
                                 <button type="submit">Update</button>
                             </div>
-                            {error && <p style={{ color: "#f00" }}>{error}</p>}
-                            <h1 className={`loading-screen ${loading ? "": "hidden"}`}>Updating...</h1>
+                            {Derror && <p style={{ color: "#f00" }}>{Derror}</p>}
+                            <h1 className={`${loading ? "": "hidden"}`}>Updating...</h1>
 
                         </form>
                     </div>

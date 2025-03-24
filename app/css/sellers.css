@@ -41,8 +41,7 @@
     width: 90%;
     height: auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-evenly;
     margin: 10px 0;
 }
 .product_info2 input {

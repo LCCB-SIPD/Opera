@@ -213,16 +213,16 @@ async function POST(req) {
         const username = body?.username;
         if (!username) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Username is required"
+                error: "Username Session Not Found!!!"
             }, {
-                status: 400
+                status: 404
             });
         }
         const connection = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mysql2$2f$promise$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].createConnection(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$api$2f$dbConnect$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"]);
         const [rows] = await connection.execute("SELECT * FROM user_tbl WHERE username = ? LIMIT 1", [
             username
         ]);
-        //await connection.end()
+        await connection.end();
         if (rows[0].name) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 message: 'Fetch Data Successfully',

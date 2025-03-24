@@ -114,6 +114,9 @@
     font-size: 21px;
     font-weight: bold;
 }
+.product_info h2 {
+    margin: 0 10px;
+}
 .product_info p {
     color: #0f0;
 }
