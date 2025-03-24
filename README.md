@@ -1,5 +1,5 @@
 
-# One For All E-commerce system
+# One For All E-commerce System
 
 ## Manually to Run the App
 
