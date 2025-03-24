@@ -8,7 +8,7 @@ export async function POST(req) {
 
         const { prd_name, prd_price, username, quantity, categories } = await req.json()
 
-        const cleanPrd_name = prd_name.trim().toLowerCase()
+        const cleanPrd_name = prd_name.trim().replace(/\b\w/g, (char) => char.toUpperCase());
         const cleanPrd_price = prd_price.trim().toLowerCase()
         const cleanCategories = categories.trim().toLowerCase()
         const cleanQuantity = quantity.trim().toLowerCase()

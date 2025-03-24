@@ -1,5 +1,21 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/api/auth/route": "app/api/auth/route.js",
+  "/api/getProduct/route": "app/api/getProduct/route.js",
+  "/api/getUser/route": "app/api/getUser/route.js",
+  "/api/log_in/route": "app/api/log_in/route.js",
+  "/api/log_out/route": "app/api/log_out/route.js",
+  "/api/profile_set_up/route": "app/api/profile_set_up/route.js",
+  "/api/seller_auth/route": "app/api/seller_auth/route.js",
+  "/api/sign_up/route": "app/api/sign_up/route.js",
+  "/api/test_db/route": "app/api/test_db/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/main/SellerShop/page": "app/main/SellerShop/page.js"
+  "/log_in/page": "app/log_in/page.js",
+  "/main/Home/page": "app/main/Home/page.js",
+  "/main/Iframe_buy_pro/page": "app/main/Iframe_buy_pro/page.js",
+  "/main/Iframe_sell_pro/page": "app/main/Iframe_sell_pro/page.js",
+  "/main/Profile/page": "app/main/Profile/page.js",
+  "/main/SellerShop/page": "app/main/SellerShop/page.js",
+  "/page": "app/page.js",
+  "/sign_up/page": "app/sign_up/page.js"
 }
