@@ -83,8 +83,6 @@ The study provides significant benefits to various stakeholders:
 
 * Business Owners and Consumers: By merging both roles into a single account type, users can easily switch between buying and selling, increasing flexibility and engagement.
 
-* Developers and Researchers: The system serves as a foundation for future improvements in e-commerce security and user experience.
-
 * Economic Growth: By supporting businesses, especially small and medium enterprises, the platform contributes to the digital economy's expansion 
   
 
