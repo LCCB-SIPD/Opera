@@ -8,14 +8,15 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-$username = $data['username'];
-$email = $data['email'];
-$passwd = $data['password'];
+$username = $data['username'] ?? null;
+$email = $data['email'] ?? null;
+$passwd = $data['password'] ?? null;
+$c_email = $data['c_email'] ?? null;
 
 if (empty($username) || empty($email) || empty($passwd)) {
     echo json_encode([
         'success' => false,
-        'message' => 'Invalid Input'
+        'message' => 'Undefined Value'
     ]);
     exit();
 }
@@ -31,17 +32,20 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $stmt = $pdo->prepare("INSERT INTO user_tbl(
     username, 
     email, 
-    passwd
+    passwd,
+    c_email
 ) VALUES (
     :username, 
     :email, 
-    :passwd)
+    :passwd,
+    :c_email)
 ");
 
 $stmt->execute([
     ':username' => $username,
     ':email' => $email,
-    ':passwd' => $passwd
+    ':passwd' => $passwd,
+    ':c_email' => $c_email
 ]);
 
 if ($stmt) {

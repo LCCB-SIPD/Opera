@@ -13,11 +13,6 @@ export default function Sign_up() {
     const handleSubmit = async (e) => {
 
         e.preventDefault()
-
-        if (e_passwd !== c_passwd) {
-            alert("Passwords do not match!!!")
-            return
-        }
         
         setLoading(true)
 
@@ -65,7 +60,7 @@ export default function Sign_up() {
                     id="email" 
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)} 
-                    placeholder=" " required/>
+                    placeholder=" " required autoComplete="email"/>
                     <label htmlFor="email">Email</label>
                 </div>
                 <div>
@@ -74,7 +69,7 @@ export default function Sign_up() {
                     id="username" 
                     value={username}
                     onChange={(e) => setUsername(e.target.value)} 
-                    placeholder=" " required/>
+                    placeholder=" " required autoComplete="username"/>
                     <label htmlFor="username">Username</label>
                 </div>
                 <div>
