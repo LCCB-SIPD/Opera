@@ -9,7 +9,7 @@ export async function GET(req) {
     }
 
     try {
-        const user = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        const user = jwt.verify(token, process.env.REACT_APP_JWT_SECRET_KEY);
         return new NextResponse(JSON.stringify(user), { status: 200 });
     } catch (error) {
         return new NextResponse("Invalid Token", { status: 401 });

@@ -1,5 +1,5 @@
 "use client";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import "../../css/profile.css"
@@ -85,10 +85,7 @@ export default function Profile() {
             getUser()
         }
 
-    }, [username, router])
-
-        
-            
+    }, [username, router])      
         
     const handleUpdate = async (e) => { 
 

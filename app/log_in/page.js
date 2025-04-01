@@ -7,8 +7,7 @@ export default function Log_in() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
-    const router = useRouter()
-    
+    const router = useRouter()   
 
     const handleLogIn = async (e) => {
         e.preventDefault()

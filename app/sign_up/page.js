@@ -10,7 +10,6 @@ export default function Sign_up() {
     const [c_passwd, setconfirmPassword] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false) 
-
     const handleSubmit = async (e) => {
 
         e.preventDefault()
@@ -23,8 +22,8 @@ export default function Sign_up() {
         setLoading(true)
 
         try {
-
-            const response = await fetch('/api/sign_up', {
+            
+            const response = await fetch("/api/sign_up", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -48,8 +47,8 @@ export default function Sign_up() {
 
         } catch (error) {
             setLoading(false)
-            setError("Network Error. Please Try Again...")
-
+            setError("Error Can't Connect...")
+            console.error("Error during fetch:", error);
         }
     }
 
