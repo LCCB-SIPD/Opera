@@ -11,7 +11,6 @@ $data = json_decode(file_get_contents("php://input"), true);
 $username = $data['username'] ?? null;
 $email = $data['email'] ?? null;
 $passwd = $data['password'] ?? null;
-$c_email = $data['c_email'] ?? null;
 
 if (empty($username) || empty($email) || empty($passwd)) {
     echo json_encode([
@@ -32,20 +31,18 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $stmt = $pdo->prepare("INSERT INTO user_tbl(
     username, 
     email, 
-    passwd,
-    c_email
+    passwd
 ) VALUES (
     :username, 
     :email, 
-    :passwd,
-    :c_email)
+    :passwd
+    )
 ");
 
 $stmt->execute([
     ':username' => $username,
     ':email' => $email,
-    ':passwd' => $passwd,
-    ':c_email' => $c_email
+    ':passwd' => $passwd
 ]);
 
 if ($stmt) {
