@@ -2,10 +2,10 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$host = '127.0.0.1';
+$host = 'localhost';
 $username = 'root';
 $password = '';
-$dbname = 'one_for_all';
+$dbname = 'oneforall';
 
 try {
 
@@ -21,6 +21,7 @@ $pdo = new PDO(
     ]
     
 );
+
 
 } catch (PDOException $e) {
     echo json_encode([
