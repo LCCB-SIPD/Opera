@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import dbConfig from "../dbConnect";
 import mysql from "mysql2/promise";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";

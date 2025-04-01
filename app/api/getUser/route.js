@@ -1,4 +1,4 @@
-import dbConfig from "../dbConnect";
+
 import mysql from "mysql2/promise"
 import { NextResponse } from "next/server";
 

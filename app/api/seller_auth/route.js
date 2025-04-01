@@ -1,5 +1,4 @@
 import mysql from "mysql2/promise";
-import dbConfig from "../dbConnect.js";
 import { NextResponse } from "next/server";
 
 
