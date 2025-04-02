@@ -90,6 +90,13 @@ export default function Sign_up() {
         
         setLoading(true)
 
+        if (!code) {
+            setLoading(false)
+            setError("Please Confirm Your Email")
+            serErrorColor(true)
+            return
+        }
+
         if (generateCode !== code) {
             setLoading(false)
             setError("Verification Code Not Match")
@@ -97,12 +104,7 @@ export default function Sign_up() {
             return
         }
 
-        if (!generateCode) {
-            setLoading(false)
-            setError("Please Confirm Your Email")
-            serErrorColor(true)
-            return
-        }
+        
 
         try {
 
