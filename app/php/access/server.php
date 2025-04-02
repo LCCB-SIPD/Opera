@@ -2,9 +2,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$host = 'localhost';
-$username = 'root';
-$password = '';
+$host = 'localhost:3306';
+$username = 'cordy';
+$password = 'uvp65200';
 $dbname = 'one_for_all';
 
 try {
