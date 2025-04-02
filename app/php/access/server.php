@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 $host = 'localhost';
 $username = 'root';
 $password = '';
-$dbname = 'oneforall';
+$dbname = 'one_for_all';
 
 try {
 

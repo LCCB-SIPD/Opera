@@ -11,11 +11,21 @@ export default function Sign_up() {
     const [generateCode, setGenerateCode] = useState('')
     const [code, setCode] = useState('')
     const [error, setError] = useState('')
+    const [errorColor, serErrorColor] = useState(true);
     const [v_button, setVbutton] = useState(false)
     const [timer, setTimer] = useState(0)
     const [loading, setLoading] = useState(false)
 
     const ConfirmEmail = async () => {
+
+        if (!email || !username || !c_passwd || !e_passwd) {
+            setError("Please Input Your Credentials First")
+            serErrorColor(true)
+            setLoading(false)
+            return
+        }
+
+        setVbutton(true)
 
         try {
 
@@ -34,11 +44,7 @@ export default function Sign_up() {
                 });
             }, 1000);
 
-            if (!email || !username || !c_passwd || !e_passwd) {
-                setError("Please Input Your Credentials First")
-                setLoading(false)
-                return
-            }
+            
 
             const response = await fetch("api/c_email", {
                 method: 'POST',
@@ -53,25 +59,26 @@ export default function Sign_up() {
 
             const result = await response.json()
 
-            setVbutton(true)
-
             if (response.ok) { 
 
                 setGenerateCode(result.message)
                 setLoading(false)
                 setError("Code Successfully Sent")
+                serErrorColor(false)
 
             } else {
                 setLoading(false)
-                setError("Code Sent Error!!")
-
+                setError(result.error)
+                serErrorColor(true)
+                setTimer(0)
             }
 
         } catch (error) {
 
             setError("Somethings went wrong")
+            serErrorColor(true)
             console.error(error)
-
+            setLoading(false)
         }
 
     }
@@ -86,12 +93,14 @@ export default function Sign_up() {
         if (generateCode !== code) {
             setLoading(false)
             setError("Verification Code Not Match")
+            serErrorColor(true)
             return
         }
 
         if (!generateCode) {
             setLoading(false)
             setError("Please Confirm Your Email")
+            serErrorColor(true)
             return
         }
 
@@ -113,15 +122,18 @@ export default function Sign_up() {
             const data = await response.json()
             if (response.ok) {
                 setError(data.message)
+                serErrorColor(false)
                 window.location.reload()
             } else {
                 setError(data.error || "Somethings went wrong")
+                serErrorColor(true)
                 setLoading(false)
             }
 
         } catch (error) {
             setLoading(false)
             setError("Error Can't Connect...")
+            serErrorColor(true)
             console.error("Error during fetch:", error);
         }
 
@@ -182,7 +194,7 @@ export default function Sign_up() {
                     <label htmlFor="Code">Confirm Email</label>
                     <button type="button" onClick={ConfirmEmail} disabled={v_button}>{v_button ? `${timer}`: "Send"}</button>
                 </div>
-                {error && <p style={{ color: "#ff0" }}>{error}</p>}
+                {error && <p className={`error ${errorColor ? "": "success"}`}>{error}</p>}
                 <div>
                    <button type="button" onClick={() => router.replace("/")}>Back</button>
                     <button type="submit" disabled={loading}>{loading ? "Loading..." : "Confirm"}</button>

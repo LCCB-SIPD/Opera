@@ -79,6 +79,11 @@
     100% { background-position: 0% 50%; }
 }
 
+.error {
+    color: #ff0;
+}
+
+
 @media (max-width: 1024px) {
     .log_in form {
         max-width: 420px;

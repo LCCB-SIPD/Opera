@@ -52,7 +52,8 @@ export default function Log_in() {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder=" "
-                    required 
+                    required
+                    autoComplete="username"
                     />
                     <label htmlFor="username">Username </label>
                 </div>
@@ -70,7 +71,7 @@ export default function Log_in() {
                 <div>
                     <a href="#">Forgot Password?</a>
                 </div>
-                {error && <p style={{ color: "#f00" }}>{error}</p>} 
+                {error && <p className="error">{error}</p>} 
                 <div>
                     <button type="button" onClick={() => router.replace("/sign_up")}>Sign Up</button>
                     <button type="submit" disabled={loading}>{loading ? "Fetching..." : "Log In"}</button>

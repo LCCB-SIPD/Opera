@@ -1,12 +1,8 @@
 <?php 
 
-include 'server.php';
+include '../access/server.php';
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
-
-$data = json_decode(file_get_contents("php://input"), true);
+include '../access/nodejs.php';
 
 $username = $data['username'] ?? null;
 $email = $data['email'] ?? null;
@@ -23,14 +19,16 @@ if (empty($username) || empty($email) || empty($passwd)) {
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo json_encode([
         'success' => false,
-        'message' => 'Email Not Allowed!!!'
+        'message' => 'WARNING: Email Not Allowed!!!'
     ]);
     exit();
 }
 
+
+
 $stmt = $pdo->prepare("INSERT INTO user_tbl(
     username, 
-    email, 
+    email,
     passwd
 ) VALUES (
     :username, 
