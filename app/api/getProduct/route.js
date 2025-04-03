@@ -21,7 +21,7 @@ export async function GET() {
         const data = await response.json()
 
         return NextResponse.json(
-            { message: 'Fecth all Successfully', data: data },
+            { message: 'Fetch all Successfully', data: data },
             { status: 200 }
          )
 

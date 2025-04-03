@@ -87,7 +87,19 @@ export default function Sign_up() {
     const handleSubmit = async (e) => {
 
         e.preventDefault()
-        
+
+        if (username.length > 10) {
+            setError("Username can be only at 10 characters")
+            setErrorColor(true)
+            return
+        }
+
+        if (c_passwd.length < 8) {
+            setError("Password must be at least 8 characters")
+            setErrorColor(true)
+            return
+        }
+
         setLoading(true)
 
         if (!code) {
@@ -125,7 +137,7 @@ export default function Sign_up() {
             if (response.ok) {
                 setError(data.message)
                 setErrorColor(false)
-                window.location.reload()
+                router.push("/")
             } else {
                 setError(data.error || "Somethings went wrong")
                 setErrorColor(true)
@@ -164,6 +176,7 @@ export default function Sign_up() {
                     type="text" 
                     id="username" 
                     value={username}
+                    maxLength={10}
                     onChange={(e) => setUsername(e.target.value)} 
                     placeholder=" " required autoComplete="username"/>
                     <label htmlFor="username">Username</label>
