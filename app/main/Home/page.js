@@ -37,7 +37,7 @@ export default function Home() {
                     setProducts_val(data.data); // Assuming 'data' contains the rows from the database
                     console.log("Status: ", data.message)
                 } else {
-                    setError(data.error || "An error occurred while fetching products.");
+                    
                 }
             } catch (error) {
                 alert("Server API Arror Can't Fetch or Database is offline")
@@ -103,31 +103,33 @@ export default function Home() {
                 </div>
             </div>
             <div className="products_cons">
-                {products_val.map((products_value) => (
+            
+            { products_val && products_val.length > 0 ? (
+                products_val.map((products_value) => (
                     <div className="products" key={products_value.id}>
-                    <div className="products_image">
-                        <Image
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQ5DaMNfmNBEuQaBUawxCv2NOgV01Kmqj0Q&s"
-                            alt="Sample"
-                            fill
-                            unoptimized
-                        />
-                    </div>
-                    <div className="product_info">
-                        <h1>{products_value.name}</h1>
-                        <h2>Owner: {products_value.owner}</h2>
-                        <h2>Categories: {products_value.categories}</h2>
-                        <p>{products_value.price}</p>
-                    </div>
-                    <div className="buttons">
-                        <button>Cart</button>
-                        <button>Buy</button>
-                    </div>
-                </div>    
-                ))}
-                
-                
-
+                        <div className="products_image">
+                            <Image
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQ5DaMNfmNBEuQaBUawxCv2NOgV01Kmqj0Q&s"
+                                alt="Sample"
+                                fill
+                                unoptimized
+                            />
+                        </div>
+                        <div className="product_info">
+                            <h1>{products_value.name}</h1>
+                            <h2>Owner: {products_value.owner}</h2>
+                            <h2>Categories: {products_value.categories}</h2>
+                            <p>{products_value.price}</p>
+                        </div>
+                        <div className="buttons">
+                            <button>Cart</button>
+                            <button>Buy</button>
+                        </div>
+                    </div>    
+                ))
+            ) : (
+                <h1 className='product_status'>No Product Available</h1>
+            )}
 
             </div>
         </div>

@@ -142,4 +142,9 @@
     background-color: #fff;
     color: #000;
 }
+.product_status {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
 
