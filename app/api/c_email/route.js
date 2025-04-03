@@ -51,7 +51,6 @@ export async function POST(req) {
         try {
     
             await transporter.sendMail(mailOption)
-            console.log(" -- Mail Successfully Submited -- ")
     
             return NextResponse.json( { message: confirmationCode }, { status: 200 } )
     

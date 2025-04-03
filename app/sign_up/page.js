@@ -11,7 +11,7 @@ export default function Sign_up() {
     const [generateCode, setGenerateCode] = useState('')
     const [code, setCode] = useState('')
     const [error, setError] = useState('')
-    const [errorColor, serErrorColor] = useState(true);
+    const [errorColor, setErrorColor] = useState(true);
     const [v_button, setVbutton] = useState(false)
     const [timer, setTimer] = useState(0)
     const [loading, setLoading] = useState(false)
@@ -20,7 +20,7 @@ export default function Sign_up() {
 
         if (!email || !username || !c_passwd || !e_passwd) {
             setError("Please Input Your Credentials First")
-            serErrorColor(true)
+            setErrorColor(true)
             setLoading(false)
             return
         }
@@ -64,19 +64,19 @@ export default function Sign_up() {
                 setGenerateCode(result.message)
                 setLoading(false)
                 setError("Code Successfully Sent")
-                serErrorColor(false)
+                setErrorColor(false)
 
             } else {
                 setLoading(false)
                 setError(result.error)
-                serErrorColor(true)
+                setErrorColor(true)
                 setTimer(0)
             }
 
         } catch (error) {
 
             setError("Somethings went wrong")
-            serErrorColor(true)
+            setErrorColor(true)
             console.error(error)
             setLoading(false)
         }
@@ -93,14 +93,14 @@ export default function Sign_up() {
         if (!code) {
             setLoading(false)
             setError("Please Confirm Your Email")
-            serErrorColor(true)
+            setErrorColor(true)
             return
         }
 
         if (generateCode !== code) {
             setLoading(false)
             setError("Verification Code Not Match")
-            serErrorColor(true)
+            setErrorColor(true)
             return
         }
 
@@ -124,18 +124,18 @@ export default function Sign_up() {
             const data = await response.json()
             if (response.ok) {
                 setError(data.message)
-                serErrorColor(false)
+                setErrorColor(false)
                 window.location.reload()
             } else {
                 setError(data.error || "Somethings went wrong")
-                serErrorColor(true)
+                setErrorColor(true)
                 setLoading(false)
             }
 
         } catch (error) {
             setLoading(false)
             setError("Error Can't Connect...")
-            serErrorColor(true)
+            setErrorColor(true)
             console.error("Error during fetch:", error);
         }
 

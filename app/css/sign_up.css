@@ -23,7 +23,7 @@
     align-items: center;
 }
 .sign_up div {
-    width: 70%;
+    width: 75%;
     height: auto;
     display: flex;
     justify-content: center;
@@ -77,14 +77,6 @@
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
-}
-
-.error {
-    color: #ff0;
-}
-
-.success {
-    color: #0f0;
 }
 
 

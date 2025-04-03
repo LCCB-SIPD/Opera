@@ -1,32 +1,35 @@
 import jwt from "jsonwebtoken";
-import mysql from "mysql2/promise";
-import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
+
     const { username, password } = await req.json();
 
-    try {
-        const connection = await mysql.createConnection(dbConfig);
-        const [rows] = await connection.execute(
-            "SELECT id, username, passwd FROM user_tbl WHERE username = ? LIMIT 1",
-            [username]
-        );
+        const phpUrl = `${process.env.REACT_APP_PHP_FILE_LOG_IN_USER}`
 
-        if (rows.length === 0) {
-            return new NextResponse("User Not Found", { status: 404 });
-        }
+        const data = await fetch(phpUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+                passwd: password
+            }),
+        }) 
 
-        const isValid = await bcrypt.compare(password, rows[0].passwd);
-        if (isValid) {
+        const result = await data.json()
+        
+        if (result.success) {
+
             const token = jwt.sign(
-                { id: rows[0].id, username: rows[0].username },
+                { id: result.dataId, username: result.dataUsername },
                 process.env.REACT_APP_JWT_SECRET_KEY,
                 { expiresIn: "1h" }
             );
 
             // Create response object
-            const response = new NextResponse("Log In Successfully", { status: 200 });
+            const response = NextResponse.json( { message: result.message }, { status: 200 } )
 
             // Set cookie properly
             response.cookies.set({
@@ -40,11 +43,11 @@ export async function POST(req) {
             });
 
             return response;
+
         } else {
-            return new NextResponse("Invalid Password", { status: 400 });
+
+            return NextResponse.json( { error: result.message }, { status: 404 } );
+
         }
-    } catch (error) {
-        console.error(error);
-        return new NextResponse("Error with database connection", { status: 500 });
-    }
+
 }

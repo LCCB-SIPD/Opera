@@ -30,3 +30,11 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.error {
+  color: #ff0;
+}
+
+.success {
+  color: #0f0;
+}

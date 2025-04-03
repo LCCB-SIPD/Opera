@@ -7,6 +7,7 @@ export default function Log_in() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+    const [errorColor, setErrorColor] = useState(true);
     const router = useRouter()   
 
     const handleLogIn = async (e) => {
@@ -24,18 +25,22 @@ export default function Log_in() {
                 body: JSON.stringify({ username, password })
             })
     
-            const data = await response.text()
+            const data = await response.json()
     
             if (response.ok) {
                 router.push("/main/Home")
+                setError(data.message)
+                setErrorColor(false)
             } else {
-                setError(data)
+                setError(data.error)
                 setLoading(false)
+                setErrorColor(true)
             }
     
         } catch (error) {
             setError('Internet Connection TimeOut')
             setLoading(false)
+            setErrorColor(true)
         }
         
     }
@@ -71,7 +76,7 @@ export default function Log_in() {
                 <div>
                     <a href="#">Forgot Password?</a>
                 </div>
-                {error && <p className="error">{error}</p>} 
+                {error && <p className={`error ${errorColor ? "": "success"}`}>{error}</p>} 
                 <div>
                     <button type="button" onClick={() => router.replace("/sign_up")}>Sign Up</button>
                     <button type="submit" disabled={loading}>{loading ? "Fetching..." : "Log In"}</button>

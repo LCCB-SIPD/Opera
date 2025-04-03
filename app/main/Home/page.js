@@ -35,11 +35,12 @@ export default function Home() {
     
                 if (response.ok) {
                     setProducts_val(data.data); // Assuming 'data' contains the rows from the database
+                    console.log("Status: ", data.message)
                 } else {
                     setError(data.error || "An error occurred while fetching products.");
                 }
             } catch (error) {
-                alert(error)
+                alert("Server API Arror Can't Fetch or Database is offline")
             }
 
         }
@@ -114,7 +115,7 @@ export default function Home() {
                     </div>
                     <div className="product_info">
                         <h1>{products_value.name}</h1>
-                        <h2>Owner: {products_value.user_owner}</h2>
+                        <h2>Owner: {products_value.owner}</h2>
                         <h2>Categories: {products_value.categories}</h2>
                         <p>{products_value.price}</p>
                     </div>

@@ -20,7 +20,7 @@ if ($countquery > 0) {
 } else {
     echo json_encode([
         'success' => true,
-        'message' => 'User Successfully Added'
+        'message' => ' -- Mail Successfully Submited -- '
     ]);
     exit();
 }
