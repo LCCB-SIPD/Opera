@@ -14,6 +14,7 @@ foreach($result as $rows) {
         'data' => true,
         'id' => $rows["id"],
         'name' => $rows["name"],
+        'price' => $rows["price"],
         'owner' => $rows["owner_user"],
         'quantity' => $rows["quantity"],
         'categories' => $rows["categories"],

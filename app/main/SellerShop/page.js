@@ -14,6 +14,24 @@ export default function SellerShop() {
     const [quantity, setQuantity] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+    const [imageSrc, setImagSrc] = useState('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQ5DaMNfmNBEuQaBUawxCv2NOgV01Kmqj0Q&s')
+    const [file, setFile] = useState(null)
+
+
+    const handleChangeFile = (e) => {
+
+        const selectedFile = e.target.files[0]
+
+        if (selectedFile) {
+
+            setFile(selectedFile)
+            setImagSrc(URL.createObjectURL(selectedFile))
+
+        }
+
+    }
+
+    const userId = user?.id || ''
 
     const username = user?.username || ''
 
@@ -38,24 +56,35 @@ export default function SellerShop() {
 
     const productHandle = async (e) => {
 
+        if (prd_name.length > 8) {
+            setError("Product Name should be only 8 characters")
+            return
+        }
+
         setLoading(true)
 
         e.preventDefault()
 
         try {
 
+            const formData = new FormData();
+            formData.append('prd_name', prd_name)
+            formData.append('prd_price', prd_price)
+            formData.append('userId', userId)
+            formData.append('username', username)
+            formData.append('quantity', quantity)
+            formData.append('categories', categories)
+
+            if (file) {
+                formData.append("img", file);
+            } else {
+                alert("Image Can't Upload");
+                return;
+            }
+
             const response = await fetch('/api/seller_auth', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    prd_name,
-                    prd_price,
-                    username,
-                    quantity,
-                    categories
-                })
+                body: formData
             })
 
             const fetchdata = await response.json()
@@ -80,18 +109,18 @@ export default function SellerShop() {
         <div className="SellerShop">
             <form onSubmit={productHandle}>
                 <div className="upload_img">
-                <h1 className={`${loading ? "": "hidden"}`}>ADDING...</h1>
+                <h1 className={`${loading ? "": "hidden"}`}>UPLOADING...</h1>
                     <h1>Feature Img Upload Currently is On Development</h1>
                     <div className="prd_img">
                         <Image
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQ5DaMNfmNBEuQaBUawxCv2NOgV01Kmqj0Q&s"
+                            src={imageSrc}
                             alt="Sample"
                             fill
                             unoptimized
                         />
                     </div>
                     <div className="prd_img_input">
-                        <input type="file" disabled/>
+                        <input type="file" accept="image/*" onChange={handleChangeFile} required/>
                     </div>        
                 </div>
                 <div className="product_info2">
