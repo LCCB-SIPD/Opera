@@ -7,6 +7,7 @@ import "../../css/home.css"
 export default function Home() {
     const router = useRouter();
     const [user, setUser] = useState(null);
+    const [imgUrl, setImgUrl] = useState('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQ5DaMNfmNBEuQaBUawxCv2NOgV01Kmqj0Q&s')
     const [products_val, setProducts_val] = useState([])
 
     useEffect(() => {
@@ -36,9 +37,9 @@ export default function Home() {
                 if (response.ok) {
                     setProducts_val(data.data); // Assuming 'data' contains the rows from the database
                     console.log("Status: ", data.message)
-                } else {
-                    
-                }
+                    setImgUrl(data.imgUrl)
+                } 
+
             } catch (error) {
                 alert("Server API Arror Can't Fetch or Database is offline")
             }
@@ -116,7 +117,7 @@ export default function Home() {
                     <div className="products" key={products_value.id}>
                         <div className="products_image">
                             <Image
-                                src={`http://localhost/controller/getPrdImage.php?prd_id=${products_value.id}`}
+                                src={`${imgUrl}prd_id=${products_value.id}`}
                                 alt="Sample"
                                 fill
                                 unoptimized
