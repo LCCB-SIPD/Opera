@@ -5,8 +5,16 @@ export async function POST(req) {
 
     const { email, username } = await req.json()
 
-    const cleanEmail = email.trim().toLowerCase();
-    const cleanUsername = username.trim().toLowerCase();
+    const phpUrl = `${process.env.CHECKCONNECTION_DATABASE}`
+
+    const response = await fetch(phpUrl)
+
+    const result = await response.json()
+
+    if (result.success) {
+
+        const cleanEmail = email.trim().toLowerCase();
+        const cleanUsername = username.trim().toLowerCase();
 
         const generateCode = () => {
             return Math.floor(1000 + Math.random() * 9000).toString()
@@ -37,9 +45,17 @@ export async function POST(req) {
     
         } catch (error) {
     
-            return NextResponse.json( { error: "Email Sent" }, { status: 404 } )
+            return NextResponse.json( { error: "API Connection Failed" }, { status: 404 } )
     
         }
+
+    } else {
+
+        return NextResponse.json( { error: "Database is offline" }, { status: 500 } )
+
+    }
+
+    
 
     
 
