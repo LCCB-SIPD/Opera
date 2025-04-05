@@ -94,12 +94,14 @@ export default function Home() {
                 </div>
                 <div className="profile">
                     <div className="profile_pic">
-                        <Image
-                            src={`${profile}user_username=${user?.username || ''}`}
-                            alt="Sample"
-                            fill
-                            unoptimized
-                        />
+                    {user?.username && (
+                       <Image
+                       src={`${profile}user_username=${user.username}`}
+                       alt="Sample"
+                       fill
+                       unoptimized
+                    />
+                    )}  
                     </div>
                     <div className="profile_text">
                         <h1>{user ? user.username : "----"}</h1>

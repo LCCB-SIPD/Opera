@@ -148,12 +148,14 @@ export default function Profile() {
                 profile_val.map((profile_value) => (
                     <div key={profile_value.id} className="profile_info_cont">
                         <div className="profile_pic2">
-                            <Image
-                                src={`${profile}user_username=${username}`}
+                            {user?.username && (
+                                <Image
+                                src={`${profile}user_username=${user.username}`}
                                 alt="Sample"
                                 fill
                                 unoptimized
                             />
+                            )}
                         </div>
                         <div className="profile_data">
                             <div className="profile_infos">
