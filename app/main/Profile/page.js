@@ -220,6 +220,7 @@ export default function Profile() {
                                     id="name"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
+                                    autoComplete="name"
                                     required
                                 />
                             </div>
@@ -239,7 +240,8 @@ export default function Profile() {
                                     type="text" 
                                     id="address"
                                     value={address}
-                                    onChange={(e) => setAddress(e.target.value)} 
+                                    onChange={(e) => setAddress(e.target.value)}
+                                    autoComplete="address" 
                                     required
                                 />
                             </div>
