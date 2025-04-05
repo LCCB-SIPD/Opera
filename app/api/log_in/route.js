@@ -38,8 +38,8 @@ export async function POST(req) {
                 path: "/",
                 httpOnly: true,  // Protect from JavaScript access
                 maxAge: 3600,    // 1 hour expiration
-                secure: process.env.NODE_ENV === "production", // Secure in production
-                sameSite: "Strict",
+                secure: true,
+                sameSite: "None",
             });
 
             return response;
