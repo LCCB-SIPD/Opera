@@ -229,6 +229,7 @@ export default function SellerShop() {
                         onChange={(e) => setPrd_name(e.target.value)}
                         placeholder="Enter Product Name"
                         maxLength={15}
+                        autoComplete="product_name"
                         required
                         />
                     </div>
@@ -241,6 +242,7 @@ export default function SellerShop() {
                         onChange={(e) => setPrd_price(e.target.value)}
                         placeholder="Enter Product Price"
                         maxLength={5}
+                        autoComplete="product_price"
                         required
                         />
                     </div>
@@ -253,6 +255,7 @@ export default function SellerShop() {
                         onChange={(e) => setCategories(e.target.value)}
                         placeholder="Enter Categories"
                         maxLength={10}
+                        autoComplete="categories"
                         required
                         />
                     </div>
@@ -265,6 +268,7 @@ export default function SellerShop() {
                         onChange={(e) => setQuantity(e.target.value)}
                         placeholder="Enter Quantity"
                         maxLength={5}
+                        autoComplete="quantity"
                         required
                         />
                     </div>
@@ -276,7 +280,7 @@ export default function SellerShop() {
                     id="Code" 
                     value={code}
                     onChange={(e) => setCode(e.target.value)} 
-                    placeholder="Confirm Email"/>
+                    placeholder="Confirm Email" autoComplete="Code"/>
                     <button type="button" onClick={ConfirmEmail} disabled={v_button}>{v_button ? `${timer}`: "Send"}</button>
                     </div>
                     

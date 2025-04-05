@@ -219,7 +219,7 @@ export default function Sign_up() {
                     id="Code" 
                     value={code}
                     onChange={(e) => setCode(e.target.value)} 
-                    placeholder=" "/>
+                    placeholder=" " autoComplete="Code"/>
                     <label htmlFor="Code">Confirm Email</label>
                     <button type="button" onClick={ConfirmEmail} disabled={v_button}>{v_button ? `${timer}`: "Send"}</button>
                 </div>
