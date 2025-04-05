@@ -2,9 +2,11 @@
 .SellerShop {
     width: 100%;
     max-width: 1024px;
-    height: auto;
+    height: 620px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin: 50px auto;
 }
 .SellerShop form {
     width: 50%;
@@ -43,6 +45,7 @@
     height: auto;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 10px 0;
 }
 .product_info2 h1 {
@@ -61,7 +64,7 @@
 .product_info2 button {
     border: 2px solid #fff;
     padding: 5px 20px;
-    margin: 10px 30px;
+    margin: 10px 10px;
     border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
@@ -71,4 +74,11 @@
     background-color: #fff;
     color: #000;
 }
-
+.pic_input {
+    padding: 6px 4px;
+    margin: 5px;
+    cursor: pointer;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    color: #fff;
+}

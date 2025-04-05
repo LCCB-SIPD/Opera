@@ -2,6 +2,8 @@
 import "../css/log_in.css"
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Image from "next/image";
+
 export default function Log_in() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -47,7 +49,17 @@ export default function Log_in() {
 
     return(
         <div className="log_in">
-                <h1 className={`loading-screen ${loading ? "": "hidden"}`}>Fetching...</h1>
+                <div className={`loading ${loading ? "": "hidden"}`}>
+                <span className={`light ${loading ? "": "hidden"}`}></span>
+                <Image 
+                className={loading ? "" : "hidden"} 
+                src="/Icons/logo-transparent.png" 
+                alt="Loading..." 
+                width={120} 
+                height={120} 
+                unoptimized // Optional if you want to skip Next.js optimization for the image
+                />
+                </div>
                 <h1 className="title">One For All</h1>
             <form onSubmit={handleLogIn}>
                 <div>

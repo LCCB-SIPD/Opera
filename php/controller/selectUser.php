@@ -15,7 +15,7 @@ if (empty($username) || empty($passwd)) {
     exit();
 }
 
-$stmt = $pdo->prepare("SELECT id, username, passwd FROM user_tbl WHERE username = ? LIMIT 1");
+$stmt = $pdo->prepare("SELECT id, username, passwd, email FROM user_tbl WHERE username = ? LIMIT 1");
 $stmt->execute([$username]);
 $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -27,7 +27,8 @@ if ($rows) {
             'success' => true,
             'message' => 'Log in Successfully',
             'dataId' => $rows['id'],
-            'dataUsername' => $rows['username']
+            'dataUsername' => $rows['username'],
+            'dataEmail' => $rows['email']
         ]);
     
     } else {

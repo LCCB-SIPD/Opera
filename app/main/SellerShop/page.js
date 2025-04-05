@@ -13,10 +13,83 @@ export default function SellerShop() {
     const [categories, setCategories] = useState('')
     const [quantity, setQuantity] = useState('')
     const [error, setError] = useState('')
+    const [errorColor, setErrorColor] = useState(true);
     const [loading, setLoading] = useState(false)
     const [imageSrc, setImagSrc] = useState('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQ5DaMNfmNBEuQaBUawxCv2NOgV01Kmqj0Q&s')
     const [file, setFile] = useState(null)
+    const [generateCode, setGenerateCode] = useState('')
+    const [code, setCode] = useState('')
+    const [v_button, setVbutton] = useState(false)
+    const [timer, setTimer] = useState(0)
 
+    const email = user?.email || ''
+
+    const ConfirmEmail = async () => {
+
+        if (!prd_name || !prd_price || !categories || !quantity || !email) {
+            setError("Please Input Your Credentials First")
+            setErrorColor(true)
+            setLoading(false)
+            return
+        }
+
+        setVbutton(true)
+
+        try {
+
+            setLoading(true)
+
+            setTimer(60)
+
+            const countdown = setInterval(() => {
+                setTimer((prev) => {
+                    if (prev <= 1) {
+                        clearInterval(countdown);
+                        setVbutton(false);
+                        return 0;
+                    }
+                    return prev - 1;
+                });
+            }, 1000);
+
+            
+
+            const response = await fetch("../api/c_email", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    username
+                })
+            })            
+
+            const result = await response.json()
+
+            if (response.ok) { 
+
+                setGenerateCode(result.message)
+                setLoading(false)
+                setError(`Code Successfully Sent to ${email}`)
+                setErrorColor(false)
+
+            } else {
+                setLoading(false)
+                setError(result.error)
+                setErrorColor(true)
+                setTimer(0)
+            }
+
+        } catch (error) {
+
+            setError("Somethings went wrong")
+            setErrorColor(true)
+            console.error(error)
+            setLoading(false)
+        }
+
+    }
 
     const handleChangeFile = (e) => {
 
@@ -56,14 +129,21 @@ export default function SellerShop() {
 
     const productHandle = async (e) => {
 
-        if (prd_name.length > 8) {
-            setError("Product Name should be only 8 characters")
+        e.preventDefault()
+
+        if (prd_name.length > 15) {
+            setError("Product Name should be only 15 characters")
+            setErrorColor(true)
+            return
+        }
+
+        if (!generateCode || generateCode !== code) {
+            setError("Input Verification first")
+            setErrorColor(true)
             return
         }
 
         setLoading(true)
-
-        e.preventDefault()
 
         try {
 
@@ -90,11 +170,13 @@ export default function SellerShop() {
             const fetchdata = await response.json()
 
             if(response.ok) {
-                setLoading(false)
                 setError(fetchdata.message)
+                setErrorColor(false)
+                router.push("/main/Home")
             } else {
                 setLoading(false)
                 setError(fetchdata.error)
+                setErrorColor(true)
             }
 
         } catch(error) {
@@ -109,7 +191,17 @@ export default function SellerShop() {
         <div className="SellerShop">
             <form onSubmit={productHandle}>
                 <div className="upload_img">
-                <h1 className={`${loading ? "": "hidden"}`}>UPLOADING...</h1>
+                <div className={`loading ${loading ? "": "hidden"}`}>
+                <span className={`light ${loading ? "": "hidden"}`}></span>
+                <Image 
+                className={loading ? "" : "hidden"} 
+                src="/Icons/logo-transparent.png" 
+                alt="Loading..." 
+                width={120} 
+                height={120} 
+                unoptimized // Optional if you want to skip Next.js optimization for the image
+                />
+                </div>
                     <h1>Feature Img Upload Currently is On Development</h1>
                     <div className="prd_img">
                         <Image
@@ -120,7 +212,11 @@ export default function SellerShop() {
                         />
                     </div>
                     <div className="prd_img_input">
-                        <input type="file" accept="image/*" onChange={handleChangeFile} required/>
+                        <input 
+                        type="file" 
+                        accept="image/*"
+                        className="pic_input" 
+                        onChange={handleChangeFile} required/>
                     </div>        
                 </div>
                 <div className="product_info2">
@@ -132,7 +228,7 @@ export default function SellerShop() {
                         value={prd_name}
                         onChange={(e) => setPrd_name(e.target.value)}
                         placeholder="Enter Product Name"
-                        maxLength={10}
+                        maxLength={15}
                         required
                         />
                     </div>
@@ -173,11 +269,18 @@ export default function SellerShop() {
                         />
                     </div>
                     
+                    <div>
+                    <label htmlFor="Code">C_email:</label>
                     <input 
-                    type="hidden"
-                    value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQ5DaMNfmNBEuQaBUawxCv2NOgV01Kmqj0Q&s"
-                    />
-                    {error && <p style={{ color: "#ff0" }}>{error}</p>}
+                    type="number" 
+                    id="Code" 
+                    value={code}
+                    onChange={(e) => setCode(e.target.value)} 
+                    placeholder="Confirm Email"/>
+                    <button type="button" onClick={ConfirmEmail} disabled={v_button}>{v_button ? `${timer}`: "Send"}</button>
+                    </div>
+                    
+                    {error && <p className={`error ${errorColor ? "": "success"}`}>{error}</p>}
                     <div>
                         <button type="button" onClick={() => router.push("/main/Home")}>Back</button>
                         <button type="submit">Sell Product</button>

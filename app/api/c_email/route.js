@@ -8,23 +8,6 @@ export async function POST(req) {
     const cleanEmail = email.trim().toLowerCase();
     const cleanUsername = username.trim().toLowerCase();
 
-    const phpUrl = `${process.env.REACT_APP_PHP_FILE_CHECKQUERY}`;
-
-    const response = await fetch(phpUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            email: cleanEmail,
-            username: cleanUsername
-        }),
-    });
-
-    const result = await response.json()
-
-    if (result.success) {
-
         const generateCode = () => {
             return Math.floor(1000 + Math.random() * 9000).toString()
         }
@@ -45,8 +28,6 @@ export async function POST(req) {
             html:  ` <p> Hellow  ${cleanUsername} </p>` + '<h3> Your Code is </h3>' + 
             `<h1 style="color: #fff; font-weight: bold; background-color: #0d1117; padding: 10px; border-radius: 10px;">${confirmationCode}</h1>`
         }
-        
-        console.log(result.message)
 
         try {
     
@@ -56,15 +37,9 @@ export async function POST(req) {
     
         } catch (error) {
     
-            return NextResponse.json( { error: "ENV file not found" }, { status: 404 } )
+            return NextResponse.json( { error: "Email Sent" }, { status: 404 } )
     
         }
-
-    } else {
-
-        return NextResponse.json({ error: result.message }, { status: 404 })
-
-    }
 
     
 

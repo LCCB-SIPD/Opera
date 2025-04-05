@@ -23,7 +23,7 @@ export async function POST(req) {
         if (result.success) {
 
             const token = jwt.sign(
-                { id: result.dataId, username: result.dataUsername },
+                { id: result.dataId, username: result.dataUsername, email: result.dataEmail },
                 process.env.REACT_APP_JWT_SECRET_KEY,
                 { expiresIn: "1h" }
             );

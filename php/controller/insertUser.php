@@ -24,7 +24,17 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit();
 }
 
+$checkquery = $pdo->prepare("SELECT COUNT(*) FROM user_tbl WHERE username = ? OR email = ?");
+$checkquery->execute([$username, $email]);
+$countquery = $checkquery->fetchColumn();
 
+if ($countquery > 0) {
+    echo json_encode([
+        'success' => false,
+        'message' => 'User or Email Already Exist!!!'
+    ]);
+    exit();
+} 
 
 $stmt = $pdo->prepare("INSERT INTO user_tbl(
     username, 

@@ -1,6 +1,7 @@
 "use client"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import Image from "next/image"
 import "../css/sign_up.css"
 
 export default function Sign_up() {
@@ -63,7 +64,7 @@ export default function Sign_up() {
 
                 setGenerateCode(result.message)
                 setLoading(false)
-                setError("Code Successfully Sent")
+                setError(`Code Successfully Sent to ${email}`)
                 setErrorColor(false)
 
             } else {
@@ -142,6 +143,9 @@ export default function Sign_up() {
                 setError(data.error || "Somethings went wrong")
                 setErrorColor(true)
                 setLoading(false)
+                setTimeout(() => {
+                    window.location.reload()
+                }, 500)
             }
 
         } catch (error) {
@@ -159,7 +163,17 @@ export default function Sign_up() {
 
     return(
         <div className="sign_up">
-            <h1 className={`loading-screen ${loading ? "": "hidden"}`}>Fetching...</h1>
+            <div className={`loading ${loading ? "": "hidden"}`}>
+                <span className={`light ${loading ? "": "hidden"}`}></span>
+                <Image 
+                className={loading ? "" : "hidden"} 
+                src="/Icons/logo-transparent.png" 
+                alt="Loading..." 
+                width={120} 
+                height={120} 
+                unoptimized // Optional if you want to skip Next.js optimization for the image
+                />
+            </div>
             <h1 className="title">Sign Up</h1>
             <form onSubmit={handleSubmit}>
                 <div>

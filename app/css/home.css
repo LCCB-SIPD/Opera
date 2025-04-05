@@ -14,9 +14,15 @@
     align-items: center;
     background-color: #21262d;
 }
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .title h1 {
     font-size: 32px;
     font-weight: bold;
+    margin: 0 0 0 10px;
 }
 .profile {
     display: flex;
@@ -25,6 +31,8 @@
     cursor: pointer;
     position: relative;
     z-index: 1;
+    width: 15%;
+    height: 100%;
 }
 .profile_pic {
     width: 40px;
@@ -38,18 +46,19 @@
     position: absolute;
     background-color: #21262d;
     width: 130px;
-    height: auto;
+    height: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: column;
     overflow: hidden;
-    border-radius: 15px;
+    border-bottom-left-radius: 15px;
     transition: 0.5s ease-in-out;
     opacity: 0;
+    top: 60px;
 }
 .profile:hover .profile_option {
-    transform: translateY(70px);
+    height: 175px;
     opacity: 1;
 }
 .profile_option button {
@@ -89,7 +98,7 @@
     width: 100%;
     height: auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-flow: column;
     background-color: #21262d;
