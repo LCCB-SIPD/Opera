@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
+import nodemailer from 'nodemailer'
 
 export async function POST(req) {
 
@@ -35,7 +36,60 @@ export async function POST(req) {
     const result = await response.json()
 
     if (result.success) {
+
+        const transporter = nodemailer.createTransport({
+                    service: process.env.GMAIL_USERNAME,
+                    auth: {
+                        user: process.env.GMAIL_USERNAME,
+                        pass: process.env.GMAIL_PASSWORD
+                    }
+                })
+            
+                const mailOption = {
+                    from: process.env.GMAIL_USERNAME,
+                    to: cleanEmail,
+                    subject: `Welcome ${cleanUsername}`,
+                    html:  `<style>
+                        
+
+                        .welcome-message {
+                            animation: fadeIn 2s linear infinite;
+                        }
+
+                        @keyframes fadeIn {
+                            0% { color: #fff; }
+                            20% { color: #ff0; }
+                            40% { color: #0ff; }
+                            60% { color: #f00; }
+                            70% { color: #0f0; }
+                            100% { color: #00f; }
+                        }
+
+                        .header {
+                            padding: 20px;
+                            background-color: #0d1117;
+                            border-radius: 10px;
+                            color: #fff;
+                            animation: fadeIn 2s ease-in-out;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        }
+
+                        .header:hover {
+                            background-color: #23272a;
+                            transition: background-color 0.3s ease;
+                        }
+                    </style>
+                    
+                    <p class="welcome-message"> 🎉😊 Welcome ${cleanUsername} </p>
+                    <h1 class="header">
+                        Welcome to my Web Application and Thank You for Participating
+                    </h1>`
+                }
+
+                await transporter.sendMail(mailOption)
+
         return NextResponse.json({ message: result.message }, { status: 200 })
+
     } else {
         return NextResponse.json({ error: result.message }, { status: 404 })
     }

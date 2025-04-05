@@ -9,6 +9,8 @@ export async function GET() {
 
         const imgUrl = `${process.env.REACT_APP_PHP_FILE_SELECT_PRODUCT_IMG}`
 
+        const profilePic = `${process.env.REACT_APP_PHP_FILE_PROFILE_PIC}`
+
         const response = await fetch(phpUrl)
 
         if (!response.ok) {
@@ -23,7 +25,7 @@ export async function GET() {
         const data = await response.json()
 
         return NextResponse.json(
-            { message: 'Fetch all Successfully', data: data, imgUrl: imgUrl },
+            { message: 'Fetch all Successfully', data: data, imgUrl: imgUrl, profile: profilePic },
             { status: 200 }
          )
 

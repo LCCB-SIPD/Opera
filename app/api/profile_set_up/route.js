@@ -1,32 +1,63 @@
 
-import mysql from "mysql2/promise"
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
     
     try {
 
-        const { username, name, date } = await req.json()
+        const formDataFile = await req.formData()
+        const username = formDataFile.get('username')
+        const name = formDataFile.get('name')
+        const date = formDataFile.get('date')
+        const address = formDataFile.get('address')
+        const file = formDataFile.get('img')
+       
+        if (!file) {
+            return NextResponse.json(
+                { error: "No image file uploaded" },
+                { status: 400 }
+            );
+        }
 
-        const cleanNAme = name.trim()
-        const cleanDate = date.trim()
+        const cleanName = name.trim().replace(/\b\w/g, (char) => char.toUpperCase());
+        const cleanAddress = address.trim().replace(/\b\w/g, (char) => char.toUpperCase());
 
-        const connection = await mysql.createConnection(dbConfig)
+        const phpUrl = `${process.env.REACT_APP_PHP_FILE_UPDATE_PROFILE}`
 
-        const [update] = await connection.execute(
-            "UPDATE user_tbl SET name = ?, birth = ? WHERE username = ?",
-            [cleanNAme, cleanDate, username]
-        )
+        const formData = new FormData()
+        formData.append("username", username)
+        formData.append("name", cleanName)
+        formData.append("date", date)
+        formData.append("address", cleanAddress)
+        formData.append("img", file, file.name)
 
-        await connection.end();
+        const response = await fetch(phpUrl, {
+            method: 'POST',
+            body: formData
+        })
 
-        return NextResponse.json(
-            { message: 'User Updated Successfully', data: update},
-            { status: 200 }
-        )
+        const result = await response.json()
+
+        if (result.success) {
+
+            return NextResponse.json(
+                { message: 'User Updated Successfully'},
+                { status: 200 }
+            )
+
+        } else {
+
+            return NextResponse.json(
+                { error: 'Error'},
+                { status: 404 }
+            )
+
+        }
+
+        
 
     } catch (error) {
-        console.error("Error during user signup:", error);
+        console.error("Error during user update: ", error);
         return NextResponse.json({ error: "Database connection failed." }, { status: 500 });
     }
 

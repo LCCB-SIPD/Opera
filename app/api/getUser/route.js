@@ -1,49 +1,39 @@
 
-import mysql from "mysql2/promise"
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
 
     try {
 
-        const body = await req.json();
-        const username = body?.username;
+        const { username } = await req.json()
 
-        if (!username) {
-            return NextResponse.json({ error: "Username Session Not Found!!!" }, { status: 404 });
-        }
+        const phpUrl = `${process.env.REACT_APP_PHP_FILE_USER_PROFILE}`
 
-        const connection = await mysql.createConnection(dbConfig)
+        const profilePic = `${process.env.REACT_APP_PHP_FILE_PROFILE_PIC}`
 
-        const [rows] = await connection.execute(
-            "SELECT * FROM user_tbl WHERE username = ? LIMIT 1",
-            [username]
-        )
-        
-        await connection.end()
+        const response = await fetch(phpUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username })
+        })
 
-        if (rows[0].name) {
+        const result = await response.json()
 
-            return NextResponse.json(
-                { message: 'Fetch Data Successfully', data: rows[0] },
-                { status: 200 }
-            )
+        if (result.success) {
+
+            return NextResponse.json( { message: "Fetch All", data: result.data, profile: profilePic }, { status: 200 } )
 
         } else {
 
-            return NextResponse.json(
-                { error: 'Update User Info'},
-                { status: 400 }
-            )
+            return NextResponse.json( { error: result.message }, { status: 404 } )
 
         }
 
-        
-
-    } catch(error) {
-
-        console.error("Error during user signup:", error);
-        return NextResponse.json({ error: "Database connection failed." }, { status: 500 });
+    } catch (error) {
+        console.log(error)
+        return NextResponse.json( { error: 'Database Error' }, { status: 500 } )
     }
+
+    
 
 }

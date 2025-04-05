@@ -9,16 +9,17 @@ export default function Profile() {
     const [user, setUser] = useState("");
     const [name, setName] = useState("")
     const [date, setDate] = useState("")
-    const [loading, setLoading] = useState(false)
+    const [address, setAddress] = useState("")
+    const [loading, setLoading] = useState(true)
     const [Derror, setError] = useState('')
     const [hide, setHide] = useState(true)
+    const [profile, setProfile] = useState('')
+    const [imageSrc, setImagSrc] = useState('https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=')
+    const [file, setFile] = useState(null)
+    const [profile_val, setProfile_val] = useState([])
 
     //Data Information
-    const [ExName, getExname] = useState("")
-    const [ExBirth, getExbirth] = useState("")
-    const [ExUsername, getExusername] = useState("")
-    const [ExEmail, getExemail] = useState("")
-    const [ExId, getExid] = useState("")
+   
     const [src, getSrc] = useState("/main/Iframe_buy_pro")
 
 
@@ -26,10 +27,23 @@ export default function Profile() {
         getSrc(newSrc)
     }
 
+    const handleChangeFile = (e) => {
+
+        const selectedFile = e.target.files[0]
+
+        if (selectedFile) {
+
+            setFile(selectedFile)
+            setImagSrc(URL.createObjectURL(selectedFile))
+
+        }
+
+    }
 
     const username = user?.username || ""
 
     useEffect(() => {
+
         const checkAuth = async () => {
             try {
                 const res = await fetch("/api/auth", { credentials: "include" });
@@ -47,36 +61,31 @@ export default function Profile() {
         checkAuth();
 
         const getUser = async () => {
+
             try {
                 const response = await fetch("/api/getUser", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ username }),
-                    credentials: "include"
                 })
 
                 const Exdata = await response.json()
 
                 if (response.ok) {
 
-                    getExname(Exdata.data.name)
-                    getExid(Exdata.data.id)
-                    getExusername(Exdata.data.username)
-                    getExemail(Exdata.data.email)
-                    getExbirth(Exdata.data.birth)
+                    setProfile_val(Exdata.data)
+                    setProfile(Exdata.profile)
 
                 } else {
-
+                    setLoading(false)
                     setHide(false)   
-                    setError(data.error)
+                    setError(Exdata.error)
 
                 }
 
             } catch (error) {
                 
-                setError("Update Personal Information")
-
-                alert("Please Set Up Your Personal Information")
+                setError("Connection Error or Databse is offline")
 
             }
         }
@@ -92,19 +101,25 @@ export default function Profile() {
         e.preventDefault()
 
         setLoading(true)
-
+        setHide(true)
         try {
 
-            const response = await fetch('/api/profile_set_up', {
+            const formData = new FormData()
+            formData.append("username", username)
+            formData.append("name", name)
+            formData.append("date", date)
+            formData.append("address", address)
+
+            if (file) {
+                formData.append("img", file);
+            } else {
+                alert("Image Can't Upload");
+                return;
+            }
+
+            const response = await fetch("/api/profile_set_up", {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username,
-                    name,
-                    date
-                })
+                body: formData
             })
 
             const data = await response.json()
@@ -115,6 +130,7 @@ export default function Profile() {
             } else {
                 setError(data.error)
                 setLoading(false)
+                setHide(false)
             }
 
         } catch (error) {
@@ -128,68 +144,118 @@ export default function Profile() {
     return(
         <div className="Profile">
             <div className="profile_info">
-                <div className="profile_pic2">
-                    <Image
-                        src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
-                        alt="Sample"
-                        fill
-                        unoptimized
+            {profile_val && profile_val.length > 0 ? (
+                profile_val.map((profile_value) => (
+                    <div key={profile_value.id} className="profile_info_cont">
+                        <div className="profile_pic2">
+                            <Image
+                                src={`${profile}user_username=${username}`}
+                                alt="Sample"
+                                fill
+                                unoptimized
+                            />
+                        </div>
+                        <div className="profile_data">
+                            <div className="profile_infos">
+                                <div>
+                                    <h1>Name: {profile_value[0].name}</h1>
+                                </div>
+                                <div>
+                                    <h1>Birthday: {profile_value[0].birth}</h1>
+                                </div>
+                                <div>
+                                    <h1>Email: {profile_value[0].email}</h1>
+                                </div>
+                                <div>
+                                    <h1>User ID: {profile_value[0].id}</h1>
+                                </div>
+                                <div>
+                                    <h1>Address: {profile_value[0].address}</h1>
+                                </div>
+                                <div>
+                                    <h1>Username: @{profile_value.username}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                ))
+            ) : (
+                <div className={`loading ${loading ? "": "hidden"}`}>
+                    <span className={`light ${loading ? "": "hidden"}`}></span>
+                    <Image 
+                    className={loading ? "" : "hidden"} 
+                    src="/Icons/logo-transparent.png" 
+                    alt="Loading..." 
+                    width={120} 
+                    height={120} 
+                    unoptimized // Optional if you want to skip Next.js optimization for the image
                     />
                 </div>
-                <div className="profile_data">
-                    <div className="profile_infos">
-                        <div>
-                            <h1>Name: {ExName}</h1>
-                        </div>
-                        <div>
-                            <h1>Birthday: {ExBirth}</h1>
-                        </div>
-                        <div>
-                            <h1>Email: {ExEmail}</h1>
-                        </div>
-                        <div>
-                            <h1>User ID: {ExId}</h1>
-                        </div>
-                        <div>
-                            <h1>Username: @{ExUsername}</h1>
-                        </div>
-                    </div>
-                    <div className={`${hide ? "hidden": "set_up_profile"}`}>
+            )}
+            <div className={`${hide ? "hidden": "set_up_profile"}`}>
                         <form onSubmit={handleUpdate}>
                             <h1>Set up Profile Information</h1>
                             <div>
+                                <div className="profile_img2_support">
+                                    <Image
+                                        src={imageSrc}
+                                        alt="Sample"
+                                        fill
+                                        unoptimized
+                                    />
+                                </div>
+                                <div className="profile_img2_input">
+                                    <input 
+                                    type="file" 
+                                    accept="image/*"
+                                    className="pic_input" 
+                                    onChange={handleChangeFile} required/>
+                                </div>        
+                            </div>
+                            <div>
                                 <label htmlFor="name">Name: </label>
                                 <input 
-                                type="text" 
-                                id="name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                required
+                                    type="text" 
+                                    id="name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    required
                                 />
                             </div>
                             <div>
                                 <label htmlFor="birth">Birthday: </label>
                                 <input 
-                                type="date" 
-                                id="birth"
-                                value={date}
-                                onChange={(e) => setDate(e.target.value)} 
-                                required/>
+                                    type="date" 
+                                    id="birth"
+                                    value={date}
+                                    onChange={(e) => setDate(e.target.value)} 
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="address">Address: </label>
+                                <input 
+                                    type="text" 
+                                    id="address"
+                                    value={address}
+                                    onChange={(e) => setAddress(e.target.value)} 
+                                    required
+                                />
                             </div>
                             <div>
                                 <button type="submit">Update</button>
                             </div>
                             {Derror && <p style={{ color: "#f00" }}>{Derror}</p>}
-                            <h1 className={`${loading ? "": "hidden"}`}>Updating...</h1>
-
                         </form>
                     </div>
-                </div>
-                
             </div>
             <div className="inventory">
                 <div className="inventory_banners">
-                    <button type="button" onClick={() => changeSrc("/main/Iframe_buy_pro")}>Buy Products</button>
+                    <button type="button" onClick={() => router.push("/main/Home")}>&larr; Back</button>
+                    <button type="button" onClick={() => changeSrc("/main/Iframe_buy_pro")}>DashBoard</button>
+                    <button type="button" onClick={() => changeSrc("/main/Iframe_buy_pro")}>Pre Ordered</button>
+                    <button type="button" onClick={() => changeSrc("/main/Iframe_buy_pro")}>Carts</button>
                     <button type="button" onClick={() => changeSrc("/main/Iframe_sell_pro")}>Sell Products</button>
                 </div>
                 <div className="iframe_home">

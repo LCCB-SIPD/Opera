@@ -7,6 +7,7 @@ import "../../css/home.css"
 export default function Home() {
     const router = useRouter();
     const [user, setUser] = useState(null);
+    const [profile, setProfile] = useState('')
     const [imgUrl, setImgUrl] = useState('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQ5DaMNfmNBEuQaBUawxCv2NOgV01Kmqj0Q&s')
     const [products_val, setProducts_val] = useState([])
 
@@ -38,6 +39,7 @@ export default function Home() {
                     setProducts_val(data.data); // Assuming 'data' contains the rows from the database
                     console.log("Status: ", data.message)
                     setImgUrl(data.imgUrl)
+                    setProfile(data.profile)
                 } 
 
             } catch (error) {
@@ -93,7 +95,7 @@ export default function Home() {
                 <div className="profile">
                     <div className="profile_pic">
                         <Image
-                            src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
+                            src={`${profile}user_username=${user?.username || ''}`}
                             alt="Sample"
                             fill
                             unoptimized
@@ -105,7 +107,7 @@ export default function Home() {
                     <div className="profile_option">
                         <button type="button" onClick={() => router.push("/main/Profile")}>My Profile</button>
                         <button type="button" onClick={() => router.push("/main/SellerShop")}>Sell Product</button>
-                        <button type="button" onClick={() => router.push("/main/Setting")}>Settings</button>
+                        <button type="button" onClick={() => router.push("/main/Settings")}>Settings</button>
                         <button type="button" onClick={handleLogOut}>Log Out</button>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 include '../access/server.php';
 include '../access/nodejs.php';
 
-$stmt = $pdo->prepare('SELECT * FROM product_tbl LIMIT 100');
+$stmt = $pdo->prepare('SELECT * FROM product_tbl LIMIT 20');
 $stmt->execute();
 
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
