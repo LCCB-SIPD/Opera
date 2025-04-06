@@ -146,11 +146,11 @@ export default function Profile() {
             <div className="profile_info">
             {profile_val && profile_val.length > 0 ? (
                 profile_val.map((profile_value) => (
-                    <div key={profile_value.id} className="profile_info_cont">
+                    <div key={profile_value[0].id} className="profile_info_cont">
                         <div className="profile_pic2">
                             {user?.username && (
                                 <Image
-                                src={`${profile}user_username=${user.username}`}
+                                src={`${profile}${user.username}`}
                                 alt="Sample"
                                 fill
                                 unoptimized

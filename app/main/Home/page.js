@@ -96,7 +96,7 @@ export default function Home() {
                     <div className="profile_pic">
                     {user?.username && (
                        <Image
-                       src={`${profile}user_username=${user.username}`}
+                       src={`${profile}${user.username}`}
                        alt="Sample"
                        fill
                        unoptimized
