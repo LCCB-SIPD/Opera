@@ -8,6 +8,7 @@ export default function Home() {
     const router = useRouter();
     const [user, setUser] = useState(null);
     const [profile, setProfile] = useState('')
+    const [loading, setLoading] = useState(false)
     const [imgUrl, setImgUrl] = useState('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQ5DaMNfmNBEuQaBUawxCv2NOgV01Kmqj0Q&s')
     const [products_val, setProducts_val] = useState([])
 
@@ -53,6 +54,8 @@ export default function Home() {
     }, [router]);
 
     const handleLogOut = async () => {
+
+        setLoading(true)
 
         try {
 
@@ -107,9 +110,9 @@ export default function Home() {
                         <h1>{user ? user.username : "----"}</h1>
                     </div>
                     <div className="profile_option">
-                        <button type="button" onClick={() => router.push("/main/Profile")}>My Profile</button>
-                        <button type="button" onClick={() => router.push("/main/SellerShop")}>Sell Product</button>
-                        <button type="button" onClick={() => router.push("/main/Settings")}>Settings</button>
+                        <button type="button" onClick={() => {router.replace("/main/Profile"); setLoading(true); }}>My Profile</button>
+                        <button type="button" onClick={() => {router.replace("/main/SellerShop"); setLoading(true); }}>Sell Product</button>
+                        <button type="button" onClick={() => {router.replace("/main/Settings"); setLoading(true); }}>Settings</button>
                         <button type="button" onClick={handleLogOut}>Log Out</button>
                     </div>
                 </div>
@@ -140,19 +143,28 @@ export default function Home() {
                     </div>    
                 ))
             ) : (
-                <div className={`loadingHome`}>
-                <span className={`light`}></span>
-                <Image  
-                src="/Icons/logo-transparent.png" 
-                alt="Loading..." 
-                width={120} 
-                height={120} 
-                unoptimized // Optional if you want to skip Next.js optimization for the image
-                />
-                </div>
+                
+                <>
+                <span className="products_loading1"></span>
+                <span className="products_loading2"></span>  
+                <span className="products_loading3"></span>    
+                </>
+                
             )}
 
             </div>
+            <span className={`loading ${loading ? "": "hidden"}`}>
+                    <span className={`light ${loading ? "": "hidden"}`}></span>
+                    <Image 
+                    className={`${loading ? "": "hidden"}`}
+                    src="/Icons/logo-transparent.png" 
+                    alt="Loading..."
+                    width={120}
+                    height={120}
+                    unoptimized // Optional if you want to skip Next.js optimization for the image
+                    />
+                </span>
+                
         </div>
     );
 }

@@ -49,17 +49,17 @@ export default function Log_in() {
 
     return(
         <div className="log_in">
-                <div className={`loading ${loading ? "": "hidden"}`}>
-                <span className={`light ${loading ? "": "hidden"}`}></span>
-                <Image 
-                className={loading ? "" : "hidden"} 
-                src="/Icons/logo-transparent.png" 
-                alt="Loading..." 
-                width={120} 
-                height={120} 
-                unoptimized // Optional if you want to skip Next.js optimization for the image
-                />
-                </div>
+                <span className={`loading ${loading ? "": "hidden"}`}>
+                    <span className={`light ${loading ? "": "hidden"}`}></span>
+                    <Image 
+                    className={`${loading ? "": "hidden"}`}
+                    src="/Icons/logo-transparent.png" 
+                    alt="Loading..."
+                    width={120}
+                    height={120}
+                    unoptimized // Optional if you want to skip Next.js optimization for the image
+                    />
+                </span>
                 <h1 className="title">One For All</h1>
             <form onSubmit={handleLogIn}>
                 <div>
@@ -90,7 +90,7 @@ export default function Log_in() {
                 </div>
                 {error && <p className={`error ${errorColor ? "": "success"}`}>{error}</p>} 
                 <div>
-                    <button type="button" onClick={() => router.replace("/sign_up")}>Sign Up</button>
+                    <button type="button" onClick={() => {router.replace("/sign_up"); setLoading(true); }}>Sign Up</button>
                     <button type="submit" disabled={loading}>{loading ? "Fetching..." : "Log In"}</button>
                 </div>
             </form>

@@ -191,17 +191,17 @@ export default function SellerShop() {
         <div className="SellerShop">
             <form onSubmit={productHandle}>
                 <div className="upload_img">
-                <div className={`loading ${loading ? "": "hidden"}`}>
-                <span className={`light ${loading ? "": "hidden"}`}></span>
-                <Image 
-                className={loading ? "" : "hidden"} 
-                src="/Icons/logo-transparent.png" 
-                alt="Loading..." 
-                width={120} 
-                height={120} 
-                unoptimized // Optional if you want to skip Next.js optimization for the image
-                />
-                </div>
+               <span className={`loading ${loading ? "": "hidden"}`}>
+                    <span className={`light ${loading ? "": "hidden"}`}></span>
+                    <Image 
+                    className={`${loading ? "": "hidden"}`}
+                    src="/Icons/logo-transparent.png" 
+                    alt="Loading..."
+                    width={120}
+                    height={120}
+                    unoptimized // Optional if you want to skip Next.js optimization for the image
+                    />
+                </span>
                     <h1>Feature Img Upload Currently is On Development</h1>
                     <div className="prd_img">
                         <Image
@@ -282,7 +282,7 @@ export default function SellerShop() {
                     
                     {error && <p className={`error ${errorColor ? "": "success"}`}>{error}</p>}
                     <div>
-                        <button type="button" onClick={() => router.push("/main/Home")}>Back</button>
+                        <button type="button" onClick={() => {router.replace("/main/Home"); setLoading(true); }}>Back</button>
                         <button type="submit">Sell Product</button>
                     </div>
                 </div>

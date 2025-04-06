@@ -75,6 +75,7 @@ export default function Profile() {
 
                     setProfile_val(Exdata.data)
                     setProfile(Exdata.profile)
+                    setLoading(false)
 
                 } else {
                     setLoading(false)
@@ -183,18 +184,19 @@ export default function Profile() {
                     </div>
                 ))
             ) : (
-                <div className={`loading ${loading ? "": "hidden"}`}>
+                <h1 className={loading ? "": "hidden"}>Fetching Profile Data</h1>
+            )}
+            <span className={`loading ${loading ? "": "hidden"}`}>
                     <span className={`light ${loading ? "": "hidden"}`}></span>
                     <Image 
-                    className={loading ? "" : "hidden"} 
+                    className={`${loading ? "": "hidden"}`}
                     src="/Icons/logo-transparent.png" 
-                    alt="Loading..." 
-                    width={120} 
-                    height={120} 
+                    alt="Loading..."
+                    width={120}
+                    height={120}
                     unoptimized // Optional if you want to skip Next.js optimization for the image
                     />
-                </div>
-            )}
+                </span>
             <div className={`${hide ? "hidden": "set_up_profile"}`}>
                         <form onSubmit={handleUpdate}>
                             <h1>Set up Profile Information</h1>
@@ -256,7 +258,7 @@ export default function Profile() {
             </div>
             <div className="inventory">
                 <div className="inventory_banners">
-                    <button type="button" onClick={() => router.push("/main/Home")}>&larr; Back</button>
+                    <button type="button" onClick={() => {router.replace("/main/Home"); setLoading(true); }}>&larr; Back</button>
                     <button type="button" onClick={() => changeSrc("/main/Iframe_buy_pro")}>DashBoard</button>
                     <button type="button" onClick={() => changeSrc("/main/Iframe_buy_pro")}>Pre Ordered</button>
                     <button type="button" onClick={() => changeSrc("/main/Iframe_buy_pro")}>Carts</button>

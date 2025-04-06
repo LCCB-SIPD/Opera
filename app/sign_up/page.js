@@ -163,17 +163,19 @@ export default function Sign_up() {
 
     return(
         <div className="sign_up">
-            <div className={`loading ${loading ? "": "hidden"}`}>
+            <span className={`loading ${loading ? "": "hidden"}`}>
                 <span className={`light ${loading ? "": "hidden"}`}></span>
                 <Image 
-                className={loading ? "" : "hidden"} 
+                className={`${loading ? "": "hidden"}`}
                 src="/Icons/logo-transparent.png" 
-                alt="Loading..." 
-                width={120} 
-                height={120} 
+                alt="Loading..."
+                width={120}
+                height={120}
                 unoptimized // Optional if you want to skip Next.js optimization for the image
                 />
-            </div>
+            </span>
+            
+            
             <h1 className="title">Sign Up</h1>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -225,7 +227,7 @@ export default function Sign_up() {
                 </div>
                 {error && <p className={`error ${errorColor ? "": "success"}`}>{error}</p>}
                 <div>
-                   <button type="button" onClick={() => router.replace("/")}>Back</button>
+                   <button type="button" onClick={() => {router.replace("/"); setLoading(true); }}>Back</button>
                     <button type="submit" disabled={loading}>{loading ? "Loading..." : "Confirm"}</button>
                 </div>
             </form>
