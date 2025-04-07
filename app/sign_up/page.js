@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import Image from "next/image"
+import Swal from "sweetalert2"
 import "../css/sign_up.css"
 
 export default function Sign_up() {
@@ -30,7 +31,15 @@ export default function Sign_up() {
 
         try {
 
-            setLoading(true)
+            Swal.fire({
+                title: 'Sending Verification Code',
+                text: 'Please wait...',
+                allowOutsideClick: false, color: '#ffffff',
+                didOpen: () => {
+                Swal.showLoading(); // Show loading spinner
+                },
+                background: '#21262d'
+            })
 
             setTimer(60)
 
@@ -63,12 +72,26 @@ export default function Sign_up() {
             if (response.ok) { 
 
                 setGenerateCode(result.message)
-                setLoading(false)
+                Swal.fire({
+                    title: 'Successfully Send',
+                    text: `Code Successfully Sent to ${email}`,
+                    icon: 'success',
+                    background: '#222831',      // Custom background color
+                    color: '#ffffff',           // Optional: Text color
+                    confirmButtonColor: '#00adb5' // Optional: Button color
+                })
                 setError(`Code Successfully Sent to ${email}`)
                 setErrorColor(false)
 
             } else {
-                setLoading(false)
+                Swal.fire({
+                    title: 'Error',
+                    text: result.message,
+                    icon: 'error',
+                    background: '#222831',      // Custom background color
+                    color: '#ffffff',           // Optional: Text color
+                    confirmButtonColor: '#00adb5' // Optional: Button color
+                })
                 setError(result.error)
                 setErrorColor(true)
                 setTimer(0)
@@ -101,17 +124,39 @@ export default function Sign_up() {
             return
         }
 
-        setLoading(true)
+        Swal.fire({
+            title: 'Verifiying Identification',
+            text: 'Please wait...',
+            allowOutsideClick: false, color: '#ffffff',
+            didOpen: () => {
+            Swal.showLoading(); // Show loading spinner
+            },
+            background: '#21262d'
+        })
 
         if (!code) {
-            setLoading(false)
+            Swal.fire({
+                title: 'Error',
+                text: "Please Confirm Your Email",
+                icon: 'error',
+                background: '#222831',      // Custom background color
+                color: '#ffffff',           // Optional: Text color
+                confirmButtonColor: '#00adb5' // Optional: Button color
+            })
             setError("Please Confirm Your Email")
             setErrorColor(true)
             return
         }
 
         if (generateCode !== code) {
-            setLoading(false)
+            Swal.fire({
+                title: 'Error',
+                text: "Verification Code Not Match",
+                icon: 'error',
+                background: '#222831',      // Custom background color
+                color: '#ffffff',           // Optional: Text color
+                confirmButtonColor: '#00adb5' // Optional: Button color
+            })
             setError("Verification Code Not Match")
             setErrorColor(true)
             return
@@ -137,15 +182,29 @@ export default function Sign_up() {
             const data = await response.json()
             if (response.ok) {
                 setError(data.message)
-                setErrorColor(false)
+                Swal.fire({
+                    title: 'Account is Active',
+                    text: data.message,
+                    icon: 'success',
+                    background: '#222831',      // Custom background color
+                    color: '#ffffff',           // Optional: Text color
+                    confirmButtonColor: '#00adb5' // Optional: Button color
+                })
                 router.push("/")
             } else {
                 setError(data.error || "Somethings went wrong")
                 setErrorColor(true)
-                setLoading(false)
-                setTimeout(() => {
-                    window.location.reload()
-                }, 500)
+                Swal.fire({
+                    title: 'Error',
+                    text: data.error,
+                    icon: 'error',
+                    background: '#222831',      // Custom background color
+                    color: '#ffffff',           // Optional: Text color
+                    confirmButtonColor: '#00adb5' // Optional: Button color
+                }).then(() => {
+                    window.location.reload();
+                });
+               
             }
 
         } catch (error) {

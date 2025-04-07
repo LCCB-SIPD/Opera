@@ -8,6 +8,8 @@ $stmt->execute();
 
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$data = [];
+
 foreach($result as $rows) {
 
     $data[] = [

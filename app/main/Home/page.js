@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Swal from "sweetalert2"
 import "../../css/home.css"
 
 export default function Home() {
@@ -55,9 +56,17 @@ export default function Home() {
 
     const handleLogOut = async () => {
 
-        setLoading(true)
-
         try {
+
+             Swal.fire({
+                title: 'Logging Out',
+                text: 'Please wait...', color: '#ffffff',
+                allowOutsideClick: false,
+                didOpen: () => {
+                Swal.showLoading(); // Show loading spinner
+                },
+                background: '#21262d'
+            })
 
             const res = await fetch("/api/log_out", { method: "GET" })
 
@@ -66,12 +75,22 @@ export default function Home() {
             }
 
             const data = await res.json()
-            alert(data.message)
+            Swal.fire({
+                title: 'Log Out',
+                text: data.message,
+                icon: 'success',
+                background: '#222831',      // Custom background color
+                color: '#ffffff',           // Optional: Text color
+                confirmButtonColor: '#00adb5' // Optional: Button color
+            }) .then(() => {
+                router.push("/")
+            });
 
-            router.push("/")
+            
 
         } catch (error) {
             alert("Internet Timeout OR Server Error")
+            console.error(error)
         }
 
     }
@@ -147,7 +166,8 @@ export default function Home() {
                 <>
                 <span className="products_loading1"></span>
                 <span className="products_loading2"></span>  
-                <span className="products_loading3"></span>    
+                <span className="products_loading3"></span>
+                <span className="products_loading4"></span>      
                 </>
                 
             )}

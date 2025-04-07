@@ -22,7 +22,6 @@ export default function Profile() {
    
     const [src, getSrc] = useState("/main/Iframe_buy_pro")
 
-
     const changeSrc = (newSrc) => {
         getSrc(newSrc)
     }
@@ -178,6 +177,9 @@ export default function Profile() {
                                 <div>
                                     <h1>Username: @{profile_value.username}</h1>
                                 </div>
+                                <div>
+                                    <h1>Time Created: {profile_value[0].time_created}</h1>
+                                </div>
                             </div>
                         </div>
                         
@@ -260,9 +262,9 @@ export default function Profile() {
                 <div className="inventory_banners">
                     <button type="button" onClick={() => {router.replace("/main/Home"); setLoading(true); }}>&larr; Back</button>
                     <button type="button" onClick={() => changeSrc("/main/Iframe_buy_pro")}>DashBoard</button>
-                    <button type="button" onClick={() => changeSrc("/main/Iframe_buy_pro")}>Pre Ordered</button>
+                    <button type="button" onClick={() => changeSrc("/main/Iframe_buy_pro")}>Your Ordered</button>
                     <button type="button" onClick={() => changeSrc("/main/Iframe_buy_pro")}>Carts</button>
-                    <button type="button" onClick={() => changeSrc("/main/Iframe_sell_pro")}>Sell Products</button>
+                    <button type="button" onClick={() => changeSrc("/main/Iframe_sell_pro")}>Your Products</button>
                 </div>
                 <div className="iframe_home">
                     <iframe

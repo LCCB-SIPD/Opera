@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Swal from "sweetalert2"
 import "../../css/sellers.css"
 
 export default function SellerShop() {
@@ -29,7 +30,6 @@ export default function SellerShop() {
         if (!prd_name || !prd_price || !categories || !quantity || !email) {
             setError("Please Input Your Credentials First")
             setErrorColor(true)
-            setLoading(false)
             return
         }
 
@@ -37,9 +37,9 @@ export default function SellerShop() {
 
         try {
 
-            setLoading(true)
-
             setTimer(60)
+
+            
 
             const countdown = setInterval(() => {
                 setTimer((prev) => {
@@ -52,7 +52,15 @@ export default function SellerShop() {
                 });
             }, 1000);
 
-            
+            Swal.fire({
+                title: 'Sending Verification Code',
+                text: 'Please wait...', color: '#ffffff',
+                allowOutsideClick: false,
+                didOpen: () => {
+                Swal.showLoading(); // Show loading spinner
+                },
+                background: '#21262d'
+            })
 
             const response = await fetch("../api/c_email", {
                 method: 'POST',
@@ -70,12 +78,26 @@ export default function SellerShop() {
             if (response.ok) { 
 
                 setGenerateCode(result.message)
-                setLoading(false)
+                Swal.fire({
+                    title: 'Successfully Send',
+                    text: `Code Successfully Sent to ${email}`,
+                    icon: 'success',
+                    background: '#222831',      // Custom background color
+                    color: '#ffffff',           // Optional: Text color
+                    confirmButtonColor: '#00adb5' // Optional: Button color
+                })
                 setError(`Code Successfully Sent to ${email}`)
                 setErrorColor(false)
 
             } else {
-                setLoading(false)
+                Swal.fire({
+                    title: 'Error',
+                    text: result.message,
+                    icon: 'error',
+                    background: '#222831',      // Custom background color
+                    color: '#ffffff',           // Optional: Text color
+                    confirmButtonColor: '#00adb5' // Optional: Button color
+                })
                 setError(result.error)
                 setErrorColor(true)
                 setTimer(0)
@@ -143,7 +165,16 @@ export default function SellerShop() {
             return
         }
 
-        setLoading(true)
+        Swal.fire({
+            title: 'Uploading',
+            text: 'Please wait...',
+            color: '#ffffff',
+            allowOutsideClick: false,
+            didOpen: () => {
+            Swal.showLoading(); // Show loading spinner
+            },
+            background: '#21262d'
+        })
 
         try {
 
@@ -171,10 +202,26 @@ export default function SellerShop() {
 
             if(response.ok) {
                 setError(fetchdata.message)
-                setErrorColor(false)
-                router.push("/main/Home")
+                Swal.fire({
+                    title: 'Uploaded Successfully',
+                    text: fetchdata.message,
+                    icon: 'success',
+                    background: '#222831',      // Custom background color
+                    color: '#ffffff',           // Optional: Text color
+                    confirmButtonColor: '#00adb5' // Optional: Button color
+                }).then(() => {
+                    router.push("/main/Home")
+                });
+                
             } else {
-                setLoading(false)
+                Swal.fire({
+                    title: 'Error!',
+                    text: fetchdata.error,
+                    icon: 'error',
+                    background: '#222831',      // Custom background color
+                    color: '#ffffff',           // Optional: Text color
+                    confirmButtonColor: '#00adb5' // Optional: Button color
+                })
                 setError(fetchdata.error)
                 setErrorColor(true)
             }
