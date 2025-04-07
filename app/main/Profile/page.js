@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Swal from "sweetalert2"
 import "../../css/profile.css"
 
 export default function Profile() {
@@ -100,7 +101,15 @@ export default function Profile() {
 
         e.preventDefault()
 
-        setLoading(true)
+        Swal.fire({
+            title: 'Updating Your Profile',
+            text: 'Please wait...',
+            allowOutsideClick: false, color: '#ffffff',
+            didOpen: () => {
+            Swal.showLoading(); // Show loading spinner
+            },
+            background: '#21262d'
+        })
         setHide(true)
         try {
 
@@ -125,11 +134,26 @@ export default function Profile() {
             const data = await response.json()
 
             if(response.ok) {
-                alert(data.message)
-                window.location.reload()
+                 Swal.fire({
+                    title: 'Updated',
+                    text: data.message,
+                    icon: 'success',
+                    background: '#222831',      // Custom background color
+                    color: '#ffffff',           // Optional: Text color
+                    confirmButtonColor: '#00adb5' // Optional: Button color
+                }).then(() => {
+                    window.location.reload()
+                }) 
             } else {
                 setError(data.error)
-                setLoading(false)
+                Swal.fire({
+                    title: 'Error!',
+                    text: data.error,
+                    icon: 'error',
+                    background: '#222831',      // Custom background color
+                    color: '#ffffff',           // Optional: Text color
+                    confirmButtonColor: '#00adb5' // Optional: Button color
+                })
                 setHide(false)
             }
 

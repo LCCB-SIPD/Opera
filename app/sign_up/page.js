@@ -183,14 +183,16 @@ export default function Sign_up() {
             if (response.ok) {
                 setError(data.message)
                 Swal.fire({
-                    title: 'Account is Active',
+                    title: 'Log In your Account',
                     text: data.message,
                     icon: 'success',
                     background: '#222831',      // Custom background color
                     color: '#ffffff',           // Optional: Text color
                     confirmButtonColor: '#00adb5' // Optional: Button color
+                }).then(() => {
+                    router.push("/")
                 })
-                router.push("/")
+                
             } else {
                 setError(data.error || "Somethings went wrong")
                 setErrorColor(true)
