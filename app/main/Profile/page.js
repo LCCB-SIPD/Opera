@@ -186,8 +186,8 @@ export default function Profile() {
             ) : (
                 <h1 className={loading ? "": "hidden"}>Fetching Profile Data</h1>
             )}
-            <span className={`loading ${loading ? "": "hidden"}`}>
-                    <span className={`light ${loading ? "": "hidden"}`}></span>
+            <span className={` ${loading ? "loading": "hidden"}`}>
+                    <span className={` ${loading ? "light": "hidden"}`}></span>
                     <Image 
                     className={`${loading ? "": "hidden"}`}
                     src="/Icons/logo-transparent.png" 

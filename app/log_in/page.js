@@ -49,8 +49,8 @@ export default function Log_in() {
 
     return(
         <div className="log_in">
-                <span className={`loading ${loading ? "": "hidden"}`}>
-                    <span className={`light ${loading ? "": "hidden"}`}></span>
+                <span className={`${loading ? "loading": "hidden"}`}>
+                    <span className={`${loading ? "light": "hidden"}`}></span>
                     <Image 
                     className={`${loading ? "": "hidden"}`}
                     src="/Icons/logo-transparent.png" 

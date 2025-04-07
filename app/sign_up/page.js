@@ -163,8 +163,8 @@ export default function Sign_up() {
 
     return(
         <div className="sign_up">
-            <span className={`loading ${loading ? "": "hidden"}`}>
-                <span className={`light ${loading ? "": "hidden"}`}></span>
+            <span className={`${loading ? "loading": "hidden"}`}>
+                <span className={`${loading ? "light": "hidden"}`}></span>
                 <Image 
                 className={`${loading ? "": "hidden"}`}
                 src="/Icons/logo-transparent.png" 
