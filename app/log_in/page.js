@@ -1,7 +1,7 @@
 "use client"
 import "../css/log_in.css"
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function Log_in() {
@@ -11,6 +11,27 @@ export default function Log_in() {
     const [loading, setLoading] = useState(false)
     const [errorColor, setErrorColor] = useState(true);
     const router = useRouter()   
+
+    useEffect(() => {
+
+        const checkConnections = async () => {
+    
+          const response = await fetch("/api/checkCon")
+    
+          if (!response.ok) {
+    
+            router.push("/")
+    
+            alert("Can't Connect to Server")
+    
+          } 
+    
+        }
+    
+        checkConnections()
+    
+       
+      }, [router])
 
     const handleLogIn = async (e) => {
         e.preventDefault()
@@ -52,7 +73,7 @@ export default function Log_in() {
                 <span className={`${loading ? "loading": "hidden"}`}>
                     <span className={`${loading ? "light": "hidden"}`}></span>
                     <Image 
-                    className={`${loading ? "": "hidden"}`}
+                    className={`${loading ? "fade_in_image_load": "hidden"}`}
                     src="/Icons/logo-transparent.png" 
                     alt="Loading..."
                     width={120}

@@ -176,7 +176,7 @@ export default function Home() {
             <span className={`${loading ? "loading": "hidden"}`}>
                     <span className={` ${loading ? "light": "hidden"}`}></span>
                     <Image 
-                    className={`${loading ? "": "hidden"}`}
+                    className={`${loading ? "fade_in_image_load": "hidden"}`}
                     src="/Icons/logo-transparent.png" 
                     alt="Loading..."
                     width={120}

@@ -42,3 +42,4 @@ next-env.d.ts
 
 # Database Server
 php/access/server.php
+php/access/test_server.php

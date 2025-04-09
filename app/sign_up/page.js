@@ -1,6 +1,6 @@
 "use client"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Swal from "sweetalert2"
 import "../css/sign_up.css"
@@ -17,6 +17,29 @@ export default function Sign_up() {
     const [v_button, setVbutton] = useState(false)
     const [timer, setTimer] = useState(0)
     const [loading, setLoading] = useState(false)
+
+    const router = useRouter()
+
+     useEffect(() => {
+    
+            const checkConnections = async () => {
+        
+              const response = await fetch("/api/checkCon")
+        
+              if (!response.ok) {
+        
+                router.push("/")
+        
+                alert("Can't Connect to Server")
+        
+              } 
+        
+            }
+        
+            checkConnections()
+        
+           
+          }, [router])
 
     const ConfirmEmail = async () => {
 
@@ -44,6 +67,7 @@ export default function Sign_up() {
             setTimer(60)
 
             const countdown = setInterval(() => {
+
                 setTimer((prev) => {
                     if (prev <= 1) {
                         clearInterval(countdown);
@@ -52,9 +76,8 @@ export default function Sign_up() {
                     }
                     return prev - 1;
                 });
+                
             }, 1000);
-
-            
 
             const response = await fetch("api/c_email", {
                 method: 'POST',
@@ -124,6 +147,12 @@ export default function Sign_up() {
             return
         }
 
+        if (!code) {
+            setError("Please Confirm Your Email")
+            setErrorColor(true)
+            return
+        }
+
         Swal.fire({
             title: 'Verifiying Identification',
             text: 'Please wait...',
@@ -134,20 +163,7 @@ export default function Sign_up() {
             background: '#21262d'
         })
 
-        if (!code) {
-            Swal.fire({
-                title: 'Error',
-                text: "Please Confirm Your Email",
-                icon: 'error',
-                background: '#222831',      // Custom background color
-                color: '#ffffff',           // Optional: Text color
-                confirmButtonColor: '#00adb5' // Optional: Button color
-            })
-            setError("Please Confirm Your Email")
-            setErrorColor(true)
-            return
-        }
-
+        
         if (generateCode !== code) {
             Swal.fire({
                 title: 'Error',
@@ -220,14 +236,12 @@ export default function Sign_up() {
 
     }
 
-    const router = useRouter()
-
     return(
         <div className="sign_up">
             <span className={`${loading ? "loading": "hidden"}`}>
                 <span className={`${loading ? "light": "hidden"}`}></span>
                 <Image 
-                className={`${loading ? "": "hidden"}`}
+                className={`${loading ? "fade_in_image_load": "hidden"}`}
                 src="/Icons/logo-transparent.png" 
                 alt="Loading..."
                 width={120}
@@ -288,7 +302,7 @@ export default function Sign_up() {
                 </div>
                 {error && <p className={`error ${errorColor ? "": "success"}`}>{error}</p>}
                 <div>
-                   <button type="button" onClick={() => {router.replace("/"); setLoading(true); }}>Back</button>
+                   <button type="button" onClick={() => {router.replace("/log_in"); setLoading(true); }}>Back</button>
                     <button type="submit" disabled={loading}>{loading ? "Loading..." : "Confirm"}</button>
                 </div>
             </form>
