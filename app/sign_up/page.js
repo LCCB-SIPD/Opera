@@ -28,7 +28,7 @@ export default function Sign_up() {
         
               if (!response.ok) {
         
-                router.push("/")
+                router.push("/log_in")
         
                 alert("Can't Connect to Server")
         
