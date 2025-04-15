@@ -153,6 +153,13 @@ export default function Sign_up() {
             return
         }
 
+        if (generateCode !== code) {
+            
+            setError("Verification Code Not Match")
+            setErrorColor(true)
+            return
+        }
+
         Swal.fire({
             title: 'Verifiying Identification',
             text: 'Please wait...',
@@ -164,19 +171,7 @@ export default function Sign_up() {
         })
 
         
-        if (generateCode !== code) {
-            Swal.fire({
-                title: 'Error',
-                text: "Verification Code Not Match",
-                icon: 'error',
-                background: '#222831',      // Custom background color
-                color: '#ffffff',           // Optional: Text color
-                confirmButtonColor: '#00adb5' // Optional: Button color
-            })
-            setError("Verification Code Not Match")
-            setErrorColor(true)
-            return
-        }
+        
 
         
 

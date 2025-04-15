@@ -267,3 +267,16 @@
         opacity: 0.5;
     }    
 }
+
+@media (max-width: 740px){
+    .banners {
+        justify-content: left;
+    }
+    .title {
+        margin: 0;
+        width: auto;
+    }
+    .title h1 {
+       display: none;
+    }
+}

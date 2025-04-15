@@ -153,11 +153,11 @@ export default function Home() {
                             <h1>{products_value.name}</h1>
                             <h2>Owner: {products_value.owner}</h2>
                             <h2>Categories: {products_value.categories}</h2>
-                            <p>{products_value.price}</p>
+                            <p>Price - {products_value.price}</p>
                         </div>
                         <div className="buttons">
                             <button>Cart</button>
-                            <button>Pre-Order</button>
+                            <button>Order</button>
                         </div>
                     </div>    
                 ))
