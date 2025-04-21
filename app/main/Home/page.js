@@ -98,6 +98,7 @@ export default function Home() {
     return (
         <div className="welcome_page">
             <div className="banners">
+                <div className="banners_Lwidth">
                 <div className="title">
                     <Image 
                     src="/Icons/logo-transparent.png"
@@ -114,7 +115,16 @@ export default function Home() {
                     placeholder="Search"
                     />
                 </div>
+                <div className="notifications">
+                    <Image
+                        src="/Icons/notification-bell.png"
+                        alt="Notifications"
+                        width={25}
+                        height={25}
+                    />
+                </div>
                 <div className="profile">
+                    
                     <div className="profile_pic">
                     {user?.username && (
                        <Image
@@ -125,6 +135,7 @@ export default function Home() {
                     />
                     )}  
                     </div>
+                    
                     <div className="profile_text">
                         <h1>{user ? user.username : "----"}</h1>
                     </div>
@@ -135,9 +146,10 @@ export default function Home() {
                         <button type="button" onClick={handleLogOut}>Log Out</button>
                     </div>
                 </div>
+                </div>
             </div>
             <div className="products_cons">
-            
+            <div className="products_cons_001">
             { products_val && products_val.length > 0 ? (
                 products_val.map((products_value) => (
                     <div className="products" key={products_value.id}>
@@ -171,7 +183,7 @@ export default function Home() {
                 </>
                 
             )}
-
+            </div>
             </div>
             <span className={`${loading ? "loading": "hidden"}`}>
                     <span className={` ${loading ? "light": "hidden"}`}></span>

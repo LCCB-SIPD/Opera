@@ -14,6 +14,14 @@
     align-items: center;
     background-color: #21262d;
 }
+.banners_Lwidth {
+    width: 100%;
+    height: auto;
+    max-width: 1324px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
 .title {
     display: flex;
     justify-content: center;
@@ -23,6 +31,9 @@
     font-size: 32px;
     font-weight: bold;
     margin: 0 0 0 10px;
+}
+.notifications {
+    cursor: pointer;
 }
 .profile {
     display: flex;
@@ -55,7 +66,7 @@
     border-bottom-left-radius: 15px;
     transition: 0.5s ease-in-out;
     opacity: 0;
-    top: 60px;
+    top: 50px;
 }
 .profile:hover .profile_option {
     height: 175px;
@@ -91,6 +102,14 @@
     height: auto;
     margin: 20px auto;
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.products_cons_001 {
+    width: auto;
+    height: auto;
+    margin: 0 20px;
+    display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
@@ -102,10 +121,10 @@
     align-items: center;
     flex-flow: column;
     background-color: #21262d;
-    flex-basis: 200px;
+    flex-basis: 170px;
     border-radius: 20px;
     overflow: hidden;
-    margin: 0 10px;
+    margin: 0 5px;
     cursor: pointer;
 }
 
@@ -122,13 +141,15 @@
     flex-flow: column;
 }
 .product_info h1 {
-    font-size: 21px;
+    font-size: 18px;
     font-weight: bold;
 }
 .product_info h2 {
+    font-size: 15px;
     margin: 0 10px;
 }
 .product_info p {
+    font-size: 14px;
     color: #0f0;
 }
 .product_info h1, p {
@@ -278,5 +299,14 @@
     }
     .title h1 {
        display: none;
+    }
+    .profile_text {
+        display: none;
+    }
+    .searchBar {
+        width: 60%;
+    }
+    .profile_option {
+        right: 0;
     }
 }
