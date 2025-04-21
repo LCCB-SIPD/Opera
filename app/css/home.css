@@ -98,20 +98,15 @@
 
 .products_cons {
     width: 100%;
-    max-width: 1024px;
     height: auto;
+    max-width: 1366px;
     margin: 20px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .products_cons_001 {
-    width: auto;
-    height: auto;
-    margin: 0 20px;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
 }
 .products {
     width: 100%;
@@ -190,7 +185,7 @@
     align-items: center;
     flex-flow: column;
     background-color: #21262d;
-    flex-basis: 200px;
+    flex-basis: 170px;
     border-radius: 20px;
     overflow: hidden;
     margin: 0 10px;
@@ -216,7 +211,7 @@
     align-items: center;
     flex-flow: column;
     background-color: #21262d;
-    flex-basis: 200px;
+    flex-basis: 170px;
     border-radius: 20px;
     overflow: hidden;
     margin: 0 10px;
@@ -243,7 +238,7 @@
     align-items: center;
     flex-flow: column;
     background-color: #21262d;
-    flex-basis: 200px;
+    flex-basis: 170px;
     border-radius: 20px;
     overflow: hidden;
     margin: 0 10px;
