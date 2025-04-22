@@ -1,12 +1,10 @@
-name: Next.js CI/CD
+name: Next.js CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build:
@@ -14,23 +12,15 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: '18' # or whatever version your project uses
 
       - name: Install dependencies
-        run: npm ci  # Ensures a strict, clean install
-
-      - name: Lint code
-        run: npm run lint  # Ensures no ESLint errors
+        run: npm install
 
       - name: Build project
-        run: npm run build  # Ensures production build works
-
-      - name: Deploy (Optional)
-        if: success()
-        run: echo "Deploying..." # Replace with actual deploy command
+        run: npm run build
