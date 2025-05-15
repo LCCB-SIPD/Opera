@@ -83,7 +83,7 @@ export default function Home() {
                 color: '#ffffff',           // Optional: Text color
                 confirmButtonColor: '#00adb5' // Optional: Button color
             }) .then(() => {
-                router.push("/")
+                router.push("/log_in")
             });
 
             
