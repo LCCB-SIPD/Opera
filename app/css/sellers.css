@@ -6,15 +6,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 50px auto;
 }
 .SellerShop form {
-    width: 50%;
-    height: 520px;
-    display: flex;
-    justify-content: center;
-    flex-flow: column;
-    margin: 40px 0;
+    width: 70%;
+    max-width: 490px;
+    height: auto;
 }
 
 .upload_img {
@@ -81,4 +77,15 @@
     border: 2px solid #fff;
     border-radius: 10px;
     color: #fff;
+}
+@media (max-width: 700px) {
+    .SellerShop form {
+        width: 90%;
+    }
+    .product_info2 {
+        margin: 20px 0;
+    }
+    .product_info2 div {
+        width: 90%;
+    }
 }
