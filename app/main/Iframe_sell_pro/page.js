@@ -7,7 +7,7 @@ import Swal from "sweetalert2"
 export default function Sellproducts() {
     const [data, setData] = useState([])
     const [user, setUser] = useState("")
-    
+    const [imgUrl, setImgUrl] = useState('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQ5DaMNfmNBEuQaBUawxCv2NOgV01Kmqj0Q&s')
 
     const username = user?.username || ""
 
@@ -45,6 +45,8 @@ export default function Sellproducts() {
 
                 if (response.ok) {
                     
+                    setImgUrl(result.img)
+
                     setData(result.data)
 
                 }
@@ -137,7 +139,7 @@ export default function Sellproducts() {
 
                         <div key={prd_info.id} className="prd_info_selled">
                             <Image
-                            src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQ5DaMNfmNBEuQaBUawxCv2NOgV01Kmqj0Q&s`}
+                            src={`${imgUrl}prd_id=${prd_info.id}`}
                             alt="Img Prd"
                             width={180}
                             height={180}

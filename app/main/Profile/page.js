@@ -161,6 +161,14 @@ export default function Profile() {
             setError('Error Database Connection')
         }
 
+        const loadingSign = () => {
+
+            setLoading(true)
+
+            const timeOut = setTimeout(() => {}, 1000)
+
+        }
+
 
     }
 
@@ -168,50 +176,6 @@ export default function Profile() {
     return(
         <div className="Profile">
             <div className="profile_info">
-            {profile_val && profile_val.length > 0 ? (
-                profile_val.map((profile_value) => (
-                    <div key={profile_value[0].id} className="profile_info_cont">
-                        <div className="profile_pic2">
-                            {user?.username && (
-                                <Image
-                                src={`${profile}${user.username}`}
-                                alt="Sample"
-                                fill
-                                unoptimized
-                            />
-                            )}
-                        </div>
-                        <div className="profile_data">
-                            <div className="profile_infos">
-                                <div>
-                                    <h1>Name: {profile_value[0].name}</h1>
-                                </div>
-                                <div>
-                                    <h1>Birthday: {profile_value[0].birth}</h1>
-                                </div>
-                                <div>
-                                    <h1>Email: {profile_value[0].email}</h1>
-                                </div>
-                                <div>
-                                    <h1>User ID: {profile_value[0].id}</h1>
-                                </div>
-                                <div>
-                                    <h1>Address: {profile_value[0].address}</h1>
-                                </div>
-                                <div>
-                                    <h1>Username: @{profile_value.username}</h1>
-                                </div>
-                                <div>
-                                    <h1>Time Created: {profile_value[0].time_created}</h1>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                ))
-            ) : (
-                <h1 className={loading ? "": "hidden"}>Fetching Profile Data</h1>
-            )}
             <span className={` ${loading ? "loading": "hidden"}`}>
                     <span className={` ${loading ? "light": "hidden"}`}></span>
                     <Image 
@@ -285,10 +249,10 @@ export default function Profile() {
             <div className="inventory">
                 <div className="inventory_banners">
                     <button type="button" onClick={() => {router.replace("/main/Home"); setLoading(true); }}>&larr; Back</button>
-                    <button type="button" onClick={() => changeSrc("/main/Iframe_buy_pro")}>DashBoard</button>
-                    <button type="button" onClick={() => changeSrc("/main/Iframe_buy_pro")}>Your Ordered</button>
-                    <button type="button" onClick={() => changeSrc("/main/Iframe_buy_pro")}>Carts</button>
-                    <button type="button" onClick={() => changeSrc("/main/Iframe_sell_pro")}>Your Products</button>
+                    <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); loadingSign();}}>DashBoard</button>
+                    <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); loadingSign();}}>Your Ordered</button>
+                    <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); loadingSign();}}>Carts</button>
+                    <button type="button" onClick={() => {changeSrc("/main/Iframe_sell_pro"); loadingSign();}}>Your Products</button>
                 </div>
                 <div className="iframe_home">
                     <iframe

@@ -28,7 +28,7 @@
     align-items: center;
 }
 .title h1 {
-    font-size: 32px;
+    font-size: 1.5rem;
     font-weight: bold;
     margin: 0 0 0 10px;
 }
@@ -98,14 +98,18 @@
 
 .products_cons {
     width: 100%;
-    height: auto;
     max-width: 1366px;
     margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .products_cons_001 {
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    max-width: 980px;
     gap: 15px;
 }
 .products {
@@ -117,12 +121,11 @@
     flex-flow: column;
     background-color: #21262d;
     flex-basis: 170px;
-    border-radius: 20px;
+    border-radius: 10px;
     overflow: hidden;
-    margin: 0 5px;
+    margin: 0 20px;
     cursor: pointer;
 }
-
 
 .products_image {
     position: relative;
@@ -303,5 +306,8 @@
     }
     .profile_option {
         right: 0;
+    }
+    .products {
+        margin: 0 10px;
     }
 }

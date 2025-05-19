@@ -7,6 +7,8 @@ export async function POST(req) {
 
     const phpUrl = `${process.env.REACT_APP_PHP_FILE_SHOW_SELLING}`
 
+    const imgUrl = `${process.env.REACT_APP_PHP_FILE_SELECT_PRODUCT_IMG}`
+
     try {
 
         const response = await fetch(phpUrl, {
@@ -23,7 +25,7 @@ export async function POST(req) {
 
         if (result.success) {
 
-            return NextResponse.json( { message: result.message, data: result.data }, { status: 200 } )
+            return NextResponse.json( { message: result.message, data: result.data, img: imgUrl }, { status: 200 } )
 
         } else {
 
