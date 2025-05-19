@@ -175,7 +175,6 @@ export default function Profile() {
 
     return(
         <div className="Profile">
-            <div className="profile_info">
             <span className={` ${loading ? "loading": "hidden"}`}>
                     <span className={` ${loading ? "light": "hidden"}`}></span>
                     <Image 
@@ -187,69 +186,11 @@ export default function Profile() {
                     unoptimized // Optional if you want to skip Next.js optimization for the image
                     />
                 </span>
-            <div className={`${hide ? "hidden": "set_up_profile"}`}>
-                        <form onSubmit={handleUpdate}>
-                            <h1>Set up Profile Information</h1>
-                            <div>
-                                <div className="profile_img2_support">
-                                    <Image
-                                        src={imageSrc}
-                                        alt="Sample"
-                                        fill
-                                        unoptimized
-                                    />
-                                </div>
-                                <div className="profile_img2_input">
-                                    <input 
-                                    type="file" 
-                                    accept="image/*"
-                                    className="pic_input" 
-                                    onChange={handleChangeFile} required/>
-                                </div>        
-                            </div>
-                            <div>
-                                <label htmlFor="name">Name: </label>
-                                <input 
-                                    type="text" 
-                                    id="name"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                    autoComplete="name"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="birth">Birthday: </label>
-                                <input 
-                                    type="date" 
-                                    id="birth"
-                                    value={date}
-                                    onChange={(e) => setDate(e.target.value)} 
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="address">Address: </label>
-                                <input 
-                                    type="text" 
-                                    id="address"
-                                    value={address}
-                                    onChange={(e) => setAddress(e.target.value)}
-                                    autoComplete="address" 
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <button type="submit">Update</button>
-                            </div>
-                            {Derror && <p style={{ color: "#f00" }}>{Derror}</p>}
-                        </form>
-                    </div>
-            </div>
+            
             <div className="inventory">
                 <div className="inventory_banners">
                     <button type="button" onClick={() => {router.replace("/main/Home"); setLoading(true); }}>&larr; Back</button>
-                    <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); loadingSign();}}>DashBoard</button>
+                    <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); loadingSign();}}>Dashboard</button>
                     <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); loadingSign();}}>Your Ordered</button>
                     <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); loadingSign();}}>Carts</button>
                     <button type="button" onClick={() => {changeSrc("/main/Iframe_sell_pro"); loadingSign();}}>Your Products</button>

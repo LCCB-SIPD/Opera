@@ -1,7 +1,6 @@
 
 .Profile {
     width: 100%;
-    max-width: 1024px;
     height: auto;
     display: flex;
     justify-content: center;
@@ -20,21 +19,18 @@
 /* Iframes  */
 .inventory {
     width: 100%;
-    max-width: 1024px;
-    margin: 0 auto;
+    height: auto;
     display: flex;
-    justify-content: center;
-    flex-flow: column;
 }
 .inventory_banners {
     width: 100%;
-    height: auto;
+    height: 100dvh;
+    max-width: 240px;
     background-color: #21262d;
-    border-bottom-left-radius: 20px;
     display: flex;
     justify-content: left;
-    border-top: 1px solid #fff;
     overflow: hidden;
+    flex-flow: column;
 }
 .inventory_banners button {
     padding: 15px 30px;
@@ -50,11 +46,11 @@
 .iframe_home {
     width: 100%;
     max-width: 1024px;
-    height: auto;
+    height: 100dvh;
     display: flex;
     justify-content: center;
 }
 .iframe_home iframe {
     width: 100%;
-    height: 720px;
+    height: inherit;
 }
