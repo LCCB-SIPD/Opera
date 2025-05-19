@@ -1,6 +1,7 @@
 "use client"
 import { useEffect ,useState } from "react";
 import { ethers } from "ethers";
+import Swal from "sweetalert2"
 
 export default function Setting() {
 
@@ -37,6 +38,16 @@ export default function Setting() {
 
         try {
 
+            Swal.fire({
+                title: 'Connecting your Blockchain Wallet',
+                text: 'Please wait...', color: '#ffffff',
+                allowOutsideClick: false,
+                didOpen: () => {
+                Swal.showLoading(); // Show loading spinner
+                },
+                background: '#21262d'
+            })
+
             const provider = new ethers.BrowserProvider(window.ethereum);
             const signer = await provider.getSigner();
             const walletAddress = await signer.getAddress();
@@ -56,9 +67,23 @@ export default function Setting() {
             const result = await response.json()
             
             if (response.ok) {
-                alert(result.message)
+                Swal.fire({
+                    title: 'Connected Successfully',
+                    text: result.message,
+                    icon: 'success',
+                    background: '#222831',      // Custom background color
+                    color: '#ffffff',           // Optional: Text color
+                    confirmButtonColor: '#00adb5' // Optional: Button color
+                })
             } else {
-                alert(result.error)
+                Swal.fire({
+                    title: 'Error',
+                    text: result.error,
+                    icon: 'error',
+                    background: '#222831',      // Custom background color
+                    color: '#ffffff',           // Optional: Text color
+                    confirmButtonColor: '#00adb5' // Optional: Button color
+                })
             }
 
 
