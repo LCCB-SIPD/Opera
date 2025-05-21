@@ -15,7 +15,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!empty($result['name']) && !empty($result['birth']) && !empty($result['address'])) {
     
-    $data[] = [
+    $data = [
         'id' => $result['id'],
         'name' => $result['name'],
         'username' => $result['username'],
@@ -27,14 +27,14 @@ if (!empty($result['name']) && !empty($result['birth']) && !empty($result['addre
 
     echo json_encode([
         'success' => true,
-        'data' => [$data]
+        'data' => $data
     ]);
 
 } else {
 
     echo json_encode([
         'success' => false,
-        'message' => 'Users Not Updated Yet'
+        'message' => $username
     ]);
 
 }

@@ -2,21 +2,21 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Swal from "sweetalert2"
 import "../../css/profile.css"
 
 export default function Profile() {
     const router = useRouter()
-    const [loading, setLoading] = useState(true)
-
-    //Data Information
-   
+    const [loading, setLoading] = useState(false)
+    const [user, setUser] = useState("")
     const [src, getSrc] = useState("/main/Iframe_buy_pro")
+    const [profile, setProfile] = useState('')
+    const [userData, setUserdata] = useState([])
 
     const changeSrc = (newSrc) => {
         getSrc(newSrc)
     }
 
+    const usernameData = user.username ?? null
 
     useEffect(() => {
 
@@ -30,20 +30,55 @@ export default function Profile() {
                 }
                 const userData = await res.json();
                 setUser(userData);
+                console.log(`User Data ${userData}`)
             } catch (error) {
-                router.replace("/");
+                alert("somthings went wrong")
             }
         };
         checkAuth();
 
-    }, [router])      
-        
-    
-    const loadingSign = () => {
+        const getUser = async () => {
 
-        
+            if (usernameData === null) return
 
-    }
+            try {
+
+                const response = await fetch('/api/getUser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: usernameData
+                    })
+                })
+
+                const result = await response.json()
+
+                if (response.ok) {
+
+                    setProfile(result.profile)
+
+                    setUserdata(result.data)
+
+                } else {
+
+                    alert("Somethings Went Wrong")
+
+                }
+
+            } catch (error) {
+
+                console.error("Somethings Went Wrong")
+
+            }
+
+        }
+
+        getUser()
+
+    }, [router, usernameData])      
+        
 
     return(
         <div className="Profile">
@@ -60,7 +95,23 @@ export default function Profile() {
                 </span>
             
             <div className="inventory">
+                
                 <div className="inventory_banners">
+                    <div className="profile_info_inner">
+                        <div className="profile_pic_inner">
+                            {user?.username && (
+                                <Image
+                                src={`${profile}${user.username}`}
+                                alt="Sample"
+                                fill
+                                unoptimized
+                            />
+                            )}  
+                        </div>
+                        <div className="profile_username_inner">
+                            <h2>{userData.username}</h2>
+                        </div>
+                    </div>
                     <button type="button" onClick={() => {router.replace("/main/Home"); setLoading(true); }}>&larr; Back</button>
                     <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); loadingSign();}}>Dashboard</button>
                     <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); loadingSign();}}>Your Ordered</button>
