@@ -97,8 +97,7 @@
 }
 
 .products_cons {
-    width: 100%;
-    max-width: 1366px;
+    width: min(1366px, 100dvw);
     margin: 20px auto;
     display: flex;
     justify-content: center;
@@ -138,11 +137,12 @@
     display: flex;
     flex-flow: column;
 }
-.product_info h1 {
+.product_info h2 {
     font-size: 18px;
     font-weight: bold;
+    margin: 5px 10px;
 }
-.product_info h2 {
+.product_info h3 {
     font-size: 15px;
     margin: 0 10px;
 }

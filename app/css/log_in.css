@@ -1,7 +1,6 @@
 
 .log_in {
-    width: 100%;
-    max-width: 1024px;
+    width: min(1024px, 100dvw);
     height: 100dvh;
     display: flex;
     justify-content: center;

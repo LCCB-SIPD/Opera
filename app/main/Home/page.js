@@ -162,9 +162,9 @@ export default function Home() {
                             />
                         </div>
                         <div className="product_info">
-                            <h1>{products_value.name}</h1>
-                            <h2>Owner: {products_value.owner}</h2>
-                            <h2>Categories: {products_value.categories}</h2>
+                            <h2>{products_value.name}</h2>
+                            <h3>Owner: {products_value.owner}</h3>
+                            <h3>Categories: {products_value.categories}</h3>
                             <p>Price - {products_value.price}</p>
                         </div>
                         <div className="buttons">

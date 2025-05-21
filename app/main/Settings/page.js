@@ -99,6 +99,12 @@ export default function Setting() {
 
     return(
         <div className="Settings">
+            <div className="settings_options">
+
+            </div>
+            <div className="">
+
+            </div>
             <button onClick={ConnectNetwork}>Connect Wallet</button>
         </div>
     )

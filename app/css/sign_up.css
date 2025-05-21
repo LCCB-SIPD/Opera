@@ -1,8 +1,7 @@
 
 .sign_up {
-    width: 100%;
+    width: min(1024px, 100dvw);
     height: 100dvh;
-    max-width: 1024px;
     display: flex;
     justify-content: center;
     align-items: center;
