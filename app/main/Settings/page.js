@@ -2,9 +2,10 @@
 import { useEffect ,useState } from "react";
 import { ethers } from "ethers";
 import Swal from "sweetalert2"
+import { useRouter } from "next/navigation";
 
 export default function Setting() {
-
+    const router = useRouter();
     const [address, setAddress] = useState('')
     const [user, setUser] = useState('')
 
@@ -31,11 +32,6 @@ export default function Setting() {
 
     const ConnectNetwork = async () => {
         
-        if (!window.ethereum) {
-            alert("Please Install Metamask")
-            return
-        }
-
         try {
 
             Swal.fire({
@@ -48,10 +44,10 @@ export default function Setting() {
                 background: '#21262d'
             })
 
-            const provider = new ethers.BrowserProvider(window.ethereum);
-            const signer = await provider.getSigner();
-            const walletAddress = await signer.getAddress();
-            setAddress(walletAddress);
+const provider = new ethers.BrowserProvider(window.ethereum);
+const signer = await provider.getSigner();
+const address = await signer.getAddress();
+            setAddress(address);
 
             const response = await fetch('/api/web3_wallet', {
 
@@ -89,7 +85,16 @@ export default function Setting() {
 
         } catch (error) {
 
-            alert("Somethings Went Wrong")
+            Swal.fire({
+                    title: 'Error',
+                    text: error,
+                    icon: 'error',
+                    background: '#222831',      // Custom background color
+                    color: '#ffffff',           // Optional: Text color
+                    confirmButtonColor: '#00adb5' // Optional: Button color
+                })
+                
+              
 
         }
             

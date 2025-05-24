@@ -3,63 +3,85 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-
 export default function Home() {
 
   const [connect, setConnect] = useState(false)
   const [status, setStatus] = useState("")
   const [timer, setTimer] = useState("")
+  let attemps = 0;
+  const retry = 1;
 
   const router = useRouter()
 
   useEffect(() => {
-
-    const checkConnections = async () => {
-
-      const response = await fetch("/api/checkCon")
+    
+    checkConnections()
+   
+  }, [router])
+  
+  const checkConnections = async () => {
+    
+    
+    try{
+        
+        const response = await fetch("/api/checkCon")
 
       setConnect(true)
+      
+      if (!window.ethereum) {
+          setStatus("!! Error Please Connect to Metamask Core TestNet2")
+          return
+      }
 
       if (response.ok) {
 
         router.push("/log_in")
-
-        clearInterval(interval)
 
         setStatus("Connected")
 
         setConnect(false)
 
       } else {
+        setTimeout(retryCountDown, 6000)
+       
+      }
+        
+    } catch(error) {
+        
+        setTimeout(retryCountDown, 6000)
+        
+        
+    }  
 
-        setStatus("Error Retrying in ")
+    }
+
+    const retryCountDown = () => {
+    
+    if (timer > 1) return;
+     
+     setStatus("Error Retrying in ")
 
         setTimer(5)
+        
+        attemps++
 
             const countdown = setInterval(() => {
 
                 setTimer((prev) => {
-                    if (prev <= 1) {
+                    if (prev < 1) {
                         clearInterval(countdown);
                         setStatus("")
-                        setTimer("")
+                        checkConnections()
                         return 0;
+                        
                     }
-                    return prev - 1;
+                    return prev -= 1;
                 });
                 
           }, 1000);
-
-      }
-
-    }
-
-    
-
-    const interval = setInterval(checkConnections, 10000)
-
-   
-  }, [router])
+     
+     
+     }
 
   return (
     <div className="container">
