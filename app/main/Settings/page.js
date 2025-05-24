@@ -1,6 +1,5 @@
 "use client"
 import { useEffect ,useState } from "react";
-import { ethers } from "ethers";
 import Swal from "sweetalert2"
 import { useRouter } from "next/navigation";
 
@@ -44,7 +43,7 @@ export default function Setting() {
                 background: '#21262d'
             })
 
-const provider = new ethers.BrowserProvider(window.ethereum);
+const provider = new ethers.BrowserProvider();
 const signer = await provider.getSigner();
 const address = await signer.getAddress();
             setAddress(address);

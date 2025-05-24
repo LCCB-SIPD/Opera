@@ -28,10 +28,6 @@ export default function Home() {
 
       setConnect(true)
       
-      if (!window.ethereum) {
-          setStatus("!! Error Please Connect to Metamask Core TestNet2")
-          return
-      }
 
       if (response.ok) {
 
