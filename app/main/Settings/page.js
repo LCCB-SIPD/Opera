@@ -2,6 +2,8 @@
 import { useEffect ,useState } from "react";
 import Swal from "sweetalert2"
 import { useRouter } from "next/navigation";
+import { Web3Modal } from "@web3modal/standalone";
+import { BrowserProvider } from "ethers";
 
 export default function Setting() {
     const router = useRouter();
@@ -27,15 +29,31 @@ export default function Setting() {
 
         checkAuth();
 
-    }, [])
+    }, [router])
 
     const ConnectNetwork = async () => {
         
         try {
-
-            Swal.fire({
-                title: 'Connecting your Blockchain Wallet',
-                text: 'Please wait...', color: '#ffffff',
+        
+            const web3Modal = new Web3Modal({
+                projectId: '53bd961a5625d0b5c5d2ad9bf5e8e912',
+                themeMode: 'dark'
+            })
+            
+            web3Modal.openModal()
+            
+            const provider = await web3Modal.connect()
+            
+            const ethersProvider = new BrowserProvider.providers.Web3Provider(provider)
+            
+            const signer = ethersProvider.getSigner()
+            
+            const walletAddress = await signer.getAddress()
+                  
+               
+               Swal.fire({
+                title: 'Connecting Wallet',
+                text: 'Fetching Wallet Address Please wait...', color: '#ffffff',
                 allowOutsideClick: false,
                 didOpen: () => {
                 Swal.showLoading(); // Show loading spinner
@@ -43,17 +61,12 @@ export default function Setting() {
                 background: '#21262d'
             })
 
-const provider = new ethers.BrowserProvider();
-const signer = await provider.getSigner();
-const address = await signer.getAddress();
-            setAddress(address);
-
             const response = await fetch('/api/web3_wallet', {
 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
-                    address: address,
+                    address: walletAddress,
                     user_id: user.id
                 })
 
@@ -80,6 +93,7 @@ const address = await signer.getAddress();
                     confirmButtonColor: '#00adb5' // Optional: Button color
                 })
             }
+              
 
 
         } catch (error) {
@@ -88,9 +102,9 @@ const address = await signer.getAddress();
                     title: 'Error',
                     text: error,
                     icon: 'error',
-                    background: '#222831',      // Custom background color
-                    color: '#ffffff',           // Optional: Text color
-                    confirmButtonColor: '#00adb5' // Optional: Button color
+                    background: '#222831',
+                    color: '#ffffff',
+                    confirmButtonColor: '#00adb5'
                 })
                 
               

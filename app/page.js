@@ -1,26 +1,25 @@
 "use client"
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
 
   const [connect, setConnect] = useState(false)
-  const [status, setStatus] = useState("")
+  const [status, setStatus] = useState("Connecting to Server")
   const [timer, setTimer] = useState("")
   let attemps = 0;
-  const retry = 1;
 
   const router = useRouter()
-
-  useEffect(() => {
-    
-    checkConnections()
-   
-  }, [router])
   
-  const checkConnections = async () => {
-    
+  const checkConnections = useCallback(async () => {
+        
+        if (attemps >= 5) {
+        setStatus("Server Connection Error Reload the Browser")
+        
+        
+        return
+    }
     
     try{
         
@@ -28,56 +27,40 @@ export default function Home() {
 
       setConnect(true)
       
-
+      attemps++
+      
       if (response.ok) {
 
         router.push("/log_in")
 
-        setStatus("Connected")
+        setStatus("Server Connected")
 
         setConnect(false)
 
       } else {
-        setTimeout(retryCountDown, 6000)
-       
+        
+        setStatus(`Error Connections Retrying`)
+        
+        setTimeout(checkConnections, 3000)
+        
       }
         
     } catch(error) {
         
-        setTimeout(retryCountDown, 6000)
         
+         setStatus(error)
         
     }  
-
-    }
-
-    const retryCountDown = () => {
-    
-    if (timer > 1) return;
-     
-     setStatus("Error Retrying in ")
-
-        setTimer(5)
         
-        attemps++
+    }, [router, attemps])
+    
+    useEffect(() => {
+    
+        setTimeout(checkConnections, 8000)
+   
+    }, [checkConnections])
 
-            const countdown = setInterval(() => {
-
-                setTimer((prev) => {
-                    if (prev < 1) {
-                        clearInterval(countdown);
-                        setStatus("")
-                        checkConnections()
-                        return 0;
-                        
-                    }
-                    return prev -= 1;
-                });
-                
-          }, 1000);
-     
-     
-     }
+    
 
   return (
     <div className="container">
@@ -93,7 +76,7 @@ export default function Home() {
             />
         </span>
         <span className={`status_load ${connect ? "" : "status_hide"}`}>
-          <span><p>Connecting to Server {status + timer}</p></span>
+          <span><p>{status + timer}</p></span>
           </span>
     </div>
   );

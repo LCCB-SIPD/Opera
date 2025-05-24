@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #0d1117;
   --foreground: #171717;
 }
 
@@ -22,7 +22,7 @@
 body {
 /*   background: var(--background); */
 /*   color: var(--foreground); */
-  background-color: #0d1117;
+  background-color: var(--background);
   color: #fff;
   font-family: Arial, Helvetica, sans-serif;
   width: 100%;
@@ -161,4 +161,8 @@ body {
 .success {
   color: #0f0;
   text-align: center;
+}
+
+.walletconnect-modal {
+    background: var(--background);
 }
