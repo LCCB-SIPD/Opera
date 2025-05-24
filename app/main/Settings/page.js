@@ -36,19 +36,28 @@ export default function Setting() {
         try {
         
             const web3Modal = new Web3Modal({
-                projectId: '53bd961a5625d0b5c5d2ad9bf5e8e912',
+                projectId: process.env.NEXT_PUBLIC_WEB3_PROJECT_ID,
                 themeMode: 'dark'
             })
             
-            web3Modal.openModal()
+            web3Modal.subscribeModal(async ({ provider }) => {
             
-            const provider = await web3Modal.connect()
+            if (!provider) {
+                alert(`Error ${provider}`)
+                return
+            };
+                
+            const ethersProvider = new BrowserProvider(provider)
             
-            const ethersProvider = new BrowserProvider.providers.Web3Provider(provider)
-            
-            const signer = ethersProvider.getSigner()
+            const signer = await ethersProvider.getSigner()
             
             const walletAddress = await signer.getAddress()
+            
+            alert(walletAddress)
+                
+            })
+            
+            
                   
                
                Swal.fire({
@@ -66,7 +75,7 @@ export default function Setting() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
-                    address: walletAddress,
+                    address: address,
                     user_id: user.id
                 })
 
