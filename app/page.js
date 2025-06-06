@@ -36,6 +36,7 @@ export default function Home() {
         setStatus("Server Connected")
 
         setConnect(false)
+        
 
       } else {
         

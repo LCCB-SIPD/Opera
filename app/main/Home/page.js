@@ -103,8 +103,8 @@ export default function Home() {
                     <Image 
                     src="/Icons/logo-transparent.png"
                     alt="logo"
-                    width={55}
-                    height={55}
+                    width={40}
+                    height={40}
                     />
                     <h1>One For All</h1>
                 </div>

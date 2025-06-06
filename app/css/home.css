@@ -13,6 +13,9 @@
     justify-content: space-around;
     align-items: center;
     background-color: #21262d;
+    position: fixed;
+    top: 0;
+    z-index: 100;
 }
 .banners_Lwidth {
     width: 100%;
@@ -97,23 +100,16 @@
 }
 
 .products_cons {
-    width: min(1366px, 100dvw);
-    margin: 20px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: min(1200px, 100dvw);
+    margin: 70px auto;
 }
 .products_cons_001 {
-    margin: 0 auto;
+    margin: 0 10px;
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
-    max-width: 980px;
-    gap: 15px;
+    justify-content: center;
 }
 .products {
-    width: 100%;
-    height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -122,8 +118,8 @@
     flex-basis: 170px;
     border-radius: 10px;
     overflow: hidden;
-    margin: 0 20px;
     cursor: pointer;
+    margin: 10px;
 }
 
 .products_image {
@@ -191,7 +187,7 @@
     flex-basis: 170px;
     border-radius: 20px;
     overflow: hidden;
-    margin: 0 10px;
+    margin: 10px;
     animation: loading1 1s 1s linear infinite;
 }
 @keyframes loading1 {
@@ -217,7 +213,7 @@
     flex-basis: 170px;
     border-radius: 20px;
     overflow: hidden;
-    margin: 0 10px;
+    margin: 10px;
     opacity: 0.5;
     animation: loading2 1s 0.5s linear infinite;
 }
@@ -244,7 +240,7 @@
     flex-basis: 170px;
     border-radius: 20px;
     overflow: hidden;
-    margin: 0 10px;
+    margin: 10px;
     opacity: 0.5;
     animation: loading3 1s 1s linear infinite;
 }
@@ -271,7 +267,7 @@
     flex-basis: 170px;
     border-radius: 20px;
     overflow: hidden;
-    margin: 0 10px;
+    margin: 10px;
     opacity: 0.5;
     animation: loading4 1s 0.5s linear infinite;
 }
@@ -287,7 +283,7 @@
     }    
 }
 
-@media (max-width: 740px){
+@media (max-width: 780px){
     .banners {
         justify-content: left;
     }
@@ -307,7 +303,11 @@
     .profile_option {
         right: 0;
     }
-    .products {
-        margin: 0 10px;
+    .profile_pic {
+        margin: 0;
+    }
+    .products, .products_loading1, .products_loading2, .products_loading3, .products_loading4 {
+        flex-basis: 160px;
+        margin: 5px;
     }
 }
