@@ -37,7 +37,7 @@ const config = getDefaultConfig({
   appName: 'Test Wallet App',
   projectId: '2a6ea45d7b774258abb68a5e1d7d80e0',
   chains: [coreTestnet],
-  ssr: true,
+  //ssr: false,
 });
 
 const queryClient = new QueryClient();
