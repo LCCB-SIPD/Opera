@@ -9,12 +9,34 @@ import {
 
 import { WagmiProvider, useAccount } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { mainnet, goerli } from 'wagmi/chains';
+
+const coreTestnet = {
+  id: 1114,
+  name: 'Core Blockchain TestNet',
+  network: 'core-testnet',
+  nativeCurrency: {
+    name: 'tCORE2',
+    symbol: 'tCORE2',
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://rpc.test2.btcs.network'],
+    },
+  },
+  blockExplorers: {
+    default: {
+      name: 'CoreScan',
+      url: 'https://scan.test2.btcs.network',
+    },
+  },
+  testnet: true,
+};
 
 const config = getDefaultConfig({
   appName: 'Test Wallet App',
   projectId: '2a6ea45d7b774258abb68a5e1d7d80e0',
-  chains: [mainnet, goerli],
+  chains: [coreTestnet],
   ssr: true,
 });
 
@@ -25,7 +47,7 @@ function WalletStatus() {
 
   if (!isConnected) return <p>Wallet not connected</p>;
 
-  return <p>Connected wallet: {address}</p>;
+  return <p>Connected</p>;
 }
 
 export default function Home() {
@@ -33,7 +55,7 @@ export default function Home() {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
-          <div style={{ padding: 20 }}>
+          <div className="Wallet_Connect">
             <h1>✅ Working WalletConnect + RainbowKit</h1>
             <ConnectButton />
             <WalletStatus />
