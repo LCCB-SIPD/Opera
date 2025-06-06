@@ -41,5 +41,5 @@ yarn-error.log*
 next-env.d.ts
 
 # Database Server
-php/access/server.php
-php/access/test_server.php
+php/access/server_addr.php
+
