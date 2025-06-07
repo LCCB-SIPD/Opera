@@ -1,15 +1,17 @@
 'use client';
-
+import { OFABalance } from './one_for_all';
+import { useEffect, useState } from 'react';
 import '@rainbow-me/rainbowkit/styles.css';
 import {
   getDefaultConfig,
   RainbowKitProvider,
-  ConnectButton
+  ConnectButton,
 } from '@rainbow-me/rainbowkit';
 
-import { WagmiProvider, useAccount } from 'wagmi';
+import { WagmiConfig, useAccount } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+// Define Core Testnet network info
 const coreTestnet = {
   id: 1114,
   name: 'Core Blockchain TestNet',
@@ -33,35 +35,49 @@ const coreTestnet = {
   testnet: true,
 };
 
-const config = getDefaultConfig({
-  appName: 'Test Wallet App',
-  projectId: '2a6ea45d7b774258abb68a5e1d7d80e0',
-  chains: [coreTestnet],
-  //ssr: false,
-});
-
 const queryClient = new QueryClient();
 
 function WalletStatus() {
   const { address, isConnected } = useAccount();
+  
+  
 
   if (!isConnected) return <p>Wallet not connected</p>;
 
-  return <p>Connected</p>;
+  return (
+    <div>
+      <p>✅ Connected!</p>
+    </div>
+  );
 }
 
-export default function Home() {
+export default function Setting() {
+  const [config, setConfig] = useState(null);
+
+  useEffect(() => {
+    const conf = getDefaultConfig({
+      appName: 'Test Wallet App',
+      projectId: '2a6ea45d7b774258abb68a5e1d7d80e0',
+      chains: [coreTestnet],
+    });
+    setConfig(conf);
+  }, []);
+
+  if (!config) return <p>Loading...</p>;
+
   return (
-    <WagmiProvider config={config}>
+    <WagmiConfig config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
           <div className="Wallet_Connect">
-            <h1>✅ Working WalletConnect + RainbowKit</h1>
+            <h1>🟢 WalletConnect + RainbowKit</h1>
             <ConnectButton />
             <WalletStatus />
+            <OFABalance />
           </div>
         </RainbowKitProvider>
       </QueryClientProvider>
-    </WagmiProvider>
+    </WagmiConfig>
+    
   );
 }
