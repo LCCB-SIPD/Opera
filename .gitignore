@@ -32,7 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
-core-token/
+core-token/node_modules
+core-token/.next
+core-token/.env
 
 # vercel
 .vercel
