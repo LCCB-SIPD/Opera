@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Swal from "sweetalert2"
-import "../../css/home.css"
+import "@/app/css/home.css"
 
 export default function Home() {
     const router = useRouter();
@@ -165,7 +165,7 @@ export default function Home() {
                             <h2>{products_value.name}</h2>
                             <h3>Owner: {products_value.owner}</h3>
                             <h3>Categories: {products_value.categories}</h3>
-                            <p>Price - {products_value.price}</p>
+                            <p>Price - {products_value.price} OFA</p>
                         </div>
                         <div className="buttons">
                             <button>Cart</button>

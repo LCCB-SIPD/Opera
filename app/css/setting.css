@@ -3,4 +3,8 @@
 }
 .Wallet_Connect {
     width: min(720px, 100dvw);
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
