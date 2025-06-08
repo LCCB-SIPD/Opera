@@ -2,9 +2,52 @@
     width: min(720px, 100dvw);
 }
 .Wallet_Connect {
-    width: min(720px, 100dvw);
+    width: min(900px, 90dvw);
     height: auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    margin: 10px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+}
+.Wallet_Connect div {
+    margin: 10px;
+    height: inherit;
+    display: flex;
+    align-items: center;
+}
+.walletImage {
+    margin: 0 20px;
+}
+.wallet_left {
+    overflow: auto;
+}
+.wallet_right {
+    justify-content: right;
+}
+.setting_banner {
+    width: min(1000px, 90dvw);
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+.setting_banner h1 {
+    font-weight: bolder;
+    font-size: 1.4rem;
+}
+.setting_banner div {
+    width: 100%;
+    text-align: center;
+}
+.setting_banner button {
+    padding: 10px 30px;
+    background-color: #1b212b;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 10px;
+    transition: 0.2s ease-in-out;
+}
+.setting_banner button:hover {
+    transform: scale(1.1);
 }

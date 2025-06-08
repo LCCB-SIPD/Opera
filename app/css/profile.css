@@ -32,12 +32,14 @@
 }
 .inventory_banners {
     width: min(240px, 100dvh);
-    height: 100dvh;
+    height: auto;
     background-color: #21262d;
     display: flex;
     justify-content: left;
     overflow: hidden;
     flex-flow: column;
+    margin: 10px 20px;
+    border-radius: 10px;
 }
 .inventory_banners button {
     padding: 15px 30px;

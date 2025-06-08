@@ -112,7 +112,7 @@ export default function Profile() {
                             <h2>{userData.username}</h2>
                         </div>
                     </div>
-                    <button type="button" onClick={() => {router.replace("/main/Home"); setLoading(true); }}>&larr; Back</button>
+                    <button type="button" onClick={() => {router.replace("/main/Home"); setLoading(true); }}>Home</button>
                     <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); loadingSign();}}>Dashboard</button>
                     <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); loadingSign();}}>Your Ordered</button>
                     <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); loadingSign();}}>Carts</button>

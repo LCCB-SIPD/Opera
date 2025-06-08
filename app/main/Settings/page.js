@@ -2,6 +2,7 @@
 import '@/app/css/setting.css';
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
+import Image from "next/image";
 import '@rainbow-me/rainbowkit/styles.css';
 import {
   getDefaultConfig,
@@ -45,7 +46,7 @@ function WalletStatus() {
 
   return (
     <div>
-      <p>✅ Connected!</p>
+      <p>{address}</p>
     </div>
   );
 }
@@ -88,11 +89,26 @@ export default function Setting() {
     <WagmiConfig config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
+          <div className='setting_banner'>
+            <button onClick={() => {router.push('/main/Home')}}>Back</button>
+            <div>
+              <h1>Settings</h1>
+            </div>
+          </div>
           <div className="Wallet_Connect">
-            <WalletStatus />
-            <h1>Connect Your Wallet</h1>
-            <ConnectButton />
-            
+            <div className='wallet_left'>
+              <Image 
+              src="/Icons/logo-transparent.png"
+              alt="logo"
+              width={40}
+              height={40}
+              className='walletImage'
+              />
+              <WalletStatus />
+            </div>
+            <div className='wallet_right'>
+              <ConnectButton />
+            </div>
           </div>
         </RainbowKitProvider>
       </QueryClientProvider>
