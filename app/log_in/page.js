@@ -81,8 +81,9 @@ export default function Log_in() {
                     unoptimized // Optional if you want to skip Next.js optimization for the image
                     />
                 </span>
+                
+            <form className="log_in_form" onSubmit={handleLogIn}>
                 <h1 className="title">One For All</h1>
-            <form onSubmit={handleLogIn}>
                 <div>
                     <input 
                     type="text" 
@@ -109,11 +110,11 @@ export default function Log_in() {
                 <div>
                     <a href="#">Forgot Password?</a>
                 </div>
-                {error && <p className={`error ${errorColor ? "": "success"}`}>{error}</p>} 
-                <div>
+                {error && <p className={`error ${errorColor ? "": "success"}`}>{error}</p>}
+                <span>
                     <button type="button" onClick={() => {router.replace("/sign_up"); setLoading(true); }}>Sign Up</button>
-                    <button type="submit" disabled={loading}>{loading ? "Fetching..." : "Log In"}</button>
-                </div>
+                    <button type="submit" disabled={loading}>Log In</button>
+                </span> 
             </form>
         </div>
     )

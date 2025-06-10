@@ -246,8 +246,9 @@ export default function Sign_up() {
             </span>
             
             
-            <h1 className="title">Sign Up</h1>
-            <form onSubmit={handleSubmit}>
+            
+            <form className="sign_up_form" onSubmit={handleSubmit}>
+                <h1 className="title">Sign Up</h1>
                 <div>
                     <input 
                     type="email" 
@@ -296,10 +297,10 @@ export default function Sign_up() {
                     <button type="button" onClick={ConfirmEmail} disabled={v_button}>{v_button ? `${timer}`: "Send"}</button>
                 </div>
                 {error && <p className={`error ${errorColor ? "": "success"}`}>{error}</p>}
-                <div>
+                <span>
                    <button type="button" onClick={() => {router.replace("/log_in"); setLoading(true); }}>Back</button>
-                    <button type="submit" disabled={loading}>{loading ? "Loading..." : "Confirm"}</button>
-                </div>
+                    <button type="submit" disabled={loading}>Confirm</button>
+                </span>
             </form>
         </div>
     )

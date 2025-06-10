@@ -29,17 +29,21 @@ export default function OFABalance() {
       const decimals = await contract.decimals();
       const formatted = ethers.formatUnits(rawBalance, decimals);
 
-      setBalance(formatted);
+      setBalance(formatted)
     };
 
     fetchBalance();
   }, [walletClient, address]);
 
   if (!isConnected) return null;
+  
+  if (balance === null) return <p>Loading Balance</p>
+  
+  const bal = Number(balance).toLocaleString()
 
   return (
     <div style={{ marginTop: '1rem' }}>
-      <p>{balance !== null ? `${balance} OFA` : 'Fetching Balance...'} </p>
+      <p>{bal !== null ? `${bal} OFA` : 'Fetching Balance...'} </p>
       
     </div>
   );

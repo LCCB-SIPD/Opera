@@ -5,24 +5,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-flow: column;
     margin: 0 auto;
 }
 .title {
-    margin: 0 10px;
+    margin: 15px;
     font-size: 38px;
 }
-.log_in form {
-    width: 40%;
-    margin: 0 10px;
-    height: 380px;
+.log_in_form {
+    width: min(400px, 90dvw);
+    height: min(600px, 70dvh);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: column;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 3px #fff;
 }
-.log_in div {
-    width: 75%;
+.log_in_form div {
+    width: 80%;
     height: auto;
     display: flex;
     justify-content: center;
@@ -30,10 +30,17 @@
     position: relative;
     margin: 20px 0;
 }
-.log_in button {
-    margin: 0 15px;
+.log_in_form span {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0;
+}
+.log_in_form button {
     border: 2px solid #fff;
-    padding: 5px 20px;
+    padding: 5px 15px;
     cursor: pointer;
     border-radius: 10px;
     transition: 0.5s ease-in-out;
@@ -41,53 +48,23 @@
     color: #000;
     background-color: #fff;
 }
-.log_in button:hover {
+.log_in_form button:hover {
     opacity: 0.5;
 }
-.log_in label {
+.log_in_form label {
     font-size: 16px;
     position: absolute;
     left: 0;
     transition: 0.5s ease-in-out;
 }
-.log_in input {
+.log_in_form input {
     border-bottom: 2px solid #fff;
     background: transparent;
     width: 100%;
     outline: none;
 }
-.log_in input:focus + label,
-.log_in input:not(:placeholder-shown) + label {
+.log_in_form input:focus + label,
+.log_in_form input:not(:placeholder-shown) + label {
     font-size: 12px;
     transform: translateY(-20px);
-}
-.loading-screen {
-    font-size: 38px;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-align: center;
-    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-    background-size: 400% 400%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: rainbow-animation 5s infinite linear;
-}
-@keyframes rainbow-animation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-
-@media (max-width: 1024px) {
-    .log_in form {
-        max-width: 420px;
-        width: 90%;
-        margin: 0;
-    }
-    .log_in button {
-        font-size: 12px;
-        padding: 5px 10px;
-        margin: 0 15px;
-    }
 }

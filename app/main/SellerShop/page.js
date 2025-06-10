@@ -327,7 +327,7 @@ export default function SellerShop() {
                     </div>
                     
                     {error && <p className={`error ${errorColor ? "": "success"}`}>{error}</p>}
-                    <div>
+                    <div className='buttons_seller'>
                         <button type="button" onClick={() => {router.replace("/main/Home"); setLoading(true); }}>Back</button>
                         <button type="submit">Sell Product</button>
                     </div>

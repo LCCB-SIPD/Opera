@@ -177,7 +177,8 @@ export default function Home() {
               if (result.isConfirmed) {
               
               const quanty = result.value
-              const resultVal = quanty * price
+              const resultValWarp = quanty * price
+              const resultVal = resultValWarp.toLocaleString()
               
               Swal.fire({
                     title: 'Checking Your Wallet',
@@ -277,12 +278,12 @@ export default function Home() {
                 
                 const decimal = 18
                 
-                if (typeof resultVal !== 'number') {
+                if (typeof resultValWarp !== 'number') {
                   alert("Invalid price");
                   return;
                 }
 
-                const amount = parseUnits(resultVal.toString(), decimal);
+                const amount = parseUnits(resultValWarp.toString(), decimal);
                 
                 const txHash = await walletClient.writeContract({
                     address: tokenAddress,
@@ -320,7 +321,7 @@ export default function Home() {
                         color: '#ffffff',
                         confirmButtonColor: '#00adb5'
                       }).then(() => {
-                        window.location.reload()
+                          window.location.reload()
                       })
                       
                 } else {
@@ -435,7 +436,7 @@ export default function Home() {
                             <h2>{products_value.name}</h2>
                             <h3>Owner: {products_value.owner}</h3>
                             <h3>Categories: {products_value.categories}</h3>
-                            <p>Price - {products_value.price} OFA</p>
+                            <p>Price - {products_value.price.toLocaleString()} OFA</p>
                         </div>
                         <div className="buttons">
                             <button>Cart</button>
