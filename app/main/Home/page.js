@@ -4,6 +4,9 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Swal from "sweetalert2"
 import "@/app/css/home.css"
+import { useAccount, useWalletClient, usePublicClient, useDisconnect } from "wagmi";
+import { parseUnits, erc20Abi } from "viem";
+import useOFABalance from "@/app/components/C_walletBal"
 
 export default function Home() {
     const router = useRouter();
@@ -12,7 +15,12 @@ export default function Home() {
     const [loading, setLoading] = useState(false)
     const [imgUrl, setImgUrl] = useState('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQ5DaMNfmNBEuQaBUawxCv2NOgV01Kmqj0Q&s')
     const [products_val, setProducts_val] = useState([])
-
+    const { disconnect } = useDisconnect()
+    const { address } = useAccount();
+    const { data: walletClient } = useWalletClient();
+    const publicClient = usePublicClient();
+    const walletBal = useOFABalance()
+    
     useEffect(() => {
         const checkAuth = async () => {
             try {
@@ -51,10 +59,25 @@ export default function Home() {
         }
 
         getProduct()
-
+        
     }, [router]);
 
     const handleLogOut = async () => {
+    
+    
+        const result = await Swal.fire({
+          title: 'Are you sure?',
+          text: 'You are about to disconnect your wallet.',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, logout',
+          cancelButtonText: 'No, stay connected',
+          reverseButtons: true,
+          background: '#21262d',
+          color: '#ffffff'
+        });
+        
+        if (!result.isConfirmed) return; 
 
         try {
 
@@ -65,7 +88,8 @@ export default function Home() {
                 didOpen: () => {
                 Swal.showLoading(); // Show loading spinner
                 },
-                background: '#21262d'
+                background: '#21262d',
+                color: '#ffffff'
             })
 
             const res = await fetch("/api/log_out", { method: "GET" })
@@ -73,26 +97,270 @@ export default function Home() {
             if (!res.ok) {
                 throw new Error("Logout failed")
             }
-
+            
+            disconnect()
+            
             const data = await res.json()
             Swal.fire({
                 title: 'Log Out',
                 text: data.message,
                 icon: 'success',
-                background: '#222831',      // Custom background color
-                color: '#ffffff',           // Optional: Text color
-                confirmButtonColor: '#00adb5' // Optional: Button color
+                background: '#222831',
+                color: '#ffffff', 
+                confirmButtonColor: '#00adb5'
             }) .then(() => {
                 router.push("/log_in")
             });
 
             
-
         } catch (error) {
-            alert("Internet Timeout OR Server Error")
+            Swal.fire({
+                title: 'Connection Failed',
+                text: 'Try Again Later',
+                icon: 'error',
+                background: '#222831',
+                color: '#ffffff',
+                confirmButtonColor: '#00adb5'
+            })
             console.error(error)
         }
 
+    }
+    
+    
+    const handleBuy = async(name, price, prId, owner, quantity) => {
+        
+        
+        if (!walletClient || !address) {
+            
+            Swal.fire({
+                title: 'No Wallet Detected',
+                text: 'Please connect your wallet first',
+                icon: 'warning',
+                background: '#222831',
+                color: '#ffffff',
+                confirmButtonColor: '#00adb5'
+            })
+            return
+        }
+    
+        Swal.fire({
+          title: `${name}`,
+          html: `<p>Stocks: ${quantity}</p>
+                 <p style="color: #0f0;">Price: ${price} AFO</p>
+          `,
+          imageUrl: `${imgUrl}prd_id=${prId}`,
+          imageWidth: 200,
+          color: '#ffffff',
+          background: '#222831',
+          imageHeight: 200,
+          imageAlt: 'Product Image',
+          input: 'number',
+          inputAttributes: {
+            min: 1,
+            max: 10,
+            step: 1
+          },
+          inputValidator: (value) => {
+          if (!value || value <= 0) {
+             return 'Please enter a valid quantity!';
+          } else if (value > quantity) {
+              return 'Quantity Exceed!!';
+          }
+          },
+          showCancelButton: true,
+          confirmButtonText: 'Order',
+          cancelButtonText: 'Cancel',
+          reverseButtons: true,
+          }).then(async(result) => {
+              
+              if (result.isConfirmed) {
+              
+              const quanty = result.value
+              const resultVal = quanty * price
+              
+              Swal.fire({
+                    title: 'Checking Your Wallet',
+                    text: 'Please Wait...', 
+                    icon : 'info',
+                    color: '#ffffff',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                    Swal.showLoading();
+                    },
+                    background: '#21262d',
+                    color: '#ffffff'
+                 })
+              
+              try {
+                
+                const response = await fetch('/api/getUser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: owner
+                    })
+                })
+
+                const result = await response.json()
+
+                if (!response.ok) return;
+
+                const sellerAddress = result.data?.walletAddress
+                
+                 if (sellerAddress === address.toLowerCase() || owner === user.username) {
+                  await Swal.fire({
+                  title: 'Invalid Actions',
+                  text: 'Change Your Wallet or Same User as Owners',
+                  icon: 'warning',
+                  background: '#222831',
+                  color: '#ffffff',
+                  confirmButtonColor: '#00adb5'
+                  })
+                  return
+                 }
+                
+              const result2 = await Swal.fire({
+                title: 'Double Check Your Purchase',
+                html: `
+                    
+                    <p style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">from: ${address}</p>
+                    <p style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #0ff;">balance: ${walletBal !== null ? `${walletBal} OFA` : 'Fetching Balance...'}</p>
+                    <p>quantity: ${quanty}</p>
+                    <p>value: ${resultVal}</p>
+                    <p style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">to: ${sellerAddress}</p>
+                `,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Confirm',
+                cancelButtonText: 'Cancel',
+                reverseButtons: true,
+                background: '#21262d',
+                color: '#ffffff'
+              })
+              
+              
+              if (!result2.isConfirmed) return;
+              
+              const quantyDeduc =  quantity - quanty
+              
+              if (walletBal <= resultVal) {
+                  await Swal.fire({
+                  title: 'insufficient balance',
+                  text: 'Change Wallet Address or Make a Deposit',
+                  icon: 'warning',
+                  background: '#222831',
+                  color: '#ffffff',
+                  confirmButtonColor: '#00adb5'
+                  })
+                  return
+              }
+              
+              
+          
+              Swal.fire({
+                title: 'Confirming Transaction',
+                text: 'Validating...', 
+                icon : 'info',
+                color: '#ffffff',
+                allowOutsideClick: false,
+                didOpen: () => {
+                Swal.showLoading();
+                },
+                background: '#21262d',
+                color: '#ffffff'
+             })
+                
+                const tokenAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
+                
+                const decimal = 18
+                
+                if (typeof resultVal !== 'number') {
+                  alert("Invalid price");
+                  return;
+                }
+
+                const amount = parseUnits(resultVal.toString(), decimal);
+                
+                const txHash = await walletClient.writeContract({
+                    address: tokenAddress,
+                    abi: erc20Abi,
+                    functionName: 'transfer',
+                    args: [sellerAddress, amount],
+                    account: address
+                })
+                
+                if (txHash) {
+                
+                
+                const response = await fetch('/api/up_quantity', {
+                  method: 'POST',
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ 
+                  
+                  productId: prId,
+                  quanty: quantyDeduc
+                  
+                  })
+                    
+                    
+                })
+                
+                
+                const result = response.json()
+                
+                if (response.ok) {
+                    Swal.fire({
+                        title: 'Purchased!',
+                        text: `You bought ${name}, ${quanty} items for ${resultVal} AFO.`,
+                        icon: 'success',
+                        background: '#222831',
+                        color: '#ffffff',
+                        confirmButtonColor: '#00adb5'
+                      })
+                      window.location.reload()
+                } else {
+                    
+                 await Swal.fire({
+                  title: 'Error!',
+                  text: 'Database Error',
+                  icon: 'error',
+                  background: '#222831',
+                  color: '#ffffff',
+                  confirmButtonColor: '#00adb5'
+                })
+                
+                console.error(result.error)
+                    
+                }
+                
+                   
+                } 
+                
+                    
+            } catch (error) {
+                await Swal.fire({
+                  title: 'Error!',
+                  text: 'Somethings Went Wrong',
+                  icon: 'error',
+                  background: '#222831',
+                  color: '#ffffff',
+                  confirmButtonColor: '#00adb5'
+                })
+                console.error(error)
+
+            }
+               
+              
+              
+            }
+              
+          })
+            
+        
+        
     }
 
     return (
@@ -142,7 +410,7 @@ export default function Home() {
                     <div className="profile_option">
                         <button type="button" onClick={() => {router.replace("/main/Profile"); setLoading(true); }}>My Profile</button>
                         <button type="button" onClick={() => {router.replace("/main/SellerShop"); setLoading(true); }}>Sell Product</button>
-                        <button type="button" onClick={() => {router.replace("/main/Settings"); setLoading(true); }}>Settings</button>
+                        <button type="button" onClick={() => {router.replace("/main/Wallet"); setLoading(true); }}>Wallet</button>
                         <button type="button" onClick={handleLogOut}>Log Out</button>
                     </div>
                 </div>
@@ -169,7 +437,7 @@ export default function Home() {
                         </div>
                         <div className="buttons">
                             <button>Cart</button>
-                            <button>Order</button>
+                            <button onClick={() => { handleBuy(products_value.name, products_value.price, products_value.id, products_value.owner, products_value.quantity) }}>Order</button>
                         </div>
                     </div>    
                 ))

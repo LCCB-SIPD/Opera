@@ -1,16 +1,17 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import "../../css/profile.css"
+import "../../css/profile.css";
 
 export default function Profile() {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [user, setUser] = useState("")
-    const [src, getSrc] = useState("/main/Iframe_buy_pro")
+    const [src, getSrc] = useState("/main/Profile_info")
     const [profile, setProfile] = useState('')
     const [userData, setUserdata] = useState([])
+    const scrollDown = useRef(null)
 
     const changeSrc = (newSrc) => {
         getSrc(newSrc)
@@ -61,10 +62,6 @@ export default function Profile() {
 
                     setUserdata(result.data)
 
-                } else {
-
-                    alert("Somethings Went Wrong")
-
                 }
 
             } catch (error) {
@@ -77,7 +74,15 @@ export default function Profile() {
 
         getUser()
 
-    }, [router, usernameData])      
+    }, [router, usernameData]) 
+    
+    
+    const scrollDownTo = () => {
+        
+        scrollDown.current?.scrollIntoView({ behavior: 'smooth' })
+        
+        
+    }     
         
 
     return(
@@ -110,15 +115,17 @@ export default function Profile() {
                         </div>
                         <div className="profile_username_inner">
                             <h2>{userData.username}</h2>
+                            <h2>{userData.email}</h2>
                         </div>
                     </div>
                     <button type="button" onClick={() => {router.replace("/main/Home"); setLoading(true); }}>Home</button>
-                    <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); loadingSign();}}>Dashboard</button>
-                    <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); loadingSign();}}>Your Ordered</button>
-                    <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); loadingSign();}}>Carts</button>
-                    <button type="button" onClick={() => {changeSrc("/main/Iframe_sell_pro"); loadingSign();}}>Your Products</button>
+                    <button type="button" onClick={() => {changeSrc("/main/Profile_info"); scrollDownTo();}}>Update Information</button>
+                    <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); scrollDownTo();}}>Sales Product</button>
+                    <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); scrollDownTo();}}>Carts</button>
+                    <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); scrollDownTo();}}>Ordered Product</button>
+                    <button type="button" onClick={() => {changeSrc("/main/Iframe_sell_pro"); scrollDownTo();}}>My Product</button>
                 </div>
-                <div className="iframe_home">
+                <div className="iframe_home" ref={scrollDown}>
                     <iframe
                         src={src}
                         allowFullScreen

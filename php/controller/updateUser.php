@@ -8,6 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name = $_POST['name'] ?? null;
     $birth = $_POST['date'] ?? null;
     $address = $_POST['address'] ?? null;
+    $walletAddress = $_POST['walletAddress'] ?? null;
 
     if (empty($username)) {
 
@@ -41,12 +42,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit();
         }
 
-        $stmt = $pdo->prepare("UPDATE user_tbl SET name = :name, address = :address, birth = :birth, profile_pic = :profile_pic WHERE username = :username");
+        $stmt = $pdo->prepare("UPDATE user_tbl SET name = :name, address = :address, birth = :birth, profile_pic = :profile_pic, shop_wallet_address = :walletAddress WHERE username = :username");
         $stmt->execute([
             ':name' => $name,
             ':address' => $address,
             ':birth' => $birth,
             ':username' => $username,
+            ':walletAddress' => $walletAddress
             ':profile_pic' => $img_id
         ]);
 

@@ -131,7 +131,7 @@ export default function Sellproducts() {
 
     return(
         <div className="selled_product">
-            <h1><u>Your Product</u></h1>
+            <h1><u>My Product</u></h1>
             <div className="selled_prd">
 
                 {data && data.length > 0 ? (
@@ -141,8 +141,8 @@ export default function Sellproducts() {
                             <Image
                             src={`${imgUrl}prd_id=${prd_info.id}`}
                             alt="Img Prd"
-                            width={180}
-                            height={180}
+                            width={150}
+                            height={150}
                             unoptimized
                             />
                             <div className="prd_info">
@@ -150,7 +150,7 @@ export default function Sellproducts() {
                                 <p className="prd_price">Price: {prd_info.price}</p>
                                 <p className="prd_time">Time Sell: {prd_info.time}</p>
                                 <div className="prd_info_button">
-                                    <button className="prd_info_button_white">Info Status</button>
+                                    <button className="prd_info_button_white">Info</button>
                                     <button className="prd_info_button_red" onClick={() => handleDelete(prd_info.id)}>Delete</button>
                                 </div>
                             </div>

@@ -22,17 +22,28 @@
     border-radius: 50%;
     overflow: hidden;
     border: 0.1rem solid #fff;
+    margin: 5px;
+}
+.profile_username_inner {
+    width: 100%;
+    height: auto;
+    font-size: 1.2rem;
+    margin: 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
 }
 
 /* Iframes  */
 .inventory {
-    width: 100%;
+    width: 100dvw;
     height: auto;
     display: flex;
 }
 .inventory_banners {
-    width: min(240px, 100dvh);
-    height: auto;
+    width: min(350px, 90dvw);
+    height: min(750px, 100dvh);
     background-color: #21262d;
     display: flex;
     justify-content: left;
@@ -40,6 +51,7 @@
     flex-flow: column;
     margin: 10px 20px;
     border-radius: 10px;
+    overflow: auto;
 }
 .inventory_banners button {
     padding: 15px 30px;
@@ -47,14 +59,14 @@
     font-weight: 600;
     cursor: pointer;
     transition: 0.5s ease-in-out;
+    margin: 5px 0;
 }
 .inventory_banners button:hover {
     background-color: #fff;
     color: #000;
 }
 .iframe_home {
-    width: 100%;
-    max-width: 1024px;
+    width: min(1000px, 100dvw);
     height: 100dvh;
     display: flex;
     justify-content: center;
@@ -62,4 +74,15 @@
 .iframe_home iframe {
     width: 100%;
     height: inherit;
+}
+@media(max-width: 700px){
+    .inventory {
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .inventory_banners {
+        margin: 10px;
+        
+    }
 }

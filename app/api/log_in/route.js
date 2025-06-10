@@ -12,6 +12,7 @@ export async function POST(req) {
             headers: {
                 'Content-Type': 'application/json',
             },
+            credentials: "include",
             body: JSON.stringify({
                 username: username,
                 passwd: password
@@ -27,7 +28,7 @@ export async function POST(req) {
                 process.env.REACT_APP_JWT_SECRET_KEY,
                 { expiresIn: "1h" }
             );
-
+            console.log("Token", token)
             // Create response object
             const response = NextResponse.json( { message: result.message }, { status: 200 } )
 
@@ -38,14 +39,26 @@ export async function POST(req) {
                 path: "/",
                 httpOnly: true,  // Protect from JavaScript access
                 maxAge: 3600,    // 1 hour expiration
-                secure: true,
-                sameSite: "None",
+                secure: false,
+                sameSite: "Lax",
             });
-
-            return response;
+            
+            if (response.ok) {
+            
+                return response;
+                
+            } else {
+                
+                console.log("Invalid")
+                
+                return
+                
+            }
+            
+            
 
         } else {
-
+            console.error("Invalid")
             return NextResponse.json( { error: result.message }, { status: 404 } );
 
         }

@@ -215,7 +215,7 @@ export default function SellerShop() {
                 
             } else {
                 Swal.fire({
-                    title: 'Error!',
+                    title: 'Invalid',
                     text: fetchdata.error,
                     icon: 'error',
                     background: '#222831',      // Custom background color
@@ -249,7 +249,6 @@ export default function SellerShop() {
                     unoptimized // Optional if you want to skip Next.js optimization for the image
                     />
                 </span>
-                    <h1>Feature Img Upload Currently is On Development</h1>
                     <div className="prd_img">
                         <Image
                             src={imageSrc}

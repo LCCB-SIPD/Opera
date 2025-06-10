@@ -50,7 +50,27 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         ]);
         exit();
     }
-
+    
+    $stmt2 = $pdo->prepare('SELECT * FROM user_tbl WHERE username = :username LIMIT 1');
+    
+    $stmt2->execute([
+        ':username' => $username
+    ]);
+    
+    $rows = $stmt2->fetch(PDO::FETCH_ASSOC);
+    
+    if(empty($rows['shop_wallet_address'])) {
+        
+        echo json_encode([
+            'success' => false,
+            'message' => 'Please Update Your Shop Address'
+        ]);
+        
+        exit;
+        
+    }
+    
+    
     $stmt = $pdo->prepare('INSERT INTO product_tbl (
         name,
         price,

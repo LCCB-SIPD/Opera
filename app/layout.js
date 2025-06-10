@@ -1,7 +1,9 @@
+// app/layout.js
+
+import ClientProvider from './components/client-provider'
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
 import ServiceWorkerRegister from "./components/ServiceWorkerRegister";
 
 const geistSans = Geist({
@@ -20,18 +22,18 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-
   return (
     <html lang="en">
       <head>
-  <link rel="manifest" href="/manifest.json" />
-  <link rel="apple-touch-icon" href="/favicon.ico" />
-  <meta name="theme-color" content="#008000" />
-</head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-       <ServiceWorkerRegister />
-        {children}
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
+        <meta name="theme-color" content="#008000" />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ClientProvider>
+          <ServiceWorkerRegister />
+          {children}
+        </ClientProvider>
       </body>
     </html>
   );

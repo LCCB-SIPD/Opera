@@ -5,7 +5,7 @@ export async function GET(req) {
     const token = req.cookies.get("token")?.value;
 
     if (!token) {
-       console.log("Unauthorized")
+       console.log("Token", token)
        return NextResponse.json("Unauthorized", { status: 404 });
    }
 

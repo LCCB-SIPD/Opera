@@ -16,17 +16,17 @@
     height: auto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .prd_info_selled {
-    width: 100%;
-    max-width: 460px;
-    height: 200px;
-    margin: 20px;
+    width: min(430px, 90dvw);
+    height: auto;
+    margin: 10px;
     border-radius: 15px;
     background-color: #21262d;
     display: flex;
     overflow: hidden;
-    flex-basis: 460px;
+    flex-basis: 400px;
 }
 .prd_info {
     width: 100%;
@@ -80,15 +80,14 @@
 /* Loading span */
 
 .prd_info_selled1 {
-    width: 100%;
-    max-width: 460px;
+    width: min(360px, 90dvw);
     height: 200px;
-    margin: 20px;
+    margin: 10px;
     border-radius: 15px;
     background-color: #21262d;
     display: flex;
     overflow: hidden;
-    flex-basis: 460px;
+    flex-basis: 400px;
     animation: loading1 1s 1s linear infinite;
 }
 @keyframes loading1 {
@@ -103,15 +102,14 @@
     }    
 }
 .prd_info_selled2 {
-    width: 100%;
-    max-width: 460px;
+    width: min(360px, 90dvw);
     height: 200px;
-    margin: 20px;
+    margin: 10px;
     border-radius: 15px;
     background-color: #21262d;
     display: flex;
     overflow: hidden;
-    flex-basis: 460px;
+    flex-basis: 400px;
     animation: loading2 1s 0.5s linear infinite;
 }
 @keyframes loading2 {
@@ -126,15 +124,14 @@
     }    
 }
 .prd_info_selled3 {
-    width: 100%;
-    max-width: 460px;
+    width: min(360px, 90dvw);
     height: 200px;
-    margin: 20px;
+    margin: 10px;
     border-radius: 15px;
     background-color: #21262d;
     display: flex;
     overflow: hidden;
-    flex-basis: 460px;
+    flex-basis: 400px;
     animation: loading3 1s 1s linear infinite;
 }
 @keyframes loading3 {
@@ -149,15 +146,14 @@
     }    
 }
 .prd_info_selled4 {
-    width: 100%;
-    max-width: 460px;
+    width: min(360px, 90dvw);
     height: 200px;
-    margin: 20px;
+    margin: 10px;
     border-radius: 15px;
     background-color: #21262d;
     display: flex;
     overflow: hidden;
-    flex-basis: 460px;
+    flex-basis: 400px;
     animation: loading4 1s 0.5s linear infinite;
 }
 @keyframes loading4 {

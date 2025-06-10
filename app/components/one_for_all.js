@@ -2,6 +2,7 @@ import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
 import { useAccount, useWalletClient } from 'wagmi';
 
+
 // Replace with your OFA token contract address
 const OFA_TOKEN_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 
@@ -12,7 +13,7 @@ const ERC20_ABI = [
   'function decimals() view returns (uint8)',
 ];
 
-export function OFABalance() {
+export default function OFABalance() {
   const { address, isConnected } = useAccount();
   const { data: walletClient } = useWalletClient();
   const [balance, setBalance] = useState(null);
@@ -38,8 +39,8 @@ export function OFABalance() {
 
   return (
     <div style={{ marginTop: '1rem' }}>
-      <h3>💰 OFA Balance</h3>
-      <p>{balance !== null ? `${balance} OFA` : 'Fetching...'}</p>
+      <p>{balance !== null ? `${balance} OFA` : 'Fetching Balance...'} </p>
+      
     </div>
   );
 }

@@ -1,15 +1,20 @@
-.Settings {
-    width: min(720px, 100dvw);
+.wallet_cons {
+    width: 100dvw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
 }
 .Wallet_Connect {
-    width: min(900px, 90dvw);
+    width: min(600px, 90dvw);
     height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px;
+    margin: 20px;
     border: 2px solid #fff;
     border-radius: 10px;
+    flex-flow: column;
 }
 .Wallet_Connect div {
     margin: 10px;
@@ -18,29 +23,36 @@
     align-items: center;
 }
 .walletImage {
-    margin: 0 20px;
+    margin: 0 10px;
 }
 .wallet_left {
-    overflow: auto;
+    display: flex;
+    justify-content: center;
+}
+.wallet_left p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: min(240px, 90dvw);
 }
 .wallet_right {
     justify-content: right;
 }
-.setting_banner {
-    width: min(1000px, 90dvw);
+.wallet_banner {
+    width: min(600px, 90dvw);
     height: auto;
     display: flex;
     align-items: center;
 }
-.setting_banner h1 {
+.wallet_banner h1 {
     font-weight: bolder;
     font-size: 1.4rem;
 }
-.setting_banner div {
+.wallet_banner div {
     width: 100%;
     text-align: center;
 }
-.setting_banner button {
+.wallet_banner button {
     padding: 10px 30px;
     background-color: #1b212b;
     cursor: pointer;
@@ -48,6 +60,12 @@
     border-radius: 10px;
     transition: 0.2s ease-in-out;
 }
-.setting_banner button:hover {
+.wallet_banner button:hover {
     transform: scale(1.1);
+}
+
+@media(max-width: 780px){
+    .Wallet_Connect {
+        
+    }
 }

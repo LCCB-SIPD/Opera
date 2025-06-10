@@ -12,8 +12,6 @@ $stmt->execute([
 ]);
 
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!empty($result['name']) && !empty($result['birth']) && !empty($result['address'])) {
     
     $data = [
         'id' => $result['id'],
@@ -22,22 +20,14 @@ if (!empty($result['name']) && !empty($result['birth']) && !empty($result['addre
         'email' => $result['email'],
         'birth' => $result['birth'],
         'address' => $result['address'],
-        'time_created' => $result['time_created']
+        'time_created' => $result['time_created'],
+        'walletAddress' => $result['shop_wallet_address']
     ];
 
     echo json_encode([
         'success' => true,
         'data' => $data
     ]);
-
-} else {
-
-    echo json_encode([
-        'success' => false,
-        'message' => $username
-    ]);
-
-}
 
 
 
