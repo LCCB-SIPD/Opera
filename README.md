@@ -42,11 +42,6 @@ http://localhost:3000/
 
 The rapid evolution of e-commerce has transformed the way consumers interact with businesses, leading to increased demand for secure, transparent, and decentralized platforms.  Web3 technologies, encompassing blockchain, smart contracts, and cryptocurrency wallets, offer innovative solutions to address these demands.  The “One For All” e-commerce system aims to leverage these technologies to create a decentralized marketplace that enhances user trust and transactional efficiency.  Notably, this platform integrates the CORE token, the native cryptocurrency of the Core blockchain, aligning with the developer’s role as a Core Ambassador.
 
-
-
-
-## 
-
 The rapid growth of digital commerce has transformed the way businesses and consumers interact. With the increasing demand for online shopping, e-commerce platforms have become essential in providing convenience, accessibility, and efficiency for both buyers and sellers. This project introduces an online e-commerce platform, One For All, designed to cater to various product categories such as food, appliances, and other consumer goods. The platform enables users to engage in seamless buying and selling transactions while ensuring an organized and user-friendly experience. 
 
 Unlike traditional e-commerce platforms that separate users into buyers and sellers, One For All provides a single, powerful account type where users can both buy and sell products. This approach allows individuals and businesses to maximize their engagement within the platform, offering flexibility and efficiency. 
