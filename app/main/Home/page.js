@@ -319,8 +319,10 @@ export default function Home() {
                         background: '#222831',
                         color: '#ffffff',
                         confirmButtonColor: '#00adb5'
+                      }).then(() => {
+                        window.location.reload()
                       })
-                      window.location.reload()
+                      
                 } else {
                     
                  await Swal.fire({
