@@ -201,7 +201,7 @@ export default function Sign_up() {
                     color: '#ffffff',           // Optional: Text color
                     confirmButtonColor: '#00adb5' // Optional: Button color
                 }).then(() => {
-                    router.push("/")
+                    router.push("/log_in")
                 })
                 
             } else {
@@ -248,7 +248,7 @@ export default function Sign_up() {
             
             
             <form className="sign_up_form" onSubmit={handleSubmit}>
-                <h1 className="title">Sign Up</h1>
+                <h1 className="title_log_s">Sign Up</h1>
                 <div>
                     <input 
                     type="email" 

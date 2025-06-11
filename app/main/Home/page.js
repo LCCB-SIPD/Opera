@@ -15,6 +15,7 @@ export default function Home() {
     const [loading, setLoading] = useState(false)
     const [imgUrl, setImgUrl] = useState('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQ5DaMNfmNBEuQaBUawxCv2NOgV01Kmqj0Q&s')
     const [products_val, setProducts_val] = useState([])
+    const [search, setSearch] = useState("")
     const { disconnect } = useDisconnect()
     const { address } = useAccount();
     const { data: walletClient } = useWalletClient();
@@ -42,11 +43,11 @@ export default function Home() {
         const getProduct = async () => {
             
             try {
-                const response = await fetch("/api/getProduct"); // Assuming this is your API route
+                const response = await fetch("/api/getProduct");
                 const data = await response.json();
     
                 if (response.ok) {
-                    setProducts_val(data.data); // Assuming 'data' contains the rows from the database
+                    setProducts_val(data.data); 
                     console.log("Status: ", data.message)
                     setImgUrl(data.imgUrl)
                     setProfile(data.profile)
@@ -109,7 +110,9 @@ export default function Home() {
                 color: '#ffffff', 
                 confirmButtonColor: '#00adb5'
             }) .then(() => {
+                setLoading(true)
                 router.push("/log_in")
+                
             });
 
             
@@ -146,8 +149,8 @@ export default function Home() {
     
         Swal.fire({
           title: `${name}`,
-          html: `<p>Stocks: ${quantity}</p>
-                 <p style="color: #0f0;">Price: ${price} AFO</p>
+          html: `<p>Stocks: ${quantity.toLocaleString()}</p>
+                 <p style="color: #0f0;">Price: ${price.toLocaleString()} AFO</p>
           `,
           imageUrl: `${imgUrl}prd_id=${prId}`,
           imageWidth: 200,
@@ -223,12 +226,15 @@ export default function Home() {
                   return
                  }
                 
+                
+                const walletBalWarp = Number(walletBal).toLocaleString()
+                
               const result2 = await Swal.fire({
                 title: 'Double Check Your Purchase',
                 html: `
                     
                     <p style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">from: ${address}</p>
-                    <p style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #0ff;">balance: ${walletBal !== null ? `${walletBal} OFA` : 'Fetching Balance...'}</p>
+                    <p style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #0ff;">balance: ${walletBalWarp !== null ? `${walletBalWarp} OFA` : 'Fetching Balance...'}</p>
                     <p>quantity: ${quanty}</p>
                     <p>value: ${resultVal}</p>
                     <p style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">to: ${sellerAddress}</p>
@@ -247,7 +253,7 @@ export default function Home() {
               
               const quantyDeduc =  quantity - quanty
               
-              if (walletBal <= resultVal) {
+              if (walletBal <= resultValWarp) {
                   await Swal.fire({
                   title: 'insufficient balance',
                   text: 'Change Wallet Address or Make a Deposit',
@@ -313,6 +319,27 @@ export default function Home() {
                 const result = response.json()
                 
                 if (response.ok) {
+                
+                    
+                    const ordered = await fetch('/api/ordered', {
+                        method: 'POST',
+                        headers: {
+            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                        username: user.username,
+                        owner: owner,
+                        txHash: txHash,
+                        name: name,
+                        address: address,
+                        sellerAddress: sellerAddress,
+                        quanty: quanty,
+                        resultVal: resultVal
+                        }),
+                    })
+                
+                    const ordered_result = await ordered.json()
+                    if (ordered.ok) {
                     Swal.fire({
                         title: 'Purchased!',
                         text: `You bought ${name}, ${quanty} items for ${resultVal} AFO.`,
@@ -323,6 +350,21 @@ export default function Home() {
                       }).then(() => {
                           window.location.reload()
                       })
+                      
+                    } else {
+                        Swal.fire({
+                        title: 'Purchased! but their as an error',
+                        text: `You bought ${name}, ${quanty} items for ${resultVal} AFO.`,
+                        icon: 'warning',
+                        background: '#222831',
+                        color: '#ffffff',
+                        confirmButtonColor: '#00adb5'
+                      }).then(() => {
+                          window.location.reload()
+                      })
+                    }
+                    
+                      
                       
                 } else {
                     
@@ -354,16 +396,44 @@ export default function Home() {
                 })
                 console.error(error)
 
-            }
-               
-              
+            } 
               
             }
               
           })
             
+    }
+    
+    
+    const handleSearch = async (e) => {
         
+        e.preventDefault()
         
+        try{
+            
+            setProducts_val([])
+            
+            const response = await fetch('/api/search', {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({   
+                    search: search
+                })
+            })
+            
+            const result = await response.json()
+            
+            if (response.ok) {
+            
+                setProducts_val(result.data)
+                
+            }
+            
+        } catch(error) {
+            
+            console.error(error)
+             
+        }
     }
 
     return (
@@ -380,11 +450,17 @@ export default function Home() {
                     <h1>One For All</h1>
                 </div>
                 <div className="searchBar">
-                    <input 
+                    
+                <form onSubmit={handleSearch} className="searchBar">
+                 <input 
                     type="text" 
                     id="search"
                     placeholder="Search"
-                    />
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                </form>  
+                   
                 </div>
                 <div className="notifications">
                     <Image

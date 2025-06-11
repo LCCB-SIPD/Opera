@@ -4,8 +4,8 @@ include '../access/server.php';
 
 include '../access/nodejs.php';
 
+$username = $data['username'] ?? null;
 
-$username = $data['user'] ?? null;
 
 if (empty($username)) {
 
@@ -16,12 +16,13 @@ if (empty($username)) {
     exit();
 }
 
-$stmt = $pdo->prepare("SELECT id, name, price, quantity, categories, time 
-FROM product_tbl 
-WHERE owner_user = :owner_user LIMIT 10");
+$stmt = $pdo->prepare("SELECT *
+FROM ordered_tbl 
+WHERE username_from = :username_from OR username_to = :username_to LIMIT 10");
 
 $stmt->execute([
-    ':owner_user' => $username
+    ':username_from' => $username,
+    ':username_to' => $username
 ]);
 
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

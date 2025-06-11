@@ -1,0 +1,24 @@
+.ordered {
+    width: 100dvw;
+    height: 100dvh;
+    overflow: auto;
+}
+.ordered h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.ordered_table {
+    width: max(2200px, 100dvw);
+    border: 2px solid #fff;
+    text-align: center;
+    margin: 20px;
+}
+.ordered_table th {
+    background: #21262d;
+    border: 2px solid #fff;
+}
+.ordered_table td {
+    border: 2px solid #fff;
+    
+}

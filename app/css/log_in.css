@@ -7,19 +7,19 @@
     align-items: center;
     margin: 0 auto;
 }
-.title {
-    margin: 15px;
+.title_log {
+    margin: 0 0 50px 0;
     font-size: 38px;
 }
 .log_in_form {
     width: min(400px, 90dvw);
-    height: min(600px, 70dvh);
+    height: min(600px, 90dvh);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: column;
+    background: #21262d;
     border-radius: 20px;
-    box-shadow: 0px 0px 20px 3px #fff;
 }
 .log_in_form div {
     width: 80%;

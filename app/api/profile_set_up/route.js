@@ -13,26 +13,23 @@ export async function POST(req) {
         const walletAddress = formDataFile.get('walletAddress')
         const file = formDataFile.get('img')
        
-        if (!file) {
-            return NextResponse.json(
-                { error: "No image file uploaded" },
-                { status: 404 }
-            );
-        }
+        
 
         const cleanName = name.trim().replace(/\b\w/g, (char) => char.toUpperCase());
         const cleanAddress = address.trim().replace(/\b\w/g, (char) => char.toUpperCase());
         const cleanWalletAddress = walletAddress.trim().replace(/\b\w/g, (char) => char.toUpperCase());
 
         const phpUrl = `${process.env.REACT_APP_PHP_FILE_UPDATE_PROFILE}`
-
+        
         const formData = new FormData()
         formData.append("username", username)
         formData.append("name", cleanName)
         formData.append("birthday", birthday)
         formData.append("address", cleanAddress)
         formData.append("walletAddress", cleanWalletAddress)
-        formData.append("img", file, file.name)
+        if (file instanceof File) {
+        formData.append("img", file, file.name ?? "unknown.jpg");
+        }
 
         const response = await fetch(phpUrl, {
             method: 'POST',
@@ -56,6 +53,9 @@ export async function POST(req) {
             )
 
         }
+        
+        
+        
 
         
 

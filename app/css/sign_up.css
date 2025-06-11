@@ -7,8 +7,8 @@
     align-items: center;
     margin: 0 auto;
 }
-.title {
-    margin: 15px;
+.title_log_s {
+    margin: 0 0 20px 0;
     font-size: 38px;
 }
 .sign_up_form {
@@ -19,8 +19,8 @@
     justify-content: center;
     align-items: center;
     flex-flow: column;
+    background: #21262d;
     border-radius: 20px;
-    box-shadow: 0px 0px 20px 3px #fff;
 }
 .sign_up_form div {
     width: 80%;

@@ -17,7 +17,7 @@ export default function Profile() {
         getSrc(newSrc)
     }
 
-    const usernameData = user.username ?? null
+    const usernameData = user.username ?? null    
 
     useEffect(() => {
 
@@ -120,7 +120,6 @@ export default function Profile() {
                     </div>
                     <button type="button" onClick={() => {router.replace("/main/Home"); setLoading(true); }}>Home</button>
                     <button type="button" onClick={() => {changeSrc("/main/Profile_info"); scrollDownTo();}}>Update Information</button>
-                    <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); scrollDownTo();}}>Sales Product</button>
                     <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); scrollDownTo();}}>Carts</button>
                     <button type="button" onClick={() => {changeSrc("/main/Iframe_buy_pro"); scrollDownTo();}}>Ordered Product</button>
                     <button type="button" onClick={() => {changeSrc("/main/Iframe_sell_pro"); scrollDownTo();}}>My Product</button>

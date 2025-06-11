@@ -36,10 +36,6 @@ export default function useOFABalance() {
   }, [walletClient, address]);
 
   if (!isConnected) return null;
-  
-  if (balance === null) return "Loading"
-  
-  const bal = Number(balance).toLocaleString()
 
-  return bal;
+  return balance;
 }

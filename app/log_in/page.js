@@ -83,7 +83,7 @@ export default function Log_in() {
                 </span>
                 
             <form className="log_in_form" onSubmit={handleLogIn}>
-                <h1 className="title">One For All</h1>
+                <h1 className="title_log">One For All</h1>
                 <div>
                     <input 
                     type="text" 

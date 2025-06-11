@@ -1,14 +1,11 @@
 <?php 
 
 include '../access/server.php';
-
 include '../access/nodejs.php';
 
+$search = 48;
 
-$username = $data['user'] ?? null;
-
-if (empty($username)) {
-
+if (empty($search)) {
     echo json_encode([
         'success' => false,
         'message' => 'Invalid User Undefined'
@@ -16,18 +13,12 @@ if (empty($username)) {
     exit();
 }
 
-$stmt = $pdo->prepare("SELECT id, name, price, quantity, categories, time 
-FROM product_tbl 
-WHERE owner_user = :owner_user LIMIT 10");
-
-$stmt->execute([
-    ':owner_user' => $username
-]);
+$stmt = $pdo->prepare("SELECT * FROM product_tbl WHERE id = :name");
+$stmt->execute([':name' => $search]);
 
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if (empty($result) || $result === null) {
-
+if (empty($result)) {
     echo json_encode([
         'success' => false,
         'message' => 'No Data Found'
@@ -43,9 +34,9 @@ foreach($result as $row) {
 
 }
 
+// Wrap inside a "product" array
 echo json_encode([
     'success' => true,
-    'data' => $data
+    'product' => $data
 ]);
-
 ?>
