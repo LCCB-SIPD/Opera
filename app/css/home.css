@@ -16,6 +16,7 @@
     position: fixed;
     top: 0;
     z-index: 100;
+    left: 0;
 }
 .banners_Lwidth {
     width: 100%;
