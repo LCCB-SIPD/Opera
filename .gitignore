@@ -32,9 +32,6 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
-core-token/node_modules
-core-token/.next
-core-token/.env
 
 # vercel
 .vercel
@@ -42,7 +39,3 @@ core-token/.env
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# Database Server
-php/access/server_addr.php
-
