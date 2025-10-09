@@ -1,0 +1,67 @@
+
+.container {
+    width: 100dvw;
+    height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.left {
+    position: relative;
+    width: 70%;
+    height: 100%;
+}
+.right {
+    width: 30%;
+    height: 100%;
+    padding: 1rem;
+}
+.right h1 {
+    margin: 2rem 0;
+}
+
+.right button {
+    padding: 1rem 0;
+    width: 430px;
+    font-weight: bold;
+    margin: 2rem 1rem;
+    background-color: var(--color_4);
+    cursor: pointer;
+    border-radius: 15px;
+    border: transparent;
+    transition: all 0.5s ease-in-out;
+}
+.right button:hover {
+    opacity: 0.8;
+}
+.right button:active {
+    transform: scale(0.5);
+}
+.right form {
+    width: 100%;
+    height: 100%;
+    flex-flow: column;
+}
+.right a {
+    color: #00f;
+}
+.right p {
+    font-weight: bold;
+}
+.credentials {
+    flex-flow: column;
+    align-items: start;
+}
+.credentials label {
+    font-size: 1.4rem;
+    margin: 0.5rem 0;
+}
+.credentials input {
+    padding: 0.8rem 0.3rem;
+    width: 430px;
+    background-color: #fff;
+    color: #000;
+    border: transparent;
+    border-radius: 10px;
+    font-size: 1rem;
+}

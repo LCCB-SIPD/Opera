@@ -1,15 +1,27 @@
+"use client";
 import { 
-  Header,
-  Banner,
-  Footer
-} from "@/components";
+    Header,
+    Banner,
+    Footer
+} from "@/app/components";
+import { useEffect } from "react";
+import {
+    Fetchers
+} from "@/app/utilities";
 
 export default function Home() {
-  return (
-    <>
-      <Header />
-      <Banner />
-      <Footer />
-    </>
-  );
+
+    useEffect(() => {
+
+      Fetchers("/services/api/test_db", "GET");
+
+    }, [])
+
+    return (
+        <>
+            <Header />
+            <Banner />
+            <Footer />
+        </>
+    );
 }

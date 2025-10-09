@@ -1,5 +1,5 @@
 
-@import url(../config/root__config.css);
+@import url(./config/root__config.css);
 
 .flex { 
   display: flex; 

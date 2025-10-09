@@ -1,6 +1,9 @@
 import style from "./css/styles.module.css";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
+	const router = useRouter();
+
 	return(
 		<header className={style.header_header}>
 			<div className={`flex ${style.container}`}>
@@ -14,7 +17,7 @@ export default function Header() {
 							<li><a href="#">Contacts</a></li>
 						</ul>
 					</nav>
-					<button>Get Started</button>
+					<button onClick={() => router.push("/signup")}>Get Started</button>
 				</div>
 			</div>
 		</header>
