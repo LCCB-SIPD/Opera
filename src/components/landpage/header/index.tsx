@@ -14,8 +14,7 @@ export default function Header() {
 							<li><a href="#">Contacts</a></li>
 						</ul>
 					</nav>
-					<button>Sign Up</button>
-					<button>Sign In</button>
+					<button>Get Started</button>
 				</div>
 			</div>
 		</header>

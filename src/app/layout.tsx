@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Opera | ",
-  description: "Opera ",
+  title: "Opera | Next-Gen Shopping with Crypto | Web3 eCommerce for Everyone",
+  description: "Discover Opera, a Web3 eCommerce platform that lets you buy, sell, and earn using crypto. Own your data and shop without middlemen.",
 };
 
 export default function RootLayout({
