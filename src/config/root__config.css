@@ -1,0 +1,21 @@
+:root {
+  --background: #CDFFE5;
+  --foreground: #171717;
+  --neutral-gray: #F0F0F0;
+
+  --color_1: #6EFFC1;
+  --color_2: #13CF91;
+  --color_3: #0B996A;
+  --color_4: #077A54;
+  --color_5: #045C3E;
+
+  --max-width: min(1366px, 100dvw);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #012315;
+    --foreground: #ededed;
+    --neutral-gray: #2f2828;
+  }
+}
