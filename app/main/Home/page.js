@@ -447,7 +447,7 @@ export default function Home() {
                     width={40}
                     height={40}
                     />
-                    <h1>One For All</h1>
+                    <h1>Opera</h1>
                 </div>
                 <div className="searchBar">
                     
